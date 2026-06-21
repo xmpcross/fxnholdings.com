@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 460" role="img" aria-label="Value creation lifecycle" font-family="ui-sans-serif, system-ui, sans-serif">
+  <rect width="560" height="460" rx="16" fill="#eef2f7"/>
+  <rect x="32" y="32" width="496" height="396" rx="12" fill="#ffffff"/>
+  <rect x="32" y="32" width="496" height="396" rx="12" fill="none" stroke="#e2e8f0"/>
+
+  <!-- header -->
+  <circle cx="58" cy="60" r="5" fill="#34d399"/>
+  <circle cx="76" cy="60" r="5" fill="#e2e8f0"/>
+  <rect x="98" y="55" width="130" height="10" rx="5" fill="#e2e8f0"/>
+
+  <!-- gridlines -->
+  <g stroke="#eef2f7" stroke-width="1">
+    <line x1="72" y1="150" x2="488" y2="150"/>
+    <line x1="72" y1="220" x2="488" y2="220"/>
+    <line x1="72" y1="290" x2="488" y2="290"/>
+    <line x1="72" y1="360" x2="488" y2="360"/>
+  </g>
+
+  <!-- growth area + line -->
+  <path d="M88 350 L182 300 L276 250 L370 206 L464 138 L464 360 L88 360 Z" fill="#10b981" opacity="0.12"/>
+  <polyline points="88,350 182,300 276,250 370,206 464,138" fill="none" stroke="#10b981" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- arrow head at the top of the trend -->
+  <path d="M464 138 l-14 4 l9 11 z" fill="#10b981"/>
+
+  <!-- milestone markers -->
+  <g>
+    <circle cx="182" cy="300" r="7" fill="#ffffff" stroke="#0b1f3a" stroke-width="3"/>
+    <circle cx="276" cy="250" r="7" fill="#ffffff" stroke="#0b1f3a" stroke-width="3"/>
+    <circle cx="370" cy="206" r="7" fill="#0b1f3a"/>
+  </g>
+
+  <!-- phase pills -->
+  <g>
+    <rect x="120" y="386" width="100" height="26" rx="13" fill="#0b1f3a"/>
+    <text x="170" y="403" fill="#ffffff" font-size="12" font-weight="600" text-anchor="middle">01 · Acquire</text>
+    <rect x="230" y="386" width="100" height="26" rx="13" fill="#10b981"/>
+    <text x="280" y="403" fill="#ffffff" font-size="12" font-weight="600" text-anchor="middle">02 · Operate</text>
+    <rect x="340" y="386" width="100" height="26" rx="13" fill="#0b1f3a"/>
+    <text x="390" y="403" fill="#ffffff" font-size="12" font-weight="600" text-anchor="middle">03 · Scale</text>
+  </g>
+</svg>

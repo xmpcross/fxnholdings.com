@@ -1,0 +1,4 @@
+:HL["/_next/static/chunks/068urs~1vreka.css","style"]
+:HL["/fonts/Urbanist-Regular.woff2","font",{"crossOrigin":"anonymous","type":"font/woff2"}]
+:HL["/fonts/Outfit-Regular.woff2","font",{"crossOrigin":"anonymous","type":"font/woff2"}]
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"privacy","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"7E8g1MZ05pK7y08TZQ5LM"}

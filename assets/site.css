@@ -487,3 +487,21 @@ body::before {
   .reveal { opacity: 1; transform: none; }
   .marquee-track { animation: none; }
 }
+
+/* ---------- Live properties ---------- */
+.sites { display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--r-lg); overflow: hidden; }
+@media (min-width: 720px) { .sites { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1040px) { .sites { grid-template-columns: repeat(3, 1fr); } }
+.site { position: relative; display: grid; gap: 14px; align-content: start; padding: 28px; background: var(--card); text-decoration: none; transition: background-color 0.3s; }
+.site:hover { background: #fff; }
+.site .kind { font: 500 11px var(--f-mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--ochre); }
+.site .domain { font: 400 clamp(24px, 2.4vw, 30px)/1.1 var(--f-display); letter-spacing: -0.025em; display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.site .domain .ext { font-size: 18px; color: var(--muted); transition: transform 0.35s var(--ease-out), color 0.2s; }
+.site:hover .domain .ext { transform: translate(3px, -3px); color: var(--ochre); }
+.site p { color: var(--ink-2); font-size: 16px; }
+.site .flag { justify-self: start; font: 500 11px var(--f-mono); letter-spacing: 0.08em; padding: 4px 9px; border-radius: 999px; background: var(--ochre-soft); color: var(--ochre); }
+.sites .site.more { background: var(--ocean); color: var(--on-dark); }
+.sites .site.more p { color: var(--on-dark-muted); }
+.sites .site.more:hover { background: var(--ocean-deep); }
+.dark .sites { background: var(--on-dark-line); border-color: var(--on-dark-line); }
+@media (min-width: 1040px) { .sites .site.more { grid-column: span 2; } }

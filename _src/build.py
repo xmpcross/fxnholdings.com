@@ -17,7 +17,7 @@ from pathlib import Path
 SRC = Path(__file__).resolve().parent
 ROOT = SRC.parent
 SITE = "https://www.fxnholdings.com"
-VERSION = "20261009k"
+VERSION = "20261009m"
 
 logo = (SRC / "partials" / "logo.svg").read_text().strip()
 header = (SRC / "partials" / "header.html").read_text()
@@ -29,8 +29,10 @@ ORG_JSONLD = {
     "name": "FXN Holdings",
     "url": SITE + "/",
     "logo": SITE + "/img/fxn-holdings-logo.svg",
-    "description": "An Australian digital holdings business that builds and operates online businesses across e-commerce, travel, content and publishing, price comparison and affiliate marketing.",
-    "email": "kritin@fxnholdings.com",
+    "description": "A digital venture group based in Perth, Western Australia, that finds market gaps, then builds and launches e-commerce, travel, content and publishing, price comparison and free online tool platforms on open-source technology.",
+    "slogan": "Find the gap. Build. Launch.",
+    "areaServed": "Worldwide",
+    "email": "contact@fxnholdings.com",
     "taxID": "53 274 423 748",
     "foundingDate": "2024",
     "address": {
@@ -58,8 +60,16 @@ HEAD = """<!doctype html>
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{description}">
 <meta property="og:url" content="{url}">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="{site}/img/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="FXN Holdings: we find the gap, build the platform, and launch it.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{title}">
+<meta name="twitter:description" content="{description}">
+<meta name="twitter:image" content="{site}/img/og-image.png">
 {robots}<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preload" href="/fonts/Urbanist-Variable.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/vendor/fontawesome/fa.min.css?v=6.7.2">
 <link rel="stylesheet" href="/assets/site.css?v={version}">
@@ -100,7 +110,14 @@ def build_page(src_path):
 
     jsonld = ""
     if meta.get("jsonld"):
-        jsonld = '<script type="application/ld+json">%s</script>\n' % json.dumps(ORG_JSONLD, separators=(",", ":"))
+        graph = [ORG_JSONLD, {"@context": "https://schema.org", "@type": "WebSite", "name": "FXN Holdings", "url": SITE + "/", "inLanguage": "en-AU", "publisher": {"@type": "Organization", "name": "FXN Holdings"}}]
+        jsonld = "".join('<script type="application/ld+json">%s</script>\n' % json.dumps(g, separators=(",", ":")) for g in graph)
+    elif meta.get("crumb") and not meta.get("noindex"):
+        crumbs = {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Home", "item": SITE + "/"},
+            {"@type": "ListItem", "position": 2, "name": meta["crumb"], "item": url},
+        ]}
+        jsonld = '<script type="application/ld+json">%s</script>\n' % json.dumps(crumbs, separators=(",", ":"))
     robots = '<meta name="robots" content="noindex">\n' if meta.get("noindex") else ""
 
     html = (
@@ -111,6 +128,7 @@ def build_page(src_path):
             robots=robots,
             jsonld=jsonld,
             version=VERSION,
+            site=SITE,
         )
         + render_header(meta.get("nav"))
         + '<main id="main">\n'

@@ -5,10 +5,10 @@
 :root {
   --black: #2d2d2d;
   --ink: #333333;
-  --grey: #6d6d6d;
+  --grey: #5f5f5f;
   --line: #e6e1d9;
-  --blue: #0070ff;
-  --blue-dark: #005ad1;
+  --blue: #0062de;
+  --blue-dark: #004fb5;
   --lightblue: #d1eef7;
   --beige: #fcf6ef;
   --white: #ffffff;
@@ -98,7 +98,7 @@ button { font: inherit; }
 .hero-grid { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: 64px; align-items: center; }
 .hero-copy { display: flex; flex-direction: column; align-items: flex-start; }
 .hero-eyebrow { display: inline-flex; align-items: center; gap: 10px; padding: 6px 12px; background: var(--beige); font-size: 13px; font-weight: 600; letter-spacing: .02em; color: var(--terracotta); }
-.live-dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: #1e8a4c; box-shadow: 0 0 0 3px rgba(30, 138, 76, .18); }
+.live-dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: #18773f; box-shadow: 0 0 0 3px rgba(30, 138, 76, .18); }
 .hero .h1 { margin-top: 24px; max-width: 640px; font-size: clamp(40px, 4.6vw, 64px); text-wrap: balance; }
 .hero-sub { max-width: 540px; margin-top: 24px; font-size: 18px; line-height: 1.5; color: var(--grey); }
 .hero .btn-group { margin-top: 32px; justify-content: flex-start; }
@@ -195,9 +195,13 @@ button { font: inherit; }
 .foot-brand p { margin-top: 20px; font-size: 14px; line-height: 1.55; color: #c9c9c9; max-width: 280px; }
 .foot-brand .mail { display: inline-flex; align-items: center; gap: 8px; margin-top: 16px; font-size: 14px; color: #fff; }
 .foot-brand .mail i, .foot-reg i { color: var(--blue); margin-right: 6px; }
-.social { list-style: none; padding: 0; margin-top: 20px; display: flex; gap: 10px; }
-.social a { display: grid; place-items: center; width: 40px; height: 40px; background: #3a3a3a; color: #fff; border-radius: var(--radius); transition: background-color .2s; }
-.social a:hover { background: var(--blue); }
+.social-label { margin-top: 24px; font-size: 13px; font-weight: 700; letter-spacing: .04em; color: #9a9a9a; }
+.social { list-style: none; padding: 0; margin-top: 12px; display: flex; gap: 12px; }
+.social a { position: relative; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; border: 1px solid #4a4a4a; color: #fff; transition: background-color .25s var(--ease), border-color .25s var(--ease), transform .25s var(--ease), color .25s; }
+.social a:hover, .social a:focus-visible { transform: translateY(-3px); border-color: transparent; }
+.social a.s-facebook:hover, .social a.s-facebook:focus-visible { background: #1877f2; }
+.social a.s-x:hover, .social a.s-x:focus-visible { background: #fff; color: #000; }
+.social a.s-whatsapp:hover, .social a.s-whatsapp:focus-visible { background: #1faa52; }
 .social i { font-size: 17px; }
 .foot-col h2 { font-family: var(--font-text); font-size: 16px; font-weight: 700; color: #9a9a9a; }
 .foot-col ul { list-style: none; padding: 0; margin-top: 16px; display: grid; gap: 14px; }
@@ -270,7 +274,7 @@ button { font: inherit; }
 .asset-table td a { color: var(--black); text-decoration: none; border-bottom: 1px solid var(--line); }
 .asset-table td a:hover { color: var(--blue); border-bottom-color: currentColor; }
 .asset-table tbody tr:hover { background: #fdfaf6; }
-.status { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: #1e8a4c; white-space: nowrap; }
+.status { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: #18773f; white-space: nowrap; }
 .status::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
 
 .pipeline { list-style: none; padding: 0; display: grid; gap: 12px; counter-reset: pipe; }
@@ -324,7 +328,7 @@ button { font: inherit; }
 .hero-tile figcaption strong { font-size: 22px; font-weight: 700; color: var(--black); }
 .statement-band { padding: 96px 0; background: var(--blue); }
 .statement { max-width: 1000px; margin: 0 auto; font-size: clamp(28px, 3.6vw, 44px); font-weight: 700; line-height: 1.2; letter-spacing: -0.015em; text-align: center; text-wrap: balance; color: #fff; }
-.statement .accent { color: var(--yellow); }
+.statement .accent { color: #ffd166; }
 .eyebrow-dark { background: #3a3a3a; color: var(--yellow); }
 .beliefs { list-style: none; padding: 0; display: grid; }
 .beliefs li { display: grid; gap: 8px; padding: 22px 0; border-top: 1px solid #444; }

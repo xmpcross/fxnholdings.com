@@ -6,18 +6,22 @@ Each file in _src/pages/ starts with a JSON metadata block in an HTML comment:
     <!--meta {"title": "...", "description": "...", "path": "/about/", "nav": "about"} -->
 
 The body is wrapped in the shared head, header and footer, and written to the
-site root (path "/" -> index.html, "/about/" -> about/index.html, "/404.html" -> 404.html).
+output folder dist/ (path "/" -> index.html, "/about/" -> about/index.html, "/404.html" -> 404.html).
+Everything in static/ (assets, fonts, images, robots.txt, sitemap.xml, _headers) is copied into dist/
+first. Cloudflare Pages runs this script and publishes dist/.
 
 Usage:  python3 _src/build.py
 """
 import json
 import re
+import shutil
 from pathlib import Path
 
 SRC = Path(__file__).resolve().parent
 ROOT = SRC.parent
+OUT = ROOT / "dist"
 SITE = "https://fxnholdings.com"
-VERSION = "20261009o"
+VERSION = "20261009p"
 
 logo = (SRC / "partials" / "logo.svg").read_text().strip()
 header = (SRC / "partials" / "header.html").read_text()
@@ -139,14 +143,17 @@ def build_page(src_path):
     )
 
     if path.endswith(".html"):
-        out = ROOT / path.lstrip("/")
+        out = OUT / path.lstrip("/")
     else:
-        out = ROOT / path.strip("/") / "index.html" if path != "/" else ROOT / "index.html"
+        out = OUT / path.strip("/") / "index.html" if path != "/" else OUT / "index.html"
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(html)
-    return out.relative_to(ROOT)
+    return out.relative_to(OUT)
 
 
 if __name__ == "__main__":
+    if OUT.exists():
+        shutil.rmtree(OUT)
+    shutil.copytree(ROOT / "static", OUT)
     for p in sorted((SRC / "pages").glob("*.html")):
         print("built", build_page(p))

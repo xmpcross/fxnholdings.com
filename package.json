@@ -2,7 +2,7 @@
   "name": "fxnholdings-com",
   "private": true,
   "type": "module",
-  "description": "Static site for FXN Holdings plus the website assistant Netlify Function.",
+  "description": "Static site for FXN Holdings, built into dist/ and served by Cloudflare Pages, with Pages Functions for the contact form and website assistant.",
   "scripts": {
     "build": "python3 _src/build.py"
   },

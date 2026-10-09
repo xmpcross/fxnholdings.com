@@ -94,7 +94,7 @@
     });
   }
 
-  // Website assistant: chat panel that talks to /api/chat (Netlify Function)
+  // Website assistant: chat panel that talks to /api/chat (Cloudflare Pages Function)
   var chat = document.querySelector("[data-chat]");
   if (chat) {
     var fab = chat.querySelector(".chat-fab");
@@ -231,7 +231,7 @@
     document.querySelectorAll(".legal section[id]").forEach(function (s) { tocIo.observe(s); });
   }
 
-  // Contact form → Netlify Forms (detected via /netlify-forms.html)
+  // Contact form → /api/contact (Cloudflare Pages Function, emails the team)
   var form = document.getElementById("contact-form");
   if (form) {
     var status = form.querySelector(".form-status");
@@ -257,19 +257,22 @@
       button.disabled = true;
       status.className = "form-status";
       status.textContent = "Sending…";
-      fetch("/netlify-forms.html", {
+      fetch("/api/contact", {
         method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams(new FormData(form)).toString()
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(Object.fromEntries(new FormData(form)))
       }).then(function (res) {
-        if (!res.ok) throw new Error("bad status");
+        return res.json().catch(function () { return {}; }).then(function (data) {
+          if (!res.ok) throw new Error(data.error || "");
+        });
+      }).then(function () {
         form.innerHTML =
           '<div class="sent" role="status"><div class="tick"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>' +
           '<h2 class="h-md">Thanks, your message is in.</h2>' +
           '<p class="muted">We\'ll be in touch soon.</p></div>';
-      }).catch(function () {
+      }).catch(function (err) {
         status.className = "form-status err";
-        status.textContent = "Something went wrong sending your message. Please try again.";
+        status.textContent = (err && err.message) || "Something went wrong sending your message. Please try again.";
         button.disabled = false;
       });
     });

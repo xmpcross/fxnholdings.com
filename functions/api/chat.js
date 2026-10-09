@@ -1,39 +1,24 @@
-// Website assistant for fxnholdings.com.
+// Website assistant endpoint: POST /api/chat
 //
-// POST /api/chat  { messages: [{ role: "user" | "assistant", content: string }, ...] }
-//   -> 200 { reply: string, enquirySent?: boolean }
+//   { messages: [{ role: "user" | "assistant", content: string }, ...] }
+//   -> 200 { reply: string, enquirySent: boolean }
 //
 // The browser keeps the transcript and sends it each turn as plain text, so no
-// thinking blocks are ever replayed across requests. Within one request the
-// model may call `submit_enquiry`, which posts the visitor's details to the
-// Netlify form "chat-enquiry" (emailed to the team by Netlify).
+// thinking blocks are replayed across requests. Within one request the model
+// may call submit_enquiry, which emails the visitor's details and the
+// transcript to the team (lib/email.js).
 //
-// Environment (Netlify site settings):
-//   ANTHROPIC_API_KEY  required
+// Environment (Cloudflare Pages → Settings → Variables and Secrets):
+//   ANTHROPIC_API_KEY  secret, required
 //   CHAT_MODEL         optional, defaults to claude-haiku-5-5
+//   plus the email settings in lib/email.js
 import Anthropic from "@anthropic-ai/sdk";
+import { json, allowedOrigin, clientIp, rateLimited, isEmail } from "../../lib/http.js";
+import { sendEmail } from "../../lib/email.js";
 
-const MODEL = process.env.CHAT_MODEL || "claude-haiku-5-5";
 const MAX_TURNS = 20; // messages kept from the transcript
-const MAX_CHARS = 1500; // per visitor message
+const MAX_CHARS = 1500; // per message
 const MAX_TOOL_ROUNDS = 2;
-const ALLOWED_ORIGINS = new Set(["https://fxnholdings.com", "https://www.fxnholdings.com"]);
-
-const client = new Anthropic({ timeout: 20_000, maxRetries: 1 });
-
-// Best-effort per-visitor limit (per function instance). Pair it with a monthly
-// spend limit on the API key in the Anthropic Console.
-const RATE_WINDOW_MS = 10 * 60 * 1000;
-const RATE_MAX = 30;
-const hits = new Map();
-function rateLimited(ip) {
-  const now = Date.now();
-  const recent = (hits.get(ip) || []).filter((t) => now - t < RATE_WINDOW_MS);
-  recent.push(now);
-  hits.set(ip, recent);
-  if (hits.size > 5000) hits.clear();
-  return recent.length > RATE_MAX;
-}
 
 // Facts the assistant may use. Keep in sync with the website copy.
 const KNOWLEDGE = `
@@ -72,7 +57,7 @@ WORKING WITH FXN HOLDINGS
 - Contact: the contact form at fxnholdings.com/contact/ or contact@fxnholdings.com.
 
 PAGES
-- Home: fxnholdings.com/ · About: /about/ · What We Do: /services/ · Assets (all websites): /portfolio/ · Technology & AI: /technology/ · Contact: /contact/ · Privacy Policy: /privacy/ · Terms: /terms/ · Cookie Policy: /cookies/
+- Home: / · About: /about/ · What We Do: /services/ · Assets (all websites): /portfolio/ · Technology & AI: /technology/ · Contact: /contact/ · Privacy Policy: /privacy/ · Terms: /terms/ · Cookie Policy: /cookies/ · Legal Notice: /legal-notice/ · Accessibility: /accessibility/
 `.trim();
 
 const SYSTEM = `You are the website assistant for FXN Holdings, answering visitors on fxnholdings.com. The team is often offline, so you are usually the first point of contact.
@@ -111,11 +96,15 @@ const TOOLS = [
   },
 ];
 
-const json = (status, body) =>
-  new Response(JSON.stringify(body), {
-    status,
-    headers: { "content-type": "application/json; charset=utf-8", "cache-control": "no-store" },
-  });
+let client;
+let clientKey;
+function getClient(env) {
+  if (!client || clientKey !== env.ANTHROPIC_API_KEY) {
+    client = new Anthropic({ apiKey: env.ANTHROPIC_API_KEY, baseURL: env.ANTHROPIC_BASE_URL || undefined, timeout: 20_000, maxRetries: 1 });
+    clientKey = env.ANTHROPIC_API_KEY;
+  }
+  return client;
+}
 
 function cleanTranscript(raw) {
   if (!Array.isArray(raw)) return null;
@@ -129,59 +118,62 @@ function cleanTranscript(raw) {
   return msgs;
 }
 
-async function submitEnquiry(input, transcript, siteUrl) {
+async function submitEnquiry(env, input, transcript) {
   const email = String(input.email || "").trim();
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+  if (!isEmail(email)) {
     return { ok: false, message: "The email address looks invalid. Ask the visitor to check it." };
   }
-  const body = new URLSearchParams({
-    "form-name": "chat-enquiry",
-    subject: "[fxnholdings.com] Enquiry from the website assistant",
-    name: String(input.name || "").slice(0, 200),
-    email: email.slice(0, 200),
-    company: String(input.company || "").slice(0, 200),
-    enquiry_type: String(input.enquiry_type || ""),
-    summary: String(input.summary || "").slice(0, 2000),
-    transcript: transcript.map((m) => `${m.role === "user" ? "Visitor" : "Assistant"}: ${m.content}`).join("\n\n").slice(0, 8000),
+  const name = String(input.name || "").slice(0, 200);
+  const sent = await sendEmail(env, {
+    subject: `[fxnholdings.com] ${input.enquiry_type || "Enquiry"} from ${name} (website assistant)`,
+    replyTo: email,
+    text: [
+      "New enquiry passed on by the website assistant",
+      "",
+      `Name:     ${name}`,
+      `Email:    ${email}`,
+      `Company:  ${String(input.company || "").slice(0, 200) || "-"}`,
+      `Enquiry:  ${input.enquiry_type || "-"}`,
+      "",
+      `Summary: ${String(input.summary || "").slice(0, 2000)}`,
+      "",
+      "Chat transcript",
+      "---------------",
+      transcript.map((m) => `${m.role === "user" ? "Visitor" : "Assistant"}: ${m.content}`).join("\n\n").slice(0, 8000),
+    ].join("\n"),
   });
-  const res = await fetch(new URL("/netlify-forms.html", siteUrl), {
-    method: "POST",
-    headers: { "content-type": "application/x-www-form-urlencoded" },
-    body,
-  });
-  return res.ok
+  return sent.ok
     ? { ok: true, message: "Enquiry sent to the team." }
     : { ok: false, message: "Sending failed. Ask the visitor to use the contact form at /contact/ or email contact@fxnholdings.com." };
 }
 
-export default async (req, context) => {
-  if (req.method !== "POST") return json(405, { error: "Method not allowed" });
-  const origin = req.headers.get("origin");
-  if (origin && !ALLOWED_ORIGINS.has(origin) && !origin.endsWith(".netlify.app")) {
-    return json(403, { error: "Forbidden" });
+export async function onRequestPost({ request, env }) {
+  if (!allowedOrigin(request)) return json(403, { error: "Forbidden" });
+  if (!env.ANTHROPIC_API_KEY) {
+    return json(503, { error: "not_configured", reply: "The assistant isn't available yet. Please use the contact form at /contact/ or email contact@fxnholdings.com." });
   }
-  if (!process.env.ANTHROPIC_API_KEY) return json(503, { error: "Assistant not configured" });
-  if (rateLimited(context?.ip || req.headers.get("x-nf-client-connection-ip") || "unknown")) {
+  if (rateLimited(`chat:${clientIp(request)}`, 30, 10 * 60 * 1000)) {
     return json(429, { error: "busy", reply: "You've sent a lot of messages in a short time. Please wait a few minutes, or email contact@fxnholdings.com." });
   }
 
   let payload;
   try {
-    payload = await req.json();
+    payload = await request.json();
   } catch {
     return json(400, { error: "Invalid JSON" });
   }
   const transcript = cleanTranscript(payload?.messages);
   if (!transcript) return json(400, { error: "Send a conversation that ends with a visitor message." });
 
-  const siteUrl = context?.site?.url || process.env.URL || "https://fxnholdings.com";
+  const anthropic = getClient(env);
+  const model = env.CHAT_MODEL || "claude-haiku-5-5";
   const messages = transcript.map((m) => ({ role: m.role, content: m.content }));
   let enquirySent = false;
 
   try {
     for (let round = 0; round <= MAX_TOOL_ROUNDS; round++) {
-      const response = await client.messages.create({
-        model: MODEL,
+      const response = await anthropic.messages.create({
+        model,
         max_tokens: 4000,
         output_config: { effort: "low" },
         system: [{ type: "text", text: SYSTEM, cache_control: { type: "ephemeral" } }],
@@ -190,7 +182,7 @@ export default async (req, context) => {
       });
 
       if (response.stop_reason === "refusal") {
-        return json(200, { reply: "Sorry, I can't help with that. For anything else, ask away or email contact@fxnholdings.com." });
+        return json(200, { reply: "Sorry, I can't help with that. For anything else, ask away or email contact@fxnholdings.com.", enquirySent });
       }
 
       const text = response.content
@@ -201,23 +193,18 @@ export default async (req, context) => {
       const toolUses = response.content.filter((b) => b.type === "tool_use");
 
       if (response.stop_reason !== "tool_use" || !toolUses.length || round === MAX_TOOL_ROUNDS) {
-        return json(200, {
-          reply: text || "Sorry, I didn't catch that. Could you rephrase?",
-          enquirySent,
-        });
+        return json(200, { reply: text || "Sorry, I didn't catch that. Could you rephrase?", enquirySent });
       }
 
       // Keep the full assistant turn (including any thinking blocks) for the tool round-trip.
       messages.push({ role: "assistant", content: response.content });
       const results = [];
       for (const tool of toolUses) {
-        let result;
-        if (tool.name === "submit_enquiry") {
-          result = await submitEnquiry(tool.input, transcript, siteUrl);
-          if (result.ok) enquirySent = true;
-        } else {
-          result = { ok: false, message: `Unknown tool ${tool.name}` };
-        }
+        const result =
+          tool.name === "submit_enquiry"
+            ? await submitEnquiry(env, tool.input, transcript)
+            : { ok: false, message: `Unknown tool ${tool.name}` };
+        if (result.ok) enquirySent = true;
         results.push({ type: "tool_result", tool_use_id: tool.id, content: result.message, is_error: !result.ok });
       }
       messages.push({ role: "user", content: results });
@@ -236,6 +223,6 @@ export default async (req, context) => {
     return json(502, { error: "unavailable", reply: "The assistant is unavailable right now. Please use the contact form at /contact/ or email contact@fxnholdings.com." });
   }
   return json(500, { error: "unavailable" });
-};
+}
 
-export const config = { path: "/api/chat" };
+export const onRequest = () => json(405, { error: "Method not allowed" });

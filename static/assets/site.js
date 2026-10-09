@@ -269,6 +269,27 @@
     markToc();
   }
 
+  // Blog posts: latest posts slider (swipe/scroll-snap without JS; dots + autoplay with it)
+  document.querySelectorAll(".feat").forEach(function (feat) {
+    var track = feat.querySelector(".feat-track");
+    var dots = feat.querySelectorAll(".feat-dot");
+    if (!track || dots.length < 2) return;
+    var index = 0, timer = null;
+    var show = function (i) { index = (i + dots.length) % dots.length; track.scrollTo({ left: index * (track.scrollWidth / dots.length), behavior: prefersReduced ? "auto" : "smooth" }); };
+    dots.forEach(function (d, i) { d.addEventListener("click", function () { show(i); restart(); }); });
+    track.addEventListener("scroll", function () {
+      var i = Math.round(track.scrollLeft / (track.scrollWidth / dots.length));
+      if (i === index && dots[i].getAttribute("aria-current")) return;
+      index = i;
+      dots.forEach(function (d, j) { if (j === i) d.setAttribute("aria-current", "true"); else d.removeAttribute("aria-current"); });
+    }, { passive: true });
+    var stop = function () { clearInterval(timer); timer = null; };
+    var restart = function () { stop(); if (!prefersReduced) timer = setInterval(function () { show(index + 1); }, 5000); };
+    feat.addEventListener("mouseenter", stop); feat.addEventListener("mouseleave", restart);
+    feat.addEventListener("focusin", stop); feat.addEventListener("focusout", restart);
+    restart();
+  });
+
   // Blog posts: copy link button
   document.querySelectorAll(".share-copy").forEach(function (b) {
     b.addEventListener("click", function () {

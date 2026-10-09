@@ -277,13 +277,29 @@ def _toc(p, url):
             '    <nav aria-labelledby="toc-title"><ol>' + "".join(items) + '</ol></nav>\n    ' + share + "\n  </aside>\n")
 
 
+def _short_date(d):
+    return f"{d.strftime('%b')} {d.day}, {d.year}"
+
+
 def _post_side(p, posts):
-    """Single post: category filter and latest posts in a right sidebar."""
+    """Single post: category filter and a latest-posts slider in a right sidebar."""
     latest = [q for q in posts if q is not p][:4]
-    items = "".join(f'\n        <li><a href="/insights/{q["slug"]}/">{html.escape(q["title"])}</a>'
-                    f'<time datetime="{q["date"].isoformat()}">{_date(q["date"])}</time></li>' for q in latest)
-    recent = (f'      <h2 class="blog-side-title" id="blog-latest">Latest posts</h2>\n      <ul class="side-latest" aria-labelledby="blog-latest">{items}\n      </ul>\n'
-              if latest else "")
+    slides = []
+    for i, q in enumerate(latest):
+        img = (f'<img src="{re.sub(r"[.]webp$", "-800.webp", q["image"]) if q["image"] else ""}" alt="" width="800" height="450" loading="lazy" decoding="async">'
+               if q["image"] else "")
+        slides.append(
+            f'<li class="feat-slide" id="feat-{i + 1}" aria-roledescription="slide" aria-label="{i + 1} of {len(latest)}">'
+            f'<a href="/insights/{q["slug"]}/">{img}'
+            f'<span class="feat-cat">{html.escape(q["category"]["name"])}</span>'
+            f'<span class="feat-text"><span class="feat-meta"><strong>FXN Holdings</strong> on <time datetime="{q["date"].isoformat()}">{_short_date(q["date"])}</time></span>'
+            f'<span class="feat-title">{html.escape(q["title"])}</span></span></a></li>')
+    dots = "".join(f'<button type="button" class="feat-dot" aria-label="Show post {i + 1}"{" aria-current=\"true\"" if i == 0 else ""}></button>' for i in range(len(latest)))
+    recent = ('      <h2 class="blog-side-title" id="blog-latest">Latest posts</h2>\n'
+              '      <div class="feat" aria-roledescription="carousel" aria-labelledby="blog-latest">\n'
+              f'        <ul class="feat-track">{"".join(slides)}</ul>\n'
+              + (f'        <div class="feat-dots">{dots}</div>\n' if len(latest) > 1 else "")
+              + "      </div>\n") if latest else ""
     return '  <aside class="blog-side post-side" aria-labelledby="blog-cats">\n' + _cat_side(p["category"]["slug"], posts, current=False) + recent + "  </aside>\n"
 
 

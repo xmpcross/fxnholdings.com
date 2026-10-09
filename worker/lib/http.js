@@ -18,7 +18,8 @@ export function allowedOrigin(request) {
   }
 }
 
-export const clientIp = (request) => request.headers.get("cf-connecting-ip") || "unknown";
+export const clientIp = (request) =>
+  request.headers.get("cf-connecting-ip") || request.headers.get("x-real-ip") || "unknown";
 
 // Best-effort limit per visitor within one Worker isolate. For a hard limit add a
 // Cloudflare WAF rate-limiting rule on /api/*.

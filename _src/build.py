@@ -16,6 +16,7 @@ Usage:  python3 _src/build.py            # live build (skips draft posts)
 """
 import datetime as dt
 import json
+import os
 import re
 import shutil
 import sys
@@ -26,7 +27,7 @@ import insights  # noqa: E402
 
 SRC = Path(__file__).resolve().parent
 ROOT = SRC.parent
-OUT = ROOT / "dist"
+OUT = Path(os.environ["BUILD_OUT"]).resolve() if os.environ.get("BUILD_OUT") else ROOT / "dist"
 SITE = "https://fxnholdings.com"
 VERSION = "20261009s"
 

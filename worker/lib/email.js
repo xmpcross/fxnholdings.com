@@ -1,15 +1,18 @@
-// Sends notification emails through Google Workspace SMTP from the Cloudflare
-// Worker, using a TCP socket (cloudflare:sockets). Port 25 is blocked on
-// Cloudflare, so this uses implicit TLS on 465 (default) or STARTTLS on 587,
-// with SMTP AUTH as a Workspace mailbox.
+// Sends notification emails through Google Workspace SMTP.
 //
-// Environment (Cloudflare dashboard → Workers → fxnholdings-com → Settings → Variables and Secrets):
-//   SMTP_USER   required  Workspace mailbox that sends, e.g. website@fxnholdings.com
-//   SMTP_PASS   secret    App Password for that mailbox (Google Account → Security → App passwords)
-//   SMTP_HOST   optional  default smtp.gmail.com
-//   SMTP_PORT   optional  default 465 (or 587 for STARTTLS)
-//   CONTACT_TO  optional  default contact@fxnholdings.com
-//   MAIL_FROM   optional  default SMTP_USER (must be that mailbox or one of its aliases)
+// Runs in two places:
+//   - Node (server/api.mjs on this host): nodemailer. With SMTP_USER/SMTP_PASS it logs in;
+//     without them it uses the Workspace SMTP relay, which authenticates this server by IP.
+//   - Cloudflare Worker: a TCP socket (cloudflare:sockets) with SMTP AUTH (port 25 is
+//     blocked there and outbound IPs aren't fixed, so the relay can't be used).
+//
+// Environment:
+//   SMTP_HOST   default smtp.gmail.com (use smtp-relay.gmail.com for the relay)
+//   SMTP_PORT   default 465 with login, 587 for the relay (587 uses STARTTLS)
+//   SMTP_USER   Workspace mailbox to log in as (optional on Node with the relay)
+//   SMTP_PASS   App Password for that mailbox
+//   CONTACT_TO  default contact@fxnholdings.com
+//   MAIL_FROM   default SMTP_USER, or contact@fxnholdings.com with the relay
 
 const EHLO_NAME = "fxnholdings.com"; // Google closes the session if the greeting name is bogus
 const TIMEOUT_MS = 15_000;
@@ -105,7 +108,49 @@ async function smtpSend(cfg, message, connect) {
   }
 }
 
-export async function sendEmail(env, { subject, text, replyTo }, connect) {
+const isNode = typeof process !== "undefined" && process.release?.name === "node" && typeof WebSocketPair === "undefined";
+
+async function sendWithNodemailer(env, { subject, text, replyTo }) {
+  const pkg = "nodemailer"; // not a literal, so the Worker bundler leaves it alone
+  const { default: nodemailer } = await import(pkg);
+  const login = env.SMTP_USER && env.SMTP_PASS;
+  const port = Number(env.SMTP_PORT || (login ? 465 : 587));
+  const transport = nodemailer.createTransport({
+    host: env.SMTP_HOST || (login ? "smtp.gmail.com" : "smtp-relay.gmail.com"),
+    port,
+    secure: port === 465,
+    requireTLS: port !== 465,
+    name: EHLO_NAME, // Google rejects the greeting if this is the machine's host name
+    auth: login ? { user: env.SMTP_USER, pass: env.SMTP_PASS } : undefined,
+    connectionTimeout: TIMEOUT_MS,
+    greetingTimeout: TIMEOUT_MS,
+    socketTimeout: TIMEOUT_MS,
+  });
+  const from = oneLine(env.MAIL_FROM || env.SMTP_USER || "contact@fxnholdings.com");
+  await transport.sendMail({
+    from: { name: "FXN Holdings website", address: from },
+    to: oneLine(env.CONTACT_TO || "contact@fxnholdings.com"),
+    replyTo: replyTo && /^[^\s@<>]+@[^\s@<>]+\.[^\s@<>]+$/.test(replyTo) ? replyTo : undefined,
+    subject: oneLine(subject),
+    text,
+  });
+}
+
+export async function sendEmail(env, message, connect) {
+  if (isNode && !connect) {
+    if (!env.SMTP_HOST && !(env.SMTP_USER && env.SMTP_PASS)) return { ok: false, reason: "not_configured" };
+    try {
+      await sendWithNodemailer(env, message);
+      return { ok: true };
+    } catch (error) {
+      console.error(`email: ${error.message}`);
+      return { ok: false, reason: "send_failed" };
+    }
+  }
+  return sendWithSocket(env, message, connect);
+}
+
+async function sendWithSocket(env, { subject, text, replyTo }, connect) {
   if (!env.SMTP_USER || !env.SMTP_PASS) return { ok: false, reason: "not_configured" };
   const cfg = {
     host: env.SMTP_HOST || "smtp.gmail.com",

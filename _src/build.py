@@ -21,7 +21,7 @@ SRC = Path(__file__).resolve().parent
 ROOT = SRC.parent
 OUT = ROOT / "dist"
 SITE = "https://fxnholdings.com"
-VERSION = "20261009q"
+VERSION = "20261009r"
 
 logo = (SRC / "partials" / "logo.svg").read_text().strip()
 header = (SRC / "partials" / "header.html").read_text()

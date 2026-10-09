@@ -9,7 +9,6 @@ image_alt: Illustration of a remote workspace setup showing documents and digita
 image_prompt: A modern, minimalist home office desk in an overseas location with a laptop displaying business compliance documents, a notebook with technical checklists, a pen, and a cup of coffee beside clean architectural blueprints, rendered in a professional editorial flat-vector style with a soft, balanced colour palette.
 image_2_prompt: An organised desk showing an official identification form, an envelope addressed for international mailing, a telephone receiver, and a stamp resting on clean wooden surface, in an editorial illustration style with muted natural colours.
 image_3_prompt: An abstract stylized map showing several regional boundaries with small interconnected nodes, digital transaction records, and clean ledger tables nearby, in a modern vector editorial illustration format.
-draft: true
 ---
 Starting a US business from overseas is entirely legal and accessible without holding American citizenship or residency. Non-resident entrepreneurs can establish and operate an American commercial entity while managing daily operations entirely from abroad. Doing so correctly requires adhering to state registration rules, federal tax reporting procedures, and interstate sales tax thresholds.
 
@@ -35,12 +34,12 @@ A federal Employer Identification Number (EIN) is a unique nine-digit tax identi
 
 Domestic founders with a Social Security Number (SSN) or Individual Taxpayer Identification Number (ITIN) can use an automated portal on the IRS website. However, foreign founders without an SSN or ITIN cannot use this web portal. As specified in the [IRS Form SS-4 instructions](https://www.irs.gov/instructions/iss4), overseas applicants must complete paper Form SS-4.
 
-When filling out Form SS-4, line 7a asks for the name of the entity's "responsible party"—the individual who controls, manages, or directs the applicant entity. On line 7b, where the form requests that responsible party's SSN or ITIN, an overseas applicant without domestic tax credentials must enter "Foreign" or "N/A".
+On line 7b of Form SS-4, where the form requests the responsible party's SSN or ITIN, an overseas applicant without domestic tax credentials must enter "Foreign" or "N/A".
 
 Once completed and signed, you can submit Form SS-4 using three approved international methods:
 
-- **Fax**: You transmit the completed form to the dedicated IRS international fax line. If you include a return fax number, the IRS typically transmits the EIN assignment letter back within several business days.
-- **Telephone**: International applicants may contact the IRS international tax line directly. An authorised representative or corporate officer answers the agent's questions, reads through Form SS-4 details over the phone, and receives an assigned EIN during the call.
+- **Fax**: You transmit the completed form to the dedicated IRS international fax line.
+- **Telephone**: International applicants may contact the IRS international tax line directly. An authorised representative or corporate officer answers the agent's questions and reads through the Form SS-4 details over the phone.
 - **Mail**: You post Form SS-4 to the designated IRS internal operations centre. This postal route takes several weeks depending on international postage transit.
 
 Securing your EIN establishes your corporate identity with federal authorities and enables commercial providers to verify your business credentials.
@@ -71,9 +70,9 @@ For Delaware LLCs, the administrative burden is slightly different. LLCs must pa
 
 For businesses selling tangible items into the US—such as cross-border e-commerce brands—state sales tax represents another vital consideration. In the past, companies only collected sales tax in states where they had a physical storefront, office, or employee. Today, states enforce "economic nexus" rules for remote sellers.
 
-Under economic nexus laws, an overseas or remote business becomes liable for sales tax registration, collection, and remittance once its sales cross specific revenue or transaction thresholds in a target state, even with zero physical footprint there. For instance, many states trigger registration requirements once an out-of-state retailer reaches $100,000 in gross sales or completes 200 individual transactions into the state within a calendar year. Larger states establish higher limits; California, for example, maintains an economic nexus threshold of $500,000 in sales.
+Under economic nexus laws, an overseas or remote business becomes liable for sales tax registration, collection, and remittance once its sales cross specific revenue or transaction thresholds in a target state, even with zero physical footprint there. For instance, many states trigger registration requirements once an out-of-state retailer reaches $100,000 in gross sales or completes 200 individual transactions into the state within a calendar year. Some states set different limits, so check each state's revenue department.
 
-When we deploy platforms in our [digital venture portfolio](/portfolio/), our team configures local trading and tax rules before launching to remote buyers, ensuring automated accounting software tracks thresholds across jurisdictions.
+When we deploy platforms in our [digital venture portfolio](/portfolio/), our team configures local trading and tax rules before launching to remote buyers.
 
 ## What are the rules for travelling to the US to manage your business?
 

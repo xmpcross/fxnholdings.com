@@ -1,2 +1,0 @@
-[VERIFY] before publishing uk-vat-for-online-sellers-when-to-register.md:
-- number "15" is not on the site's own pages

@@ -9,7 +9,6 @@ image_alt: Illustration of an office workspace with shipping parcels, a digital 
 image_prompt: An organised office desk with a laptop displaying clean data charts, a desktop calculator, small cardboard shipping parcels stamped with postal marks, and an open notebook with a pen.
 image_2_prompt: A modern warehouse dock with stacked shipping containers beside cardboard parcels ready for automated sorting, drawn in an architectural editorial illustration style.
 image_3_prompt: Shelves in a commercial fulfilment warehouse loaded with neatly organised cardboard packages, with an automated conveyor moving parcels in the background.
-draft: true
 ---
 Expanding an e-commerce store into the United Kingdom gives sellers access to a major consumer market, but it also brings specific tax responsibilities. Whether you run a storefront from within the country or ship products from abroad, HM Revenue and Customs (HMRC) enforces strict rules governing Value Added Tax. This guide explains when online sellers must register for UK VAT, how cross-border consignment rules work, and what obligations apply to domestic and overseas traders.
 

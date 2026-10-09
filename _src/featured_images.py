@@ -11,6 +11,11 @@ this asks fal.ai (fal-ai/nano-banana-pro, 16:9, 2K) for an image, then writes
 and sets `image: /img/insights/<slug>.webp` in the post's front matter.
 `image_alt:` (also in the front matter) is the alt text; write it by hand.
 
+Images inside the post: for each `image_<n>_prompt:` in the front matter
+(n = 2, 3, ...) it writes static/img/insights/<slug>-<n>.webp (1600x900) and
+<slug>-<n>-800.webp, which the body shows with a line of its own like
+    ![alt text](/img/insights/<slug>-2.webp)
+
 Posts that already have an image are skipped unless you pass --force.
 Each generated image is billed by fal.ai, so pass slugs to limit a run.
 
@@ -97,6 +102,13 @@ def set_image(path, raw, m, url):
     path.write_text("---\n" + "\n".join(lines) + "\n---\n" + raw[m.end():])
 
 
+def save_variants(img, stem, og=False):
+    ImageOps.fit(img, (1600, 900), Image.LANCZOS).save(OUT / f"{stem}.webp", "WEBP", quality=82, method=6)
+    ImageOps.fit(img, (800, 450), Image.LANCZOS).save(OUT / f"{stem}-800.webp", "WEBP", quality=80, method=6)
+    if og:
+        ImageOps.fit(img, (1200, 630), Image.LANCZOS).save(OUT / f"{stem}-og.jpg", "JPEG", quality=85, optimize=True, progressive=True)
+
+
 def main(argv):
     force = "--force" in argv
     slugs = [a for a in argv if not a.startswith("--")]
@@ -110,8 +122,17 @@ def main(argv):
     OUT.mkdir(parents=True, exist_ok=True)
     for path in posts:
         raw, m, meta = front_matter(path)
+        # Images inside the post body
+        for n in sorted(int(k.split("_")[1]) for k in meta if re.fullmatch(r"image_\d+_prompt", k)):
+            stem = f"{path.stem}-{n}"
+            if (OUT / f"{stem}.webp").exists() and not force:
+                continue
+            print(f"generating {stem} (in-post image) ...", flush=True)
+            save_variants(generate(meta[f"image_{n}_prompt"], key), stem)
+            print(f"  wrote static/img/insights/{stem}.webp and -800.webp")
+        # Featured image
         if meta.get("image") and not force:
-            print(f"skip {path.stem}: already has {meta['image']} (use --force to replace)")
+            print(f"skip {path.stem} featured image: already has {meta['image']} (use --force to replace)")
             continue
         if not meta.get("image_prompt"):
             print(f"skip {path.stem}: no image_prompt in front matter")
@@ -119,13 +140,9 @@ def main(argv):
         if not meta.get("image_alt"):
             raise SystemExit(f"{path.name}: add image_alt (alt text) before generating")
         print(f"generating {path.stem} ...", flush=True)
-        img = generate(meta["image_prompt"], key)
-        ImageOps.fit(img, (1600, 900), Image.LANCZOS).save(OUT / f"{path.stem}.webp", "WEBP", quality=82, method=6)
-        ImageOps.fit(img, (800, 450), Image.LANCZOS).save(OUT / f"{path.stem}-800.webp", "WEBP", quality=80, method=6)
-        ImageOps.fit(img, (1200, 630), Image.LANCZOS).save(OUT / f"{path.stem}-og.jpg", "JPEG", quality=85, optimize=True, progressive=True)
+        save_variants(generate(meta["image_prompt"], key), path.stem, og=True)
         set_image(path, raw, m, f"/img/insights/{path.stem}.webp")
-        print(f"  wrote static/img/insights/{path.stem}.webp and -og.jpg; set image on {path.name}")
-
+        print(f"  wrote static/img/insights/{path.stem}.webp, -800.webp and -og.jpg; set image on {path.name}")
 
 if __name__ == "__main__":
     main(sys.argv[1:])

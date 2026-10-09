@@ -19,7 +19,8 @@ The slug (URL) is the file name without .md, e.g. _src/posts/how-we-use-ai.md ->
 Drafts are skipped unless the build runs with --drafts (used for previews).
 
 Supported Markdown: ## and ### headings, paragraphs, - and 1. lists, > quotes, --- rules,
-**bold**, *italic*, `code` and [links](https://example.com).
+**bold**, *italic*, `code` and [links](https://example.com), and images on a line of their
+own: ![alt text](/img/insights/<slug>-2.webp) (made by _src/featured_images.py from image_2_prompt).
 """
 import datetime as dt
 import html
@@ -53,6 +54,7 @@ CATEGORIES = [
     },
 ]
 CAT = {c["slug"]: c for c in CATEGORIES}
+STATIC = Path(__file__).resolve().parent.parent / "static"
 WPM = 220
 ARROW = '<i class="fa-solid fa-arrow-right chev" aria-hidden="true"></i>'
 PAT = '<svg class="hero-pattern" aria-hidden="true"><rect width="100%" height="100%" fill="url(#chev-light)"/></svg>'
@@ -73,6 +75,14 @@ def _inline(text):
         return f'<a href="{href.replace(chr(34), "%22")}"{attrs}>{label}</a>'
 
     return re.sub(r"\[([^\]]+)\]\(([^)\s]+)\)", link, t)
+
+
+def _figure(src, alt):
+    """An image placed in a post body; uses the -800 variant on small screens when it exists."""
+    small = re.sub(r"\.webp$", "-800.webp", src)
+    srcset = f' srcset="{small} 800w, {src} 1600w" sizes="(max-width: 760px) 100vw, 760px"' if small != src and (STATIC / small.lstrip("/")).is_file() else ""
+    return (f'<figure class="post-inline"><img src="{src}"{srcset} alt="{html.escape(alt)}" width="1600" height="900" '
+            'loading="lazy" decoding="async"></figure>')
 
 
 def markdown(text):
@@ -102,6 +112,9 @@ def markdown(text):
             flush(); out.append(f"<h2>{_inline(s[3:])}</h2>"); continue
         if s in ("---", "***"):
             flush(); out.append("<hr>"); continue
+        m = re.match(r"^!\[([^\]]+)\]\((/img/[^)\s]+)\)$", s)
+        if m:
+            flush(); out.append(_figure(m.group(2), m.group(1))); continue
         if s.startswith("> "):
             if para or lst: flush()
             quote.append(s[2:]); continue
@@ -149,7 +162,10 @@ def load_posts(src, include_drafts):
         if draft and not include_drafts:
             continue
         body = m.group(2)
-        words = len(re.findall(r"\w+", body))
+        for img in re.findall(r"^\s*!\[[^\]]+\]\((/img/[^)\s]+)\)\s*$", body, re.M):
+            if not (src.parent / "static" / img.lstrip("/")).is_file():
+                raise SystemExit(f"{path.name}: image {img} not found in static/ (run _src/featured_images.py {path.stem})")
+        words = len(re.findall(r"\w+", re.sub(r"!\[[^\]]*\]\([^)]*\)", "", body)))
         posts.append({
             "slug": path.stem,
             "title": meta["title"],

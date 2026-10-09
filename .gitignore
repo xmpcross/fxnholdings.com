@@ -4,3 +4,4 @@ dist/
 .dist-old/
 .wrangler/
 .env.local
+.dist-preview/

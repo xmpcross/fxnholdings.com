@@ -12,7 +12,7 @@ Insights posts in _src/posts/*.md become /insights/ pages (see _src/insights.py)
 sitemap.xml is generated. The Cloudflare Worker deploy runs this script and serves dist/.
 
 Usage:  python3 _src/build.py            # live build (skips draft posts)
-        python3 _src/build.py --drafts   # preview build (includes drafts, marked "Draft")
+        python3 _src/build.py --drafts   # preview build into .dist-preview/ (includes drafts, marked "Draft")
 """
 import datetime as dt
 import json
@@ -29,7 +29,7 @@ SRC = Path(__file__).resolve().parent
 ROOT = SRC.parent
 OUT = Path(os.environ["BUILD_OUT"]).resolve() if os.environ.get("BUILD_OUT") else ROOT / "dist"
 SITE = "https://fxnholdings.com"
-VERSION = "20261009u"
+VERSION = "20261009v"
 
 logo = (SRC / "partials" / "logo.svg").read_text().strip()
 header = (SRC / "partials" / "header.html").read_text()
@@ -197,6 +197,9 @@ def sitemap(entries):
 
 if __name__ == "__main__":
     drafts = "--drafts" in sys.argv
+    if drafts and not os.environ.get("BUILD_OUT"):
+        # dist/ is the live site on this server; never write drafts into it.
+        OUT = ROOT / ".dist-preview"
     if OUT.exists():
         shutil.rmtree(OUT)
     shutil.copytree(ROOT / "static", OUT)

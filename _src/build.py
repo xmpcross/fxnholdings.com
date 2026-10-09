@@ -42,11 +42,12 @@ CATEGORY_LINKS = {}
 
 def set_category_links(posts):
     cats = insights.used_categories(posts)
+    CATEGORY_LINKS["{{LATEST_POSTS}}"] = insights.latest_section(posts)
     CATEGORY_LINKS["{{INSIGHTS_CATEGORY_LINKS}}"] = "\n".join(
         f'          <li><a href="/insights/{c["slug"]}/">{c["name"].replace("&", "&amp;")}</a></li>' for c in cats
     )
     CATEGORY_LINKS["{{INSIGHTS_CATEGORY_SITEMAP}}"] = "\n".join(
-        f'        <li><a href="/insights/{c["slug"]}/">Insights: {c["name"].replace("&", "&amp;")} <i class="fa-solid fa-arrow-right chev" aria-hidden="true"></i></a></li>' for c in cats
+        f'        <li><a href="/insights/{c["slug"]}/">Blog: {c["name"].replace("&", "&amp;")} <i class="fa-solid fa-arrow-right chev" aria-hidden="true"></i></a></li>' for c in cats
     )
 
 
@@ -103,7 +104,7 @@ HEAD = """<!doctype html>
 <meta name="twitter:image" content="{site}{og_image}">
 {robots}<link rel="icon" href="/icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<link rel="alternate" type="application/rss+xml" title="FXN Holdings Insights" href="/insights/feed.xml">
+<link rel="alternate" type="application/rss+xml" title="FXN Holdings Blog" href="/insights/feed.xml">
 <link rel="preload" href="/fonts/Urbanist-Variable.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/vendor/fontawesome/fa.min.css?v=6.7.2">
 <link rel="stylesheet" href="/assets/vendor/lenis/lenis.css?v=1.3.26">

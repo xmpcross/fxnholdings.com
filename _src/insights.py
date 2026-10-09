@@ -10,6 +10,7 @@ Each post starts with a front-matter block:
     draft: true
     image: /img/insights/how-we-use-ai.webp      (optional featured image, made by _src/featured_images.py)
     image_alt: What the image shows, for screen readers and search
+    description: Optional search-result description (max ~155 characters); defaults to summary
     ---
 
     The body, in Markdown.
@@ -149,6 +150,7 @@ def load_posts(src, include_drafts):
             "date": dt.date.fromisoformat(meta["date"]),
             "category": CAT[meta["category"]],
             "summary": meta["summary"],
+            "description": meta.get("description") or meta["summary"],
             "draft": draft,
             "image": image,
             "image_alt": meta.get("image_alt", ""),
@@ -210,9 +212,19 @@ def _grid(posts, empty):
       <i class="fa-solid fa-pen-nib" aria-hidden="true"></i>
       <h2 class="h4">First posts coming soon</h2>
       <p>{empty}</p>
-      <a class="btn btn-outline" href="/insights/">All insights {ARROW}</a>
+      <a class="btn btn-outline" href="/insights/">All posts {ARROW}</a>
     </div>'''
     return '    <div class="post-grid">\n' + "\n".join(_card(p) for p in posts) + "\n    </div>"
+
+
+def latest_section(posts, n=3):
+    """Homepage block linking the newest posts; empty when nothing is published."""
+    if not posts:
+        return ""
+    return ('<section class="section" style="padding-top:0" id="blog">\n  <div class="container">\n'
+            '    <div class="split-head"><h2 class="h2 reveal">Latest from the blog</h2>'
+            f'<a class="btn btn-outline reveal d1" href="/insights/">All posts {ARROW}</a></div>\n'
+            + _grid(posts[:n], "") + "\n  </div>\n</section>")
 
 
 def _hero(eyebrow, title, lead, extra=""):
@@ -243,15 +255,15 @@ def _cta():
 
 def pages(posts, site):
     """Yield (meta, body) for every Insights page."""
-    crumbs_root = [("Home", site + "/"), ("Insights", site + "/insights/")]
+    crumbs_root = [("Home", site + "/"), ("Blog", site + "/insights/")]
 
     yield ({
-        "title": "Insights | FXN Holdings",
-        "description": "Insights from FXN Holdings on technology and AI, company news, and the market gaps we look for when we build and launch new platforms.",
+        "title": "Blog | FXN Holdings",
+        "description": "The FXN Holdings blog: technology and AI, company news, and the market gaps we look for when we build and launch new platforms.",
         "path": "/insights/", "nav": "insights", "crumbs": crumbs_root,
         # Keep empty listings out of search results until there is something to list.
         "noindex": not posts,
-    }, _hero('<span class="live-dot" aria-hidden="true"></span>Insights', "Insights from FXN Holdings",
+    }, _hero('<span class="live-dot" aria-hidden="true"></span>Blog', "The FXN Holdings blog",
              "Notes on how we build, what we're launching, and the market gaps we think are worth filling.", _filters(None, posts))
        + '\n<section class="section" style="padding-top:24px">\n  <div class="container">\n'
        + _grid(posts, "We're writing our first articles. Check back soon.") + "\n  </div>\n</section>\n" + _cta())
@@ -259,11 +271,13 @@ def pages(posts, site):
     for c in CATEGORIES:
         in_cat = [p for p in posts if p["category"]["slug"] == c["slug"]]
         yield ({
-            "title": f"{c['name']} | Insights | FXN Holdings",
+            "title": f"{c['name']} | Blog | FXN Holdings",
             "description": c["description"],
-            "path": f"/insights/{c['slug']}/", "nav": "insights", "noindex": not in_cat,
+            "path": f"/insights/{c['slug']}/", "nav": "insights",
+            # A category with one post only repeats the main listing; index it from two posts up
+            "noindex": len(in_cat) < 2,
             "crumbs": crumbs_root + [(c["name"], f"{site}/insights/{c['slug']}/")],
-        }, _hero(f'<i class="fa-solid fa-{c["icon"]}" aria-hidden="true"></i>Insights', html.escape(c["name"]), html.escape(c["description"]), _filters(c["slug"], posts))
+        }, _hero(f'<i class="fa-solid fa-{c["icon"]}" aria-hidden="true"></i>Blog', html.escape(c["name"]), html.escape(c["description"]), _filters(c["slug"], posts))
            + '\n<section class="section" style="padding-top:24px">\n  <div class="container">\n'
            + _grid(in_cat, f"There are no {html.escape(c['name'])} posts yet.") + "\n  </div>\n</section>\n" + _cta())
 
@@ -276,11 +290,11 @@ def pages(posts, site):
                   if p["image"] else "")
         meta_line = (f'<p class="post-byline reveal d3"><a href="/insights/{c["slug"]}/"><i class="fa-solid fa-{c["icon"]}" aria-hidden="true"></i>{html.escape(c["name"])}</a>'
                      f' · <time datetime="{p["date"].isoformat()}">{_date(p["date"])}</time> · {p["minutes"]} min read · FXN Holdings</p>')
-        body = (_hero('<a href="/insights/">Insights</a>', html.escape(p["title"]), html.escape(p["summary"]), meta_line)
+        body = (_hero('<a href="/insights/">Blog</a>', html.escape(p["title"]), html.escape(p["summary"]), meta_line)
                 + f'\n<div class="container post-wrap">\n  {draft_note}\n{figure}  <article class="post-body">\n{p["html"]}\n  </article>\n</div>\n')
         if related:
-            body += ('\n<section class="section" style="padding-top:64px">\n  <div class="container">\n    <div class="split-head"><h2 class="h2 reveal">More insights</h2>'
-                     f'<a class="btn btn-outline reveal d1" href="/insights/">All insights {ARROW}</a></div>\n'
+            body += ('\n<section class="section" style="padding-top:64px">\n  <div class="container">\n    <div class="split-head"><h2 class="h2 reveal">More from the blog</h2>'
+                     f'<a class="btn btn-outline reveal d1" href="/insights/">All posts {ARROW}</a></div>\n'
                      + _grid(related, "") + "\n  </div>\n</section>\n")
         body += _cta()
         article = {
@@ -295,7 +309,7 @@ def pages(posts, site):
         }
         yield ({
             "title": f"{p['title']} | FXN Holdings",
-            "description": p["summary"],
+            "description": p["description"],
             "path": f"/insights/{p['slug']}/", "nav": "insights", "og_type": "article",
             "noindex": p["draft"],
             "og_image": p["og_image"], "og_image_alt": p["image_alt"] if p["og_image"] else None,
@@ -321,7 +335,7 @@ def feed(posts, site):
     return f"""<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
-  <title>FXN Holdings Insights</title>
+  <title>FXN Holdings Blog</title>
   <link>{site}/insights/</link>
   <atom:link href="{site}/insights/feed.xml" rel="self" type="application/rss+xml"/>
   <description>Technology and AI, company news, and market gaps from FXN Holdings.</description>

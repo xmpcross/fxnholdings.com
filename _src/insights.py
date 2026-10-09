@@ -164,11 +164,19 @@ def _date(d):
     return f"{d.day} {d.strftime('%B %Y')}"
 
 
+def _srcset(p):
+    """srcset for a featured image, using the -800 variant when it exists."""
+    small = re.sub(r"\.webp$", "-800.webp", p["image"])
+    if small != p["image"] and (Path(__file__).resolve().parent.parent / "static" / small.lstrip("/")).is_file():
+        return f' srcset="{small} 800w, {p["image"]} 1600w"'
+    return ""
+
+
 def _thumb(p):
     if not p["image"]:
         return ""
     # Decorative here: the post title right below is the link text
-    return f'\n          <img class="post-thumb" src="{p["image"]}" alt="" width="1600" height="900" loading="lazy" decoding="async">'
+    return f'\n          <img class="post-thumb" src="{p["image"]}"{_srcset(p)} sizes="(max-width: 640px) 100vw, (max-width: 960px) 50vw, 440px" alt="" width="1600" height="900" loading="lazy" decoding="async">'
 
 
 def _card(p):
@@ -264,7 +272,7 @@ def pages(posts, site):
         url = f"{site}/insights/{p['slug']}/"
         related = [q for q in posts if q is not p and q["category"] is c][:3] or [q for q in posts if q is not p][:3]
         draft_note = '<p class="post-draft-note"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>Draft for review. This post is not published on the live site.</p>' if p["draft"] else ""
-        figure = (f'  <figure class="post-figure"><img src="{p["image"]}" alt="{html.escape(p["image_alt"])}" width="1600" height="900" fetchpriority="high" decoding="async"></figure>\n'
+        figure = (f'  <figure class="post-figure"><img src="{p["image"]}"{_srcset(p)} sizes="(max-width: 1366px) 100vw, 1366px" alt="{html.escape(p["image_alt"])}" width="1600" height="900" fetchpriority="high" decoding="async"></figure>\n'
                   if p["image"] else "")
         meta_line = (f'<p class="post-byline reveal d3"><a href="/insights/{c["slug"]}/"><i class="fa-solid fa-{c["icon"]}" aria-hidden="true"></i>{html.escape(c["name"])}</a>'
                      f' · <time datetime="{p["date"].isoformat()}">{_date(p["date"])}</time> · {p["minutes"]} min read · FXN Holdings</p>')

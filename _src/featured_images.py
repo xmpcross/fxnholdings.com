@@ -5,6 +5,7 @@ For each post in _src/posts/ that has an `image_prompt:` in its front matter,
 this asks fal.ai (fal-ai/nano-banana-pro, 16:9, 2K) for an image, then writes
 
     static/img/insights/<slug>.webp      1600x900, shown on the card and the post page
+    static/img/insights/<slug>-800.webp  800x450, the same image for phones and cards (srcset)
     static/img/insights/<slug>-og.jpg    1200x630, used for social sharing and Google
 
 and sets `image: /img/insights/<slug>.webp` in the post's front matter.
@@ -120,6 +121,7 @@ def main(argv):
         print(f"generating {path.stem} ...", flush=True)
         img = generate(meta["image_prompt"], key)
         ImageOps.fit(img, (1600, 900), Image.LANCZOS).save(OUT / f"{path.stem}.webp", "WEBP", quality=82, method=6)
+        ImageOps.fit(img, (800, 450), Image.LANCZOS).save(OUT / f"{path.stem}-800.webp", "WEBP", quality=80, method=6)
         ImageOps.fit(img, (1200, 630), Image.LANCZOS).save(OUT / f"{path.stem}-og.jpg", "JPEG", quality=85, optimize=True, progressive=True)
         set_image(path, raw, m, f"/img/insights/{path.stem}.webp")
         print(f"  wrote static/img/insights/{path.stem}.webp and -og.jpg; set image on {path.name}")

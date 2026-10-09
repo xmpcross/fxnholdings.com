@@ -66,6 +66,7 @@ ORG_JSONLD = {
     "areaServed": "Worldwide",
     "email": "contact@fxnholdings.com",
     "taxID": "53 274 423 748",
+    "sameAs": ["https://abr.business.gov.au/ABN/View?abn=53274423748"],
     "foundingDate": "2024",
     "address": {
         "@type": "PostalAddress",
@@ -194,6 +195,17 @@ def read_page(src_path):
     return json.loads(m.group(1)), raw[m.end():]
 
 
+def last_changed(*paths):
+    """Date of the last commit touching any of these files, for sitemap <lastmod>.
+    Uncommitted edits count as today, so a preview or deploy of local changes stays honest."""
+    import subprocess
+    rel = [str(Path(x).resolve().relative_to(ROOT)) for x in paths]
+    if subprocess.run(["git", "status", "--porcelain", "--", *rel], cwd=ROOT, capture_output=True, text=True).stdout.strip():
+        return dt.date.today().isoformat()
+    out = subprocess.run(["git", "log", "-1", "--format=%cs", "--", *rel], cwd=ROOT, capture_output=True, text=True).stdout.strip()
+    return out or dt.date.today().isoformat()
+
+
 def sitemap(entries):
     rows = "".join(
         f"  <url><loc>{SITE}{path}</loc><lastmod>{lastmod}</lastmod></url>\n" for path, lastmod in entries
@@ -209,7 +221,6 @@ if __name__ == "__main__":
     if OUT.exists():
         shutil.rmtree(OUT)
     shutil.copytree(ROOT / "static", OUT)
-    today = dt.date.today().isoformat()
     entries = []
     posts = insights.load_posts(SRC, include_drafts=drafts)
     set_category_links(posts)
@@ -217,11 +228,15 @@ if __name__ == "__main__":
         meta, body = read_page(p)
         print("built", render(meta, body))
         if not meta.get("noindex"):
-            entries.append((meta["path"], today))
+            entries.append((meta["path"], last_changed(p)))
+    post_files = {q["slug"]: SRC / "posts" / f"{q['slug']}.md" for q in posts}
     for meta, body in insights.pages(posts, SITE):
         print("built", render(meta, body))
         if not meta.get("noindex"):
-            entries.append((meta["path"], today))
+            slug = meta["path"].strip("/").split("/")[-1]
+            # A post changes when its file does; listings change when any post does
+            files = [post_files[slug]] if slug in post_files else list(post_files.values()) or [SRC / "insights.py"]
+            entries.append((meta["path"], last_changed(*files)))
     (OUT / "insights" / "feed.xml").write_text(insights.feed(posts, SITE))
     (OUT / "sitemap.xml").write_text(sitemap(entries))
     print(f"insights: {len(posts)} post(s){' incl. drafts' if drafts else ''}; sitemap: {len(entries)} URLs")

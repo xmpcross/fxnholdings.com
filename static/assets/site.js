@@ -254,6 +254,29 @@
     document.querySelectorAll(".legal section[id]").forEach(function (s) { tocIo.observe(s); });
   }
 
+  // Blog posts: highlight the section being read in "In this guide"
+  var postToc = document.querySelectorAll(".post-toc a[href^='#']");
+  if (postToc.length) {
+    var heads = Array.prototype.map.call(postToc, function (a) { return document.getElementById(a.getAttribute("href").slice(1)); });
+    var tocTick = false;
+    var markToc = function () {
+      tocTick = false;
+      var line = window.innerHeight * 0.3, current = 0;
+      heads.forEach(function (h, i) { if (h && h.getBoundingClientRect().top <= line) current = i; });
+      postToc.forEach(function (a, i) { a.classList.toggle("is-active", i === current); });
+    };
+    window.addEventListener("scroll", function () { if (!tocTick) { tocTick = true; requestAnimationFrame(markToc); } }, { passive: true });
+    markToc();
+  }
+
+  // Blog posts: copy link button
+  document.querySelectorAll(".share-copy").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var done = function () { b.classList.add("copied"); b.setAttribute("aria-label", "Link copied"); setTimeout(function () { b.classList.remove("copied"); b.setAttribute("aria-label", "Copy link to this post"); }, 2000); };
+      if (navigator.clipboard) navigator.clipboard.writeText(b.dataset.url).then(done, function () {});
+    });
+  });
+
   // Contact form → /api/contact (Cloudflare Pages Function, emails the team)
   var form = document.getElementById("contact-form");
   if (form) {

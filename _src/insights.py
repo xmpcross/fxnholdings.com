@@ -25,6 +25,7 @@ own: ![alt text](/img/insights/<slug>-2.webp) (made by _src/featured_images.py f
 import datetime as dt
 import html
 import re
+import urllib.parse
 from pathlib import Path
 
 CATEGORIES = [
@@ -85,8 +86,19 @@ def _figure(src, alt):
             'loading="lazy" decoding="async"></figure>')
 
 
+def _anchor(text, used):
+    """id for a ## heading, unique within the post."""
+    base = re.sub(r"[^a-z0-9]+", "-", re.sub(r"<[^>]+>|&[a-z]+;", "", text).lower()).strip("-")[:60].strip("-") or "section"
+    a, n = base, 2
+    while a in used:
+        a, n = f"{base}-{n}", n + 1
+    used.add(a)
+    return a
+
+
 def markdown(text):
     out, para, lst, quote = [], [], None, []
+    ids = set()
 
     def flush():
         nonlocal para, lst, quote
@@ -109,7 +121,7 @@ def markdown(text):
         if s.startswith("### "):
             flush(); out.append(f"<h3>{_inline(s[4:])}</h3>"); continue
         if s.startswith("## "):
-            flush(); out.append(f"<h2>{_inline(s[3:])}</h2>"); continue
+            flush(); h = _inline(s[3:]); out.append(f'<h2 id="{_anchor(h, ids)}">{h}</h2>'); continue
         if s in ("---", "***"):
             flush(); out.append("<hr>"); continue
         m = re.match(r"^!\[([^\]]+)\]\((/img/[^)\s]+)\)$", s)
@@ -240,6 +252,31 @@ def _layout(active, posts, listed, empty):
             '    <div class="blog-main">\n' + _grid(listed, empty) + "\n    </div>\n  </div>\n</section>\n")
 
 
+def _toc(p, url):
+    """'In this guide' contents from the post's ## headings, plus share links. Empty for short posts."""
+    heads = re.findall(r'<h2 id="([^"]+)">(.*?)</h2>', p["html"])
+    if len(heads) < 2:
+        return ""
+    items, n = [], 0
+    for anchor, label in heads:
+        plain = re.sub(r"<[^>]+>", "", label)
+        if re.match(r"(faqs?\b|frequently asked)", plain, re.I):
+            num = "?"
+        else:
+            n += 1
+            num = f"{n:02d}"
+        items.append(f'<li><a href="#{anchor}"><span class="toc-num" aria-hidden="true">{num}</span><span>{label}</span></a></li>')
+    q = urllib.parse.quote
+    share = (f'<div class="post-share" aria-label="Share this post">'
+             f'<a href="https://twitter.com/intent/tweet?url={q(url, safe="")}&amp;text={q(p["title"], safe="")}" target="_blank" rel="noopener" aria-label="Share on X"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i></a>'
+             f'<a href="https://www.facebook.com/sharer/sharer.php?u={q(url, safe="")}" target="_blank" rel="noopener" aria-label="Share on Facebook"><i class="fa-brands fa-facebook" aria-hidden="true"></i></a>'
+             f'<a href="https://www.linkedin.com/sharing/share-offsite/?url={q(url, safe="")}" target="_blank" rel="noopener" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin" aria-hidden="true"></i></a>'
+             f'<button type="button" class="share-copy" data-url="{url}" aria-label="Copy link to this post"><i class="fa-solid fa-link" aria-hidden="true"></i></button>'
+             '</div>')
+    return ('  <aside class="post-toc" aria-labelledby="toc-title">\n    <h2 class="blog-side-title" id="toc-title">In this guide</h2>\n'
+            '    <nav aria-labelledby="toc-title"><ol>' + "".join(items) + '</ol></nav>\n    ' + share + "\n  </aside>\n")
+
+
 def _post_side(p, posts):
     """Single post: category filter and latest posts in a right sidebar."""
     latest = [q for q in posts if q is not p][:4]
@@ -330,10 +367,11 @@ def pages(posts, site):
         draft_note = '<p class="post-draft-note"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>Draft for review. This post is not published on the live site.</p>' if p["draft"] else ""
         figure = (f'  <figure class="post-figure"><img src="{p["image"]}"{_srcset(p)} sizes="(max-width: 1366px) 100vw, 1366px" alt="{html.escape(p["image_alt"])}" width="1600" height="900" fetchpriority="high" decoding="async"></figure>\n'
                   if p["image"] else "")
+        toc = _toc(p, url)
         meta_line = (f'<p class="post-byline reveal d3"><a href="/insights/{c["slug"]}/"><i class="fa-solid fa-{c["icon"]}" aria-hidden="true"></i>{html.escape(c["name"])}</a>'
                      f' · <time datetime="{p["date"].isoformat()}">{_date(p["date"])}</time> · {p["minutes"]} min read · FXN Holdings</p>')
         body = (_hero('<a href="/insights/">Blog</a>', html.escape(p["title"]), html.escape(p["summary"]), meta_line)
-                + f'\n<div class="container post-wrap post-layout">\n  <div class="post-main">\n  {draft_note}\n{figure}  <article class="post-body">\n{p["html"]}\n  </article>\n  </div>\n{_post_side(p, posts)}</div>\n')
+                + f'\n<div class="container post-wrap post-layout">\n  <div class="post-main">\n  {draft_note}\n{figure}  <div class="post-content{" has-toc" if toc else ""}">\n{toc}  <article class="post-body">\n{p["html"]}\n  </article>\n  </div>\n  </div>\n{_post_side(p, posts)}</div>\n')
         if related:
             body += ('\n<section class="section" style="padding-top:64px">\n  <div class="container">\n    <div class="split-head"><h2 class="h2 reveal">More from the blog</h2>'
                      f'<a class="btn btn-outline reveal d1" href="/insights/">All posts {ARROW}</a></div>\n'

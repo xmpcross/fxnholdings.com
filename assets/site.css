@@ -70,7 +70,14 @@ button { font: inherit; }
 .site-header.scrolled { box-shadow: 0 1px 0 var(--line); }
 .header-row { display: flex; align-items: center; gap: 32px; height: 80px; }
 .brand { display: inline-flex; align-items: center; gap: 8px; color: var(--black); text-decoration: none; }
-.brand .logo { height: 28px; width: auto; }
+.brand .logo { height: 34px; width: auto; }
+.logo { --logo-letter: var(--black); --logo-word: var(--grey); --logo-hole: var(--white); }
+.logo .logo-letter { fill: var(--logo-letter); }
+.logo .logo-x, .logo .logo-rule { fill: var(--blue); }
+.logo .logo-x2 { fill: var(--orange); }
+.logo .logo-word { fill: var(--logo-word); }
+.logo .logo-hole { fill: var(--logo-hole); }
+.brand-tag { padding-left: 12px; margin-left: 4px; border-left: 2px solid var(--blue); font-size: 12px; font-weight: 700; line-height: 1.25; letter-spacing: .02em; color: var(--black); white-space: nowrap; }
 .nav { display: flex; gap: 28px; margin-left: auto; font-size: 14px; }
 .nav a { text-decoration: none; color: var(--ink); padding: 6px 0; border-bottom: 1px solid transparent; }
 .nav a:hover, .nav a[aria-current="page"] { border-bottom-color: currentColor; }
@@ -179,7 +186,9 @@ button { font: inherit; }
 .site-footer { background: var(--black); color: #fff; padding-top: 80px; overflow: hidden; }
 .foot-top { display: grid; grid-template-columns: 1.5fr repeat(3, 1fr); gap: 32px; }
 .site-footer .brand { color: #fff; }
-.site-footer .brand .logo { height: 26px; }
+.site-footer .brand .logo { height: 34px; }
+.site-footer .logo { --logo-letter: #fff; --logo-word: #c9c9c9; --logo-hole: var(--black); }
+.site-footer .brand-tag { color: #fff; }
 .foot-brand p { margin-top: 20px; font-size: 14px; line-height: 1.55; color: #c9c9c9; max-width: 280px; }
 .foot-brand .mail { display: inline-block; margin-top: 16px; font-size: 14px; color: #fff; }
 .social { list-style: none; padding: 0; margin-top: 20px; display: flex; gap: 10px; }
@@ -199,7 +208,14 @@ button { font: inherit; }
 .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 36px; padding: 0; list-style: none; }
 .tags li { padding: 7px 12px; border: 1px solid var(--line); font-size: 13px; font-weight: 600; color: var(--black); background: #fff; }
 .launch { list-style: none; padding: 0; display: grid; gap: 14px; }
-.launch li { position: relative; display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 16px; align-items: center; padding: 22px 24px; background: var(--beige); }
+.launch { --launch-step: 3000ms; }
+.launch li { position: relative; display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 16px; align-items: center; padding: 22px 24px; background: var(--beige); transition: background-color .5s var(--ease), transform .5s var(--ease), box-shadow .5s var(--ease); }
+.launch strong, .launch p { transition: color .5s var(--ease); }
+.launch li.on { transform: translateX(-8px); box-shadow: 0 14px 36px rgba(0, 112, 255, .22); }
+.launch li::after { content: ""; position: absolute; left: 0; bottom: 0; height: 3px; width: 100%; background: rgba(255, 255, 255, .7); transform: scaleX(0); transform-origin: left; }
+.launch.is-cycling li.on::after { animation: launch-progress var(--launch-step) linear forwards; }
+.launch.is-paused li.on::after { animation-play-state: paused; }
+@keyframes launch-progress { to { transform: scaleX(1); } }
 .launch li + li::before { content: ""; position: absolute; left: 51px; top: -14px; width: 2px; height: 14px; background: var(--blue); }
 .launch-n { display: grid; place-items: center; width: 56px; height: 56px; background: #fff; font-family: var(--font-head); font-size: 20px; color: var(--blue); }
 .launch strong { font-family: var(--font-head); font-size: 21px; font-weight: 700; color: var(--black); }
@@ -422,11 +438,16 @@ html:not(.no-js) .reveal.in { opacity: 1; transform: none; }
 .reveal.d3 { transition-delay: .24s; }
 
 @media (prefers-reduced-motion: reduce) {
+  .launch li, .launch strong, .launch p { transition: none; }
+  .launch li.on { transform: none; }
   html { scroll-behavior: auto; }
   html:not(.no-js) .reveal { opacity: 1; transform: none; transition: none; }
 }
 
 /* Responsive */
+@media (min-width: 961px) and (max-width: 1180px) {
+  .site-header .brand-tag { display: none; }
+}
 @media (max-width: 960px) {
   .nav, .header-cta { display: none; }
   .menu-btn { display: block; }

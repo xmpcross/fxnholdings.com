@@ -47,6 +47,40 @@
     revealables.forEach(function (el) { el.classList.add("in"); });
   }
 
+  // Home hero: cycle the highlight through the launch steps
+  var launch = document.querySelector(".launch");
+  var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (launch && !reduceMotion) {
+    var steps = launch.querySelectorAll("li");
+    var stepMs = parseFloat(getComputedStyle(launch).getPropertyValue("--launch-step")) || 3000;
+    var current = 0, timer = null, paused = false;
+    var show = function (i) {
+      steps.forEach(function (li, j) { li.classList.toggle("on", j === i); });
+      current = i;
+    };
+    var schedule = function () {
+      clearTimeout(timer);
+      timer = setTimeout(function () { if (!paused) { show((current + 1) % steps.length); schedule(); } }, stepMs);
+    };
+    var setPaused = function (p) {
+      paused = p;
+      launch.classList.toggle("is-paused", p);
+      if (!p) {
+        var li = steps[current];
+        li.classList.remove("on");
+        void li.offsetWidth; // restart the progress bar together with the timer
+        li.classList.add("on");
+        schedule();
+      }
+    };
+    launch.classList.add("is-cycling");
+    show(0);
+    schedule();
+    launch.addEventListener("mouseenter", function () { setPaused(true); clearTimeout(timer); });
+    launch.addEventListener("mouseleave", function () { setPaused(false); });
+    document.addEventListener("visibilitychange", function () { if (document.hidden) { clearTimeout(timer); } else if (!paused) { schedule(); } });
+  }
+
   // Legal pages: highlight the current section in the table of contents
   var tocLinks = document.querySelectorAll(".toc a");
   if (tocLinks.length && "IntersectionObserver" in window) {

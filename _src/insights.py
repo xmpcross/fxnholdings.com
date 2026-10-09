@@ -8,6 +8,8 @@ Each post starts with a front-matter block:
     category: technology-ai
     summary: One or two sentences shown on listing pages and in search results.
     draft: true
+    image: /img/insights/how-we-use-ai.webp      (optional featured image, made by _src/featured_images.py)
+    image_alt: What the image shows, for screen readers and search
     ---
 
     The body, in Markdown.
@@ -128,6 +130,15 @@ def load_posts(src, include_drafts):
         if meta["category"] not in CAT:
             raise SystemExit(f"{path.name}: unknown category '{meta['category']}' (use one of {', '.join(CAT)})")
         draft = meta.get("draft", "false").lower() == "true"
+        image = meta.get("image") or None
+        og_image = None
+        if image:
+            if not (src.parent / "static" / image.lstrip("/")).is_file():
+                raise SystemExit(f"{path.name}: image {image} not found in static/")
+            if not meta.get("image_alt"):
+                raise SystemExit(f"{path.name}: image needs image_alt")
+            og = re.sub(r"\.\w+$", "-og.jpg", image)
+            og_image = og if (src.parent / "static" / og.lstrip("/")).is_file() else None
         if draft and not include_drafts:
             continue
         body = m.group(2)
@@ -139,6 +150,9 @@ def load_posts(src, include_drafts):
             "category": CAT[meta["category"]],
             "summary": meta["summary"],
             "draft": draft,
+            "image": image,
+            "image_alt": meta.get("image_alt", ""),
+            "og_image": og_image,
             "html": markdown(body),
             "minutes": max(1, round(words / WPM)),
         })
@@ -150,10 +164,17 @@ def _date(d):
     return f"{d.day} {d.strftime('%B %Y')}"
 
 
+def _thumb(p):
+    if not p["image"]:
+        return ""
+    # Decorative here: the post title right below is the link text
+    return f'\n          <img class="post-thumb" src="{p["image"]}" alt="" width="1600" height="900" loading="lazy" decoding="async">'
+
+
 def _card(p):
     draft = '<span class="post-draft">Draft</span>' if p["draft"] else ""
     return f'''      <article class="post-card reveal">
-        <a href="/insights/{p["slug"]}/">
+        <a href="/insights/{p["slug"]}/">{_thumb(p)}
           <span class="post-cat"><i class="fa-solid fa-{p["category"]["icon"]}" aria-hidden="true"></i>{html.escape(p["category"]["name"])}</span>{draft}
           <h3 class="post-title">{html.escape(p["title"])}</h3>
           <p>{html.escape(p["summary"])}</p>
@@ -243,10 +264,12 @@ def pages(posts, site):
         url = f"{site}/insights/{p['slug']}/"
         related = [q for q in posts if q is not p and q["category"] is c][:3] or [q for q in posts if q is not p][:3]
         draft_note = '<p class="post-draft-note"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>Draft for review. This post is not published on the live site.</p>' if p["draft"] else ""
+        figure = (f'  <figure class="post-figure"><img src="{p["image"]}" alt="{html.escape(p["image_alt"])}" width="1600" height="900" fetchpriority="high" decoding="async"></figure>\n'
+                  if p["image"] else "")
         meta_line = (f'<p class="post-byline reveal d3"><a href="/insights/{c["slug"]}/"><i class="fa-solid fa-{c["icon"]}" aria-hidden="true"></i>{html.escape(c["name"])}</a>'
                      f' · <time datetime="{p["date"].isoformat()}">{_date(p["date"])}</time> · {p["minutes"]} min read · FXN Holdings</p>')
         body = (_hero('<a href="/insights/">Insights</a>', html.escape(p["title"]), html.escape(p["summary"]), meta_line)
-                + f'\n<div class="container post-wrap">\n  {draft_note}\n  <article class="post-body">\n{p["html"]}\n  </article>\n</div>\n')
+                + f'\n<div class="container post-wrap">\n  {draft_note}\n{figure}  <article class="post-body">\n{p["html"]}\n  </article>\n</div>\n')
         if related:
             body += ('\n<section class="section" style="padding-top:64px">\n  <div class="container">\n    <div class="split-head"><h2 class="h2 reveal">More insights</h2>'
                      f'<a class="btn btn-outline reveal d1" href="/insights/">All insights {ARROW}</a></div>\n'
@@ -257,7 +280,8 @@ def pages(posts, site):
             "headline": p["title"], "description": p["summary"],
             "datePublished": p["date"].isoformat(), "dateModified": p["date"].isoformat(),
             "articleSection": c["name"], "inLanguage": "en-AU",
-            "mainEntityOfPage": url, "url": url, "image": site + "/img/og-image.png",
+            "mainEntityOfPage": url, "url": url,
+            "image": [site + i for i in (p["image"], p["og_image"]) if i] or site + "/img/og-image.png",
             "author": {"@type": "Organization", "name": "FXN Holdings", "url": site + "/"},
             "publisher": {"@type": "Organization", "name": "FXN Holdings", "logo": {"@type": "ImageObject", "url": site + "/img/fxn-holdings-logo.svg"}},
         }
@@ -266,6 +290,7 @@ def pages(posts, site):
             "description": p["summary"],
             "path": f"/insights/{p['slug']}/", "nav": "insights", "og_type": "article",
             "noindex": p["draft"],
+            "og_image": p["og_image"], "og_image_alt": p["image_alt"] if p["og_image"] else None,
             "crumbs": crumbs_root + [(c["name"], f"{site}/insights/{c['slug']}/"), (p["title"], url)],
             "jsonld_extra": [article],
         }, body)

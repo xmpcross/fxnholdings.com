@@ -3,6 +3,8 @@ title: What we mean by a market gap
 date: 2026-10-09
 category: market-gaps
 summary: Every platform we launch starts with a gap: a market where people can't easily find what they need. Here's how we look for one and decide whether it's worth filling.
+image_alt: Illustration of a person with a magnifying glass studying an empty gap in a row of tall blocks
+image_prompt: A row of tall rectangular blocks like a bar chart or city skyline with one clear empty gap in the middle; a small person with a magnifying glass stands at the edge looking into the gap, and a blue outline sketches the block that could fill it.
 ---
 
 "Find the gap" is the first step in everything we build. But what counts as a gap, and how do we decide one is worth filling?
@@ -26,4 +28,4 @@ Ideas get tested quickly and cheaply before they get serious investment.
 
 When a gap passes those checks, we build on open-source foundations and our own reusable templates, so a new platform goes live sooner and costs less to run. Then we launch it for its market and measure what works.
 
-Our live platforms, from deal and comparison sites to free online tools, each started this way. See them all on our [Assets](/portfolio/) page.
+Our live platforms, from deal and comparison sites to free online tools, each started this way. See them all on our [websites page](/portfolio/).

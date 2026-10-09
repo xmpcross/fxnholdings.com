@@ -29,7 +29,7 @@ SRC = Path(__file__).resolve().parent
 ROOT = SRC.parent
 OUT = Path(os.environ["BUILD_OUT"]).resolve() if os.environ.get("BUILD_OUT") else ROOT / "dist"
 SITE = "https://fxnholdings.com"
-VERSION = "20261009w"
+VERSION = "20261009x"
 
 logo = (SRC / "partials" / "logo.svg").read_text().strip()
 header = (SRC / "partials" / "header.html").read_text()
@@ -92,14 +92,14 @@ HEAD = """<!doctype html>
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{description}">
 <meta property="og:url" content="{url}">
-<meta property="og:image" content="{site}/img/og-image.png">
+<meta property="og:image" content="{site}{og_image}">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="FXN Holdings: we find the gap, build the platform, and launch it.">
+<meta property="og:image:alt" content="{og_image_alt}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{title}">
 <meta name="twitter:description" content="{description}">
-<meta name="twitter:image" content="{site}/img/og-image.png">
+<meta name="twitter:image" content="{site}{og_image}">
 {robots}<link rel="icon" href="/icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="alternate" type="application/rss+xml" title="FXN Holdings Insights" href="/insights/feed.xml">
@@ -166,6 +166,8 @@ def render(meta, body):
             version=VERSION,
             site=SITE,
             og_type=meta.get("og_type", "website"),
+            og_image=meta.get("og_image") or "/img/og-image.png",
+            og_image_alt=esc(meta.get("og_image_alt") or "FXN Holdings: we find the gap, build the platform, and launch it."),
         )
         + render_header(meta.get("nav"))
         + '<main id="main">\n'

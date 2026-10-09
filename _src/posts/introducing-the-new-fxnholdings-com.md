@@ -3,13 +3,15 @@ title: Introducing the new fxnholdings.com
 date: 2026-10-09
 category: company-news
 summary: Our website has a new look and a clearer purpose: a full list of the platforms we run, how we build them, and an assistant that answers questions any time.
+image_alt: Illustration of a new website surrounded by cards representing shopping, travel, publishing, price comparison and online tool platforms
+image_prompt: A large, clean browser window showing an abstract website layout, surrounded by small floating cards that represent different online platforms (a shopping bag, a plane, an open book, a price tag, a wrench) and a speech bubble for a chat assistant, all connected by thin lines to the central site.
 ---
 
 We've rebuilt fxnholdings.com from the ground up. The new site explains what FXN Holdings does in plain terms: **we find the gap, build the platform, and launch it.**
 
 ## What's new
 
-- **All our assets in one place.** The [Assets](/portfolio/) page lists the 14 live websites we own and operate, what each one does, and the platform it runs on.
+- **All our assets in one place.** Our [websites page](/portfolio/) lists the 14 live websites we own and operate, what each one does, and the platform it runs on.
 - **How we build.** The [Technology & AI](/technology/) page covers our shared platform, the tools behind each website, and our position on AI.
 - **What we do.** The [What We Do](/services/) page sets out how we take an opportunity from research to a live platform.
 - **An assistant that never sleeps.** Our website assistant answers questions about FXN Holdings at any hour, and passes enquiries to our team.

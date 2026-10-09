@@ -42,7 +42,7 @@
   --space-gap: 20px;                           /* gap between cards */
   --header-h: 68px;
 
-  --container: 1200px; /* max width of .container, side gutters included */
+  --container: 1366px; /* max width of .container, side gutters included */
   --gutter: 24px;
   --radius: 4px;
   --ease: cubic-bezier(.2, .7, .2, 1);

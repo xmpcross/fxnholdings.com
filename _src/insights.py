@@ -162,9 +162,14 @@ def _card(p):
       </article>'''
 
 
-def _filters(active):
+def used_categories(posts):
+    """Categories with at least one post, so empty ones are not linked anywhere."""
+    return [c for c in CATEGORIES if any(p["category"]["slug"] == c["slug"] for p in posts)]
+
+
+def _filters(active, posts):
     links = [f'<a href="/insights/"{" aria-current=\"page\"" if active is None else ""}>All</a>']
-    for c in CATEGORIES:
+    for c in used_categories(posts):
         cur = ' aria-current="page"' if active == c["slug"] else ""
         links.append(f'<a href="/insights/{c["slug"]}/"{cur}><i class="fa-solid fa-{c["icon"]}" aria-hidden="true"></i>{html.escape(c["name"])}</a>')
     return '<nav class="anchor-nav post-filters reveal d3" aria-label="Categories">\n      ' + "\n      ".join(links) + "\n    </nav>"
@@ -215,8 +220,10 @@ def pages(posts, site):
         "title": "Insights | FXN Holdings",
         "description": "Insights from FXN Holdings on technology and AI, company news, and the market gaps we look for when we build and launch new platforms.",
         "path": "/insights/", "nav": "insights", "crumbs": crumbs_root,
+        # Keep empty listings out of search results until there is something to list.
+        "noindex": not posts,
     }, _hero('<span class="live-dot" aria-hidden="true"></span>Insights', "Insights from FXN Holdings",
-             "Notes on how we build, what we're launching, and the market gaps we think are worth filling.", _filters(None))
+             "Notes on how we build, what we're launching, and the market gaps we think are worth filling.", _filters(None, posts))
        + '\n<section class="section" style="padding-top:24px">\n  <div class="container">\n'
        + _grid(posts, "We're writing our first articles. Check back soon.") + "\n  </div>\n</section>\n" + _cta())
 
@@ -225,9 +232,9 @@ def pages(posts, site):
         yield ({
             "title": f"{c['name']} | Insights | FXN Holdings",
             "description": c["description"],
-            "path": f"/insights/{c['slug']}/", "nav": "insights",
+            "path": f"/insights/{c['slug']}/", "nav": "insights", "noindex": not in_cat,
             "crumbs": crumbs_root + [(c["name"], f"{site}/insights/{c['slug']}/")],
-        }, _hero(f'<i class="fa-solid fa-{c["icon"]}" aria-hidden="true"></i>Insights', html.escape(c["name"]), html.escape(c["description"]), _filters(c["slug"]))
+        }, _hero(f'<i class="fa-solid fa-{c["icon"]}" aria-hidden="true"></i>Insights', html.escape(c["name"]), html.escape(c["description"]), _filters(c["slug"], posts))
            + '\n<section class="section" style="padding-top:24px">\n  <div class="container">\n'
            + _grid(in_cat, f"There are no {html.escape(c['name'])} posts yet.") + "\n  </div>\n</section>\n" + _cta())
 

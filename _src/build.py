@@ -35,15 +35,19 @@ logo = (SRC / "partials" / "logo.svg").read_text().strip()
 header = (SRC / "partials" / "header.html").read_text()
 footer = (SRC / "partials" / "footer.html").read_text()
 
-# Category links are generated from insights.CATEGORIES, so adding a category updates every list.
-CATEGORY_LINKS = {
-    "{{INSIGHTS_CATEGORY_LINKS}}": "\n".join(
-        f'          <li><a href="/insights/{c["slug"]}/">{c["name"].replace("&", "&amp;")}</a></li>' for c in insights.CATEGORIES
-    ),
-    "{{INSIGHTS_CATEGORY_SITEMAP}}": "\n".join(
-        f'        <li><a href="/insights/{c["slug"]}/">Insights: {c["name"].replace("&", "&amp;")} <i class="fa-solid fa-arrow-right chev" aria-hidden="true"></i></a></li>' for c in insights.CATEGORIES
-    ),
-}
+# Category links are generated from the categories that have posts (set_category_links),
+# so adding a category or its first post updates every list, and empty categories are not linked.
+CATEGORY_LINKS = {}
+
+
+def set_category_links(posts):
+    cats = insights.used_categories(posts)
+    CATEGORY_LINKS["{{INSIGHTS_CATEGORY_LINKS}}"] = "\n".join(
+        f'          <li><a href="/insights/{c["slug"]}/">{c["name"].replace("&", "&amp;")}</a></li>' for c in cats
+    )
+    CATEGORY_LINKS["{{INSIGHTS_CATEGORY_SITEMAP}}"] = "\n".join(
+        f'        <li><a href="/insights/{c["slug"]}/">Insights: {c["name"].replace("&", "&amp;")} <i class="fa-solid fa-arrow-right chev" aria-hidden="true"></i></a></li>' for c in cats
+    )
 
 
 def fill(html):
@@ -205,12 +209,13 @@ if __name__ == "__main__":
     shutil.copytree(ROOT / "static", OUT)
     today = dt.date.today().isoformat()
     entries = []
+    posts = insights.load_posts(SRC, include_drafts=drafts)
+    set_category_links(posts)
     for p in sorted((SRC / "pages").glob("*.html")):
         meta, body = read_page(p)
         print("built", render(meta, body))
         if not meta.get("noindex"):
             entries.append((meta["path"], today))
-    posts = insights.load_posts(SRC, include_drafts=drafts)
     for meta, body in insights.pages(posts, SITE):
         print("built", render(meta, body))
         if not meta.get("noindex"):

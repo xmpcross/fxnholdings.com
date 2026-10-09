@@ -220,18 +220,34 @@ def used_categories(posts):
     return [c for c in CATEGORIES if any(p["category"]["slug"] == c["slug"] for p in posts)]
 
 
+def _cat_side(active, posts, current=True):
+    """Category filter for the blog sidebars. On listings the active link is the current page;
+    on a post it is the post's category, highlighted without aria-current."""
+    counts = {c["slug"]: sum(1 for p in posts if p["category"]["slug"] == c["slug"]) for c in CATEGORIES}
+    mark = lambda on: (' aria-current="page"' if current else ' class="is-active"') if on else ""
+    links = [f'<a href="/insights/"{mark(current and active is None)}><i class="fa-solid fa-layer-group" aria-hidden="true"></i>All posts<span class="blog-count">{len(posts)}</span></a>']
+    for c in used_categories(posts):
+        links.append(f'<a href="/insights/{c["slug"]}/"{mark(active == c["slug"])}><i class="fa-solid fa-{c["icon"]}" aria-hidden="true"></i>'
+                     f'{html.escape(c["name"])}<span class="blog-count">{counts[c["slug"]]}</span></a>')
+    return ('      <h2 class="blog-side-title" id="blog-cats">Categories</h2>\n'
+            '      <nav class="blog-cats" aria-label="Blog categories">\n        ' + "\n        ".join(links) + "\n      </nav>\n")
+
+
 def _layout(active, posts, listed, empty):
     """Blog listing: category sidebar on the left, post grid on the right."""
-    counts = {c["slug"]: sum(1 for p in posts if p["category"]["slug"] == c["slug"]) for c in CATEGORIES}
-    cur = lambda on: ' aria-current="page"' if on else ""
-    links = [f'<a href="/insights/"{cur(active is None)}><i class="fa-solid fa-layer-group" aria-hidden="true"></i>All posts<span class="blog-count">{len(posts)}</span></a>']
-    for c in used_categories(posts):
-        links.append(f'<a href="/insights/{c["slug"]}/"{cur(active == c["slug"])}><i class="fa-solid fa-{c["icon"]}" aria-hidden="true"></i>'
-                     f'{html.escape(c["name"])}<span class="blog-count">{counts[c["slug"]]}</span></a>')
     return ('<section class="section" style="padding-top:24px">\n  <div class="container blog-layout">\n'
-            '    <aside class="blog-side" aria-labelledby="blog-cats">\n      <h2 class="blog-side-title" id="blog-cats">Categories</h2>\n'
-            '      <nav class="blog-cats" aria-label="Blog categories">\n        ' + "\n        ".join(links) + "\n      </nav>\n    </aside>\n"
+            '    <aside class="blog-side" aria-labelledby="blog-cats">\n' + _cat_side(active, posts) + "    </aside>\n"
             '    <div class="blog-main">\n' + _grid(listed, empty) + "\n    </div>\n  </div>\n</section>\n")
+
+
+def _post_side(p, posts):
+    """Single post: category filter and latest posts in a right sidebar."""
+    latest = [q for q in posts if q is not p][:4]
+    items = "".join(f'\n        <li><a href="/insights/{q["slug"]}/">{html.escape(q["title"])}</a>'
+                    f'<time datetime="{q["date"].isoformat()}">{_date(q["date"])}</time></li>' for q in latest)
+    recent = (f'      <h2 class="blog-side-title" id="blog-latest">Latest posts</h2>\n      <ul class="side-latest" aria-labelledby="blog-latest">{items}\n      </ul>\n'
+              if latest else "")
+    return '  <aside class="blog-side post-side" aria-labelledby="blog-cats">\n' + _cat_side(p["category"]["slug"], posts, current=False) + recent + "  </aside>\n"
 
 
 def _grid(posts, empty):
@@ -317,7 +333,7 @@ def pages(posts, site):
         meta_line = (f'<p class="post-byline reveal d3"><a href="/insights/{c["slug"]}/"><i class="fa-solid fa-{c["icon"]}" aria-hidden="true"></i>{html.escape(c["name"])}</a>'
                      f' · <time datetime="{p["date"].isoformat()}">{_date(p["date"])}</time> · {p["minutes"]} min read · FXN Holdings</p>')
         body = (_hero('<a href="/insights/">Blog</a>', html.escape(p["title"]), html.escape(p["summary"]), meta_line)
-                + f'\n<div class="container post-wrap">\n  {draft_note}\n{figure}  <article class="post-body">\n{p["html"]}\n  </article>\n</div>\n')
+                + f'\n<div class="container post-wrap post-layout">\n  <div class="post-main">\n  {draft_note}\n{figure}  <article class="post-body">\n{p["html"]}\n  </article>\n  </div>\n{_post_side(p, posts)}</div>\n')
         if related:
             body += ('\n<section class="section" style="padding-top:64px">\n  <div class="container">\n    <div class="split-head"><h2 class="h2 reveal">More from the blog</h2>'
                      f'<a class="btn btn-outline reveal d1" href="/insights/">All posts {ARROW}</a></div>\n'

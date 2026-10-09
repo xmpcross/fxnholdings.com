@@ -394,6 +394,16 @@ button { font: inherit; }
 .blog-count { margin-left: auto; font-size: var(--text-xs); color: var(--grey); }
 .blog-cats a[aria-current="page"] .blog-count { color: #c9c9c9; }
 .blog-main .post-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+/* Single post: article on the left, categories + latest posts on the right */
+.post-layout { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 56px; align-items: start; }
+.post-side { display: grid; gap: 12px; }
+.post-side .blog-side-title + * { margin-bottom: 24px; }
+.blog-cats a.is-active { border-color: var(--black); background: var(--beige); font-weight: 600; }
+.side-latest { display: grid; gap: 14px; margin: 0; padding: 0; list-style: none; }
+.side-latest li { display: grid; gap: 4px; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
+.side-latest a { font-size: var(--text-sm); font-weight: 600; line-height: 1.4; color: var(--black); text-decoration: none; }
+.side-latest a:hover { color: var(--blue); }
+.side-latest time { font-size: var(--text-xs); color: var(--grey); }
 .post-card a { display: flex; flex-direction: column; gap: 12px; height: 100%; padding: var(--space-card) 20px; background: var(--beige); color: var(--black); text-decoration: none; transition: background-color .25s, transform .25s var(--ease); }
 .post-card a:hover { background: #f8eee2; transform: translateY(-3px); }
 .post-thumb { display: block; width: calc(100% + 40px); max-width: none; height: auto; aspect-ratio: 16 / 9; object-fit: cover; margin: calc(-1 * var(--space-card)) -20px 4px; }
@@ -659,6 +669,8 @@ html:not(.no-js) .reveal.in { opacity: 1; transform: none; }
   .cols-3 { grid-template-columns: minmax(0, 1fr); }
   .post-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .blog-layout { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .post-layout { grid-template-columns: minmax(0, 1fr); gap: 40px; }
+  .post-side { position: static; }
   .blog-side { position: static; }
   .blog-cats { flex-direction: row; flex-wrap: wrap; }
   .blog-count { margin-left: 4px; }

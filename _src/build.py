@@ -29,7 +29,7 @@ SRC = Path(__file__).resolve().parent
 ROOT = SRC.parent
 OUT = Path(os.environ["BUILD_OUT"]).resolve() if os.environ.get("BUILD_OUT") else ROOT / "dist"
 SITE = "https://fxnholdings.com"
-VERSION = "20261010a"
+VERSION = "20261010b"
 
 logo = (SRC / "partials" / "logo.svg").read_text().strip()
 header = (SRC / "partials" / "header.html").read_text()

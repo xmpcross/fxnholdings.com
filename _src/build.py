@@ -17,11 +17,30 @@ from pathlib import Path
 SRC = Path(__file__).resolve().parent
 ROOT = SRC.parent
 SITE = "https://www.fxnholdings.com"
-VERSION = "20261008"
+VERSION = "20261009"
 
 logo = (SRC / "partials" / "logo.svg").read_text().strip()
 header = (SRC / "partials" / "header.html").read_text()
 footer = (SRC / "partials" / "footer.html").read_text()
+
+# Pages opt into the redesign with "theme": "v2" in their meta block. It swaps
+# the stylesheet, fonts, theme colour, header and footer; site.js is shared.
+THEMES = {
+    None: {
+        "css": "site.css",
+        "theme_color": "#f3eee5",
+        "fonts": ["Outfit-Regular.woff2", "Urbanist-Regular.woff2"],
+        "header": header,
+        "footer": footer,
+    },
+    "v2": {
+        "css": "v2.css",
+        "theme_color": "#ffffff",
+        "fonts": ["Manrope-Variable.woff2", "InstrumentSans-Variable.woff2"],
+        "header": (SRC / "partials" / "header-v2.html").read_text(),
+        "footer": (SRC / "partials" / "footer-v2.html").read_text(),
+    },
+}
 
 ORG_JSONLD = {
     "@context": "https://schema.org",
@@ -51,7 +70,7 @@ HEAD = """<!doctype html>
 <title>{title}</title>
 <meta name="description" content="{description}">
 <link rel="canonical" href="{url}">
-<meta name="theme-color" content="#f3eee5">
+<meta name="theme-color" content="{theme_color}">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="FXN Holdings">
 <meta property="og:locale" content="en_AU">
@@ -60,9 +79,7 @@ HEAD = """<!doctype html>
 <meta property="og:url" content="{url}">
 <meta name="twitter:card" content="summary">
 {robots}<link rel="icon" href="/icon.svg" type="image/svg+xml">
-<link rel="preload" href="/fonts/Outfit-Regular.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/fonts/Urbanist-Regular.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/site.css?v={version}">
+{preloads}<link rel="stylesheet" href="/assets/{css}?v={version}">
 {jsonld}</head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -78,7 +95,7 @@ def esc(s):
     return s.replace("&", "&amp;").replace('"', "&quot;").replace("<", "&lt;")
 
 
-def render_header(nav):
+def render_header(header, nav):
     out = header.replace("{{LOGO}}", logo)
     # Mark the current nav item
     return re.sub(
@@ -102,6 +119,10 @@ def build_page(src_path):
     if meta.get("jsonld"):
         jsonld = '<script type="application/ld+json">%s</script>\n' % json.dumps(ORG_JSONLD, separators=(",", ":"))
     robots = '<meta name="robots" content="noindex">\n' if meta.get("noindex") else ""
+    theme = THEMES[meta.get("theme")]
+    preloads = "".join(
+        '<link rel="preload" href="/fonts/%s" as="font" type="font/woff2" crossorigin>\n' % f for f in theme["fonts"]
+    )
 
     html = (
         HEAD.format(
@@ -111,12 +132,15 @@ def build_page(src_path):
             robots=robots,
             jsonld=jsonld,
             version=VERSION,
+            theme_color=theme["theme_color"],
+            preloads=preloads,
+            css=theme["css"],
         )
-        + render_header(meta.get("nav"))
+        + render_header(theme["header"], meta.get("nav"))
         + '<main id="main">\n'
         + body.replace("{{LOGO}}", logo).strip()
         + "\n</main>\n"
-        + footer.replace("{{LOGO}}", logo)
+        + theme["footer"].replace("{{LOGO}}", logo)
         + TAIL.format(version=VERSION)
     )
 

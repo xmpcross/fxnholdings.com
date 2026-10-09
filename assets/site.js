@@ -47,6 +47,45 @@
     revealables.forEach(function (el) { el.classList.add("in"); });
   }
 
+  // Home: site slider (scroll-snap track with prev/next buttons and dots)
+  document.querySelectorAll("[data-slider]").forEach(function (slider) {
+    var track = slider.querySelector(".slider-track");
+    var slides = track.querySelectorAll(".slide");
+    var dotsEl = slider.querySelector(".slider-dots");
+    var prev = slider.querySelector('[data-dir="-1"]');
+    var next = slider.querySelector('[data-dir="1"]');
+    var dots = [];
+    slides.forEach(function () { var i = document.createElement("i"); dotsEl.appendChild(i); dots.push(i); });
+    var current = function () {
+      var start = track.getBoundingClientRect().left + parseFloat(getComputedStyle(track).paddingLeft);
+      var best = 0, bestDist = Infinity;
+      slides.forEach(function (s, i) {
+        var d = Math.abs(s.getBoundingClientRect().left - start);
+        if (d < bestDist) { bestDist = d; best = i; }
+      });
+      return best;
+    };
+    var update = function () {
+      var i = current();
+      dots.forEach(function (d, j) { d.classList.toggle("on", j === i); });
+      prev.disabled = track.scrollLeft <= 2;
+      next.disabled = track.scrollLeft >= track.scrollWidth - track.clientWidth - 2;
+    };
+    var go = function (dir) {
+      var i = Math.max(0, Math.min(slides.length - 1, current() + dir));
+      track.scrollTo({ left: track.scrollLeft + slides[i].getBoundingClientRect().left - slides[current()].getBoundingClientRect().left });
+    };
+    prev.addEventListener("click", function () { go(-1); });
+    next.addEventListener("click", function () { go(1); });
+    track.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowLeft") { e.preventDefault(); go(-1); }
+      if (e.key === "ArrowRight") { e.preventDefault(); go(1); }
+    });
+    track.addEventListener("scroll", function () { window.requestAnimationFrame(update); }, { passive: true });
+    window.addEventListener("resize", update);
+    update();
+  });
+
   // Legal pages: highlight the current section in the table of contents
   var tocLinks = document.querySelectorAll(".toc a");
   if (tocLinks.length && "IntersectionObserver" in window) {

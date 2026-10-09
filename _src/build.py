@@ -17,7 +17,7 @@ from pathlib import Path
 SRC = Path(__file__).resolve().parent
 ROOT = SRC.parent
 SITE = "https://www.fxnholdings.com"
-VERSION = "20261009c"
+VERSION = "20261009d"
 
 logo = (SRC / "partials" / "logo.svg").read_text().strip()
 header = (SRC / "partials" / "header.html").read_text()
@@ -29,7 +29,7 @@ ORG_JSONLD = {
     "name": "FXN Holdings",
     "url": SITE + "/",
     "logo": SITE + "/img/fxn-holdings-logo.svg",
-    "description": "An Australian digital holdings business that builds, acquires and operates online businesses across e-commerce, travel, content and publishing, price comparison and affiliate marketing.",
+    "description": "An Australian digital holdings business that builds and operates online businesses across e-commerce, travel, content and publishing, price comparison and affiliate marketing.",
     "email": "kritin@fxnholdings.com",
     "taxID": "53 274 423 748",
     "foundingDate": "2024",

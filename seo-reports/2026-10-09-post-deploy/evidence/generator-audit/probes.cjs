@@ -1,0 +1,15 @@
+const fs=require('fs'),vm=require('vm'),assert=require('assert/strict');
+const file='/opt/strapi-cms-git/backend/ai-writer-cli/generate-fxnholdings-post.js';
+const source=fs.readFileSync(file,'utf8');
+const ctx={console:{log(){}},URL,Date,argv:{words:100,images:0},LIMITS:{title:45,description:155,summary:220,slug:60,minLinks:3,minSections:3,maxSections:6}};
+vm.createContext(ctx);
+vm.runInContext(source.slice(source.indexOf('const slugify ='),source.indexOf('// ---------------------------------------------------------------- output')),ctx);
+const body=['One','Two','Three'].map(h=>'## '+h+'\n\n'+Array(42).fill('Useful').join(' ')+'.').join('\n\n')+'\n\n[About](/about) [Services](/services/) [Contact](/contact/)';
+ctx.post={title:'Example',description:' ',summary:' ',body,image_prompt:' ',image_alt:' ',inline_images:[]};ctx.context={facts:'',targets:['/about/','/services/','/contact/'].map(url=>({url})),sources:[]};
+const audit=vm.runInContext('audit(post,context)',ctx);
+assert.equal(audit.problems.length,0);assert.equal(ctx.post.description,'');assert(ctx.post.body.includes('](/about)'));
+const researchCtx={URL,Date,OPENROUTER:true,MODEL:'mock',process:{env:{}},researchWithOpenRouter:async()=>({json:{facts:[{fact:'Unverified claim from a rejected source'}],officialSources:[{url:'https://www.irs.gov/instructions/iss4'},{url:'https://example.com/rumor'}]}})};
+vm.createContext(researchCtx);vm.runInContext(source.slice(source.indexOf('const PERSONAL ='),source.indexOf('// Second pass:')),researchCtx);
+(async()=>{const r=await vm.runInContext('research("test", {name:"test"})',researchCtx);assert.equal(r.sources.length,1);assert.equal(r.facts[0],'Unverified claim from a rejected source');
+const checkerCtx={callAI:async()=> '{}',parseAiJson:JSON.parse,argv:{provider:'mock'},oneLine:s=>String(s||'')};vm.createContext(checkerCtx);vm.runInContext(source.slice(source.indexOf('async function unsupportedClaims('),source.indexOf('// ---------------------------------------------------------------- checks')),checkerCtx);const warnings=await vm.runInContext('unsupportedClaims({title:"test",body:"Unverified claim"},{facts:""})',checkerCtx);assert.equal(warnings.length,0);
+const result={source:file,findings:{unmapped_research_fact_survives_source_filter:true,missing_checker_result_silently_passes:true,whitespace_required_metadata_passes:audit.problems.length===0,noncanonical_internal_url_preserved:ctx.post.body.includes('](/about)'),current_utc_date:new Date().toISOString().slice(0,10),generator_perth_date:new Date().toLocaleDateString('en-CA',{timeZone:'Australia/Perth'})},method:'Extracted original pure functions evaluated with mocked providers. No network, API credits, post writes or generator execution.'};fs.writeFileSync('/tmp/fxn-generator-seo-audit/results.json',JSON.stringify(result,null,2));console.log(JSON.stringify(result,null,2));})();

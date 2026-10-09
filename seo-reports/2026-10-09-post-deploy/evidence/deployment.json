@@ -1,0 +1,32 @@
+{
+  "deployed_at_check": "2026-10-09T20:05:06.386409+08:00",
+  "site": "https://fxnholdings.com",
+  "asset_version": "20261010f",
+  "git_base_commit": "3671e95bd2936d63d3d627d9c1b4ab45fd5683a4",
+  "working_tree_deployment": true,
+  "note": "Includes uncommitted fixes; the base commit alone does not identify this release.",
+  "predeploy_tests": {
+    "passed": 10,
+    "failed": 0
+  },
+  "api_health": {
+    "url": "https://fxnholdings.com/api/health",
+    "status": 200,
+    "body": {
+      "ok": true
+    }
+  },
+  "service": "active",
+  "rollback_static_directory": ".dist-old",
+  "files": {
+    "static/assets/site.js": "fe4b9cfa5f6ecc2036a6dd2e09e52644a882d981ae7aed02c1b7057b101f1ec3",
+    "static/assets/site.css": "8fd8873c10861df5f244e34a237d081871242c39d8772b882800933f390a938e",
+    "_src/build.py": "ffd9e32bb062d6140e5448276c5e232517fb8555c0318b25bfd5deeb85dadbb1",
+    "server/api.mjs": "989420ae00208bccd32f8fe400e06c1f97b2e5ca802244e11bd486e98d28629e",
+    "worker/contact.js": "5df9c93149931d8dc79baf93ac7a8379a68d4dd6eec8286c417b4dd38fd79e46",
+    "worker/chat.js": "8bb9630e0d805d1babae76c73bd6d40b321cc1600479ef29db12489390c741a7",
+    "worker/lib/http.js": "aa154da753044600a572440c09a19cdecc5f90e0a293f86d833087905f1c85b2",
+    "deploy.sh": "3e603df8865608a18675d9e8199d701aa49783e325ec7d53edd6ca802057b8ea",
+    "package-lock.json": "e1a486b1585f3763dda50e73136a18d68d2f3dd2eb159d593658c7fabf6fb2af"
+  }
+}

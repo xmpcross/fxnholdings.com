@@ -1,0 +1,30 @@
+{
+  "url": "https://fxnholdings.com/",
+  "status_code": 200,
+  "headers": {
+    "Date": "Fri, 09 Oct 2026 12:01:42 GMT",
+    "Content-Type": "text/html",
+    "Transfer-Encoding": "chunked",
+    "Connection": "keep-alive",
+    "Server": "cloudflare",
+    "last-modified": "Fri, 09 Oct 2026 12:00:59 GMT",
+    "vary": "Accept-Encoding",
+    "etag": "W/\"6ac8d77b-9089\"",
+    "strict-transport-security": "max-age=31536000; includeSubDomains",
+    "x-content-type-options": "nosniff",
+    "x-frame-options": "SAMEORIGIN",
+    "referrer-policy": "strict-origin-when-cross-origin",
+    "permissions-policy": "camera=(), microphone=(), geolocation=(), interest-cohort=()",
+    "Cache-Control": "no-transform",
+    "Content-Encoding": "gzip",
+    "cf-cache-status": "DYNAMIC",
+    "Server-Timing": "cfCacheStatus;desc=\"DYNAMIC\", cfEdge;dur=7,cfOrigin;dur=2",
+    "Report-To": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=vtmBIHo1NYzPoJ7kufg76mZDagYV4XQ%2FF0q6KF6JR%2FgdmmWW2MTBII8XKe1eftgs0QlSJoHMX6vabT6PGzGVdtSWB%2FLCjyuidSVy18p95CpkbQ%2FsCQMAD9MOAwHpwXmnMATSi8U%2BkbKRj%2BAVDlM%3D\"}]}",
+    "Nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+    "CF-RAY": "a47d3b724d90f753-SYD",
+    "alt-svc": "h3=\":443\"; ma=86400"
+  },
+  "redirect_chain": [],
+  "error": null,
+  "content_length": 37001
+}

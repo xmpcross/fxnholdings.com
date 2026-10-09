@@ -1,0 +1,67 @@
+{
+  "cache_type": "audit-scores",
+  "analyzed_at": "2026-10-09T12:02:22Z",
+  "domain": "fxnholdings.com",
+  "business_type": "publisher",
+  "industry": "media",
+  "overall_score": 83,
+  "category_scores": {
+    "technical": 92,
+    "content": 64,
+    "on_page": 100,
+    "schema": 92,
+    "performance": 91,
+    "geo": 55,
+    "images": 82
+  },
+  "priority_issues": [
+    {
+      "severity": "critical",
+      "issue": "Geo: Author/date attribution is weak in the visible content."
+    },
+    {
+      "severity": "critical",
+      "issue": "Geo: No llms.txt file was detected."
+    },
+    {
+      "severity": "critical",
+      "issue": "Geo: No strong 134-167 word self-contained answer block was detected."
+    },
+    {
+      "severity": "critical",
+      "issue": "Geo: Server-rendered content confirmation is weak without technical-cache support."
+    },
+    {
+      "severity": "high",
+      "issue": "Content: Author or expert attribution signals are limited or absent in the visible content."
+    },
+    {
+      "severity": "high",
+      "issue": "Images: 3 image(s) use weak or filename-like alt text."
+    },
+    {
+      "severity": "high",
+      "issue": "Schema: Recommended schema type(s) are missing: WebPage."
+    },
+    {
+      "severity": "high",
+      "issue": "Technical: IndexNow support was not detected."
+    },
+    {
+      "severity": "medium",
+      "issue": "Content: Several long sentences may reduce scannability."
+    },
+    {
+      "severity": "medium",
+      "issue": "Performance: Real-user/PageSpeed performance data was unavailable, so the report uses deterministic lab heuristics."
+    },
+    {
+      "severity": "medium",
+      "issue": "Sitemap: All sitemap lastmod values are identical."
+    },
+    {
+      "severity": "medium",
+      "issue": "Technical: All sitemap lastmod values are identical."
+    }
+  ]
+}

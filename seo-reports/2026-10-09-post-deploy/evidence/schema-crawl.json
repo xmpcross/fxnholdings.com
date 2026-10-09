@@ -1,0 +1,2222 @@
+{
+  "pages": [
+    {
+      "url": "https://fxnholdings.com/about/",
+      "status": 200,
+      "final": "https://fxnholdings.com/about/",
+      "canonical": "https://fxnholdings.com/about/",
+      "robots": "",
+      "schema": [
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://fxnholdings.com/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "About",
+              "item": "https://fxnholdings.com/about/"
+            }
+          ]
+        }
+      ],
+      "images": [],
+      "og": {
+        "og:type": "website",
+        "og:site_name": "FXN Holdings",
+        "og:locale": "en_AU",
+        "og:title": "About FXN Holdings | Digital Venture Group",
+        "og:description": "FXN Holdings is a digital venture group that explores opportunities, then builds and launches websites across regions on open-source technology.",
+        "og:url": "https://fxnholdings.com/about/",
+        "og:image": "https://fxnholdings.com/img/og-image.png",
+        "og:image:width": "1200",
+        "og:image:height": "630",
+        "og:image:alt": "FXN Holdings: we find the gap, build the platform, and launch it."
+      },
+      "links": [
+        "https://fxnholdings.com/",
+        "https://fxnholdings.com/about/",
+        "https://fxnholdings.com/accessibility/",
+        "https://fxnholdings.com/contact/",
+        "https://fxnholdings.com/cookies/",
+        "https://fxnholdings.com/insights/",
+        "https://fxnholdings.com/insights/company-news/",
+        "https://fxnholdings.com/insights/market-gaps/",
+        "https://fxnholdings.com/insights/start-a-business/",
+        "https://fxnholdings.com/insights/technology-ai/",
+        "https://fxnholdings.com/legal-notice/",
+        "https://fxnholdings.com/portfolio/",
+        "https://fxnholdings.com/privacy/",
+        "https://fxnholdings.com/services/",
+        "https://fxnholdings.com/sitemap/",
+        "https://fxnholdings.com/technology/",
+        "https://fxnholdings.com/terms/"
+      ]
+    },
+    {
+      "url": "https://fxnholdings.com/accessibility/",
+      "status": 200,
+      "final": "https://fxnholdings.com/accessibility/",
+      "canonical": "https://fxnholdings.com/accessibility/",
+      "robots": "",
+      "schema": [
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://fxnholdings.com/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Accessibility Statement",
+              "item": "https://fxnholdings.com/accessibility/"
+            }
+          ]
+        }
+      ],
+      "images": [],
+      "og": {
+        "og:type": "website",
+        "og:site_name": "FXN Holdings",
+        "og:locale": "en_AU",
+        "og:title": "Accessibility Statement | FXN Holdings",
+        "og:description": "How FXN Holdings makes fxnholdings.com usable for everyone: our WCAG 2.2 AA target, what we have done, known limitations and how to report a problem.",
+        "og:url": "https://fxnholdings.com/accessibility/",
+        "og:image": "https://fxnholdings.com/img/og-image.png",
+        "og:image:width": "1200",
+        "og:image:height": "630",
+        "og:image:alt": "FXN Holdings: we find the gap, build the platform, and launch it."
+      },
+      "links": [
+        "https://fxnholdings.com/",
+        "https://fxnholdings.com/about/",
+        "https://fxnholdings.com/accessibility/",
+        "https://fxnholdings.com/contact/",
+        "https://fxnholdings.com/cookies/",
+        "https://fxnholdings.com/insights/",
+        "https://fxnholdings.com/insights/company-news/",
+        "https://fxnholdings.com/insights/market-gaps/",
+        "https://fxnholdings.com/insights/start-a-business/",
+        "https://fxnholdings.com/insights/technology-ai/",
+        "https://fxnholdings.com/legal-notice/",
+        "https://fxnholdings.com/portfolio/",
+        "https://fxnholdings.com/privacy/",
+        "https://fxnholdings.com/services/",
+        "https://fxnholdings.com/sitemap/",
+        "https://fxnholdings.com/technology/",
+        "https://fxnholdings.com/terms/"
+      ]
+    },
+    {
+      "url": "https://fxnholdings.com/contact/",
+      "status": 200,
+      "final": "https://fxnholdings.com/contact/",
+      "canonical": "https://fxnholdings.com/contact/",
+      "robots": "",
+      "schema": [
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://fxnholdings.com/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Contact",
+              "item": "https://fxnholdings.com/contact/"
+            }
+          ]
+        }
+      ],
+      "images": [],
+      "og": {
+        "og:type": "website",
+        "og:site_name": "FXN Holdings",
+        "og:locale": "en_AU",
+        "og:title": "Contact FXN Holdings | Partnerships & Enquiries",
+        "og:description": "Get in touch with FXN Holdings about partnerships, supplier and affiliate programs, advertising, or a new platform opportunity.",
+        "og:url": "https://fxnholdings.com/contact/",
+        "og:image": "https://fxnholdings.com/img/og-image.png",
+        "og:image:width": "1200",
+        "og:image:height": "630",
+        "og:image:alt": "FXN Holdings: we find the gap, build the platform, and launch it."
+      },
+      "links": [
+        "https://fxnholdings.com/",
+        "https://fxnholdings.com/about/",
+        "https://fxnholdings.com/accessibility/",
+        "https://fxnholdings.com/contact/",
+        "https://fxnholdings.com/cookies/",
+        "https://fxnholdings.com/insights/",
+        "https://fxnholdings.com/insights/company-news/",
+        "https://fxnholdings.com/insights/market-gaps/",
+        "https://fxnholdings.com/insights/start-a-business/",
+        "https://fxnholdings.com/insights/technology-ai/",
+        "https://fxnholdings.com/legal-notice/",
+        "https://fxnholdings.com/portfolio/",
+        "https://fxnholdings.com/privacy/",
+        "https://fxnholdings.com/services/",
+        "https://fxnholdings.com/sitemap/",
+        "https://fxnholdings.com/technology/",
+        "https://fxnholdings.com/terms/"
+      ]
+    },
+    {
+      "url": "https://fxnholdings.com/cookies/",
+      "status": 200,
+      "final": "https://fxnholdings.com/cookies/",
+      "canonical": "https://fxnholdings.com/cookies/",
+      "robots": "",
+      "schema": [
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://fxnholdings.com/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Cookie Policy",
+              "item": "https://fxnholdings.com/cookies/"
+            }
+          ]
+        }
+      ],
+      "images": [],
+      "og": {
+        "og:type": "website",
+        "og:site_name": "FXN Holdings",
+        "og:locale": "en_AU",
+        "og:title": "Cookie Policy | FXN Holdings",
+        "og:description": "How fxnholdings.com uses cookies: only strictly necessary storage, no analytics or advertising trackers, and how to manage cookies in your browser.",
+        "og:url": "https://fxnholdings.com/cookies/",
+        "og:image": "https://fxnholdings.com/img/og-image.png",
+        "og:image:width": "1200",
+        "og:image:height": "630",
+        "og:image:alt": "FXN Holdings: we find the gap, build the platform, and launch it."
+      },
+      "links": [
+        "https://fxnholdings.com/",
+        "https://fxnholdings.com/about/",
+        "https://fxnholdings.com/accessibility/",
+        "https://fxnholdings.com/contact/",
+        "https://fxnholdings.com/cookies/",
+        "https://fxnholdings.com/insights/",
+        "https://fxnholdings.com/insights/company-news/",
+        "https://fxnholdings.com/insights/market-gaps/",
+        "https://fxnholdings.com/insights/start-a-business/",
+        "https://fxnholdings.com/insights/technology-ai/",
+        "https://fxnholdings.com/legal-notice/",
+        "https://fxnholdings.com/portfolio/",
+        "https://fxnholdings.com/privacy/",
+        "https://fxnholdings.com/services/",
+        "https://fxnholdings.com/sitemap/",
+        "https://fxnholdings.com/technology/",
+        "https://fxnholdings.com/terms/"
+      ]
+    },
+    {
+      "url": "https://fxnholdings.com/",
+      "status": 200,
+      "final": "https://fxnholdings.com/",
+      "canonical": "https://fxnholdings.com/",
+      "robots": "",
+      "schema": [
+        {
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "FXN Holdings",
+          "url": "https://fxnholdings.com/",
+          "logo": "https://fxnholdings.com/img/fxn-holdings-logo.svg",
+          "description": "A digital venture group based in Perth, Western Australia, that finds market gaps, then builds and launches e-commerce, travel, content and publishing, price comparison and free online tool platforms on open-source technology.",
+          "slogan": "Find the gap. Build. Launch.",
+          "areaServed": "Worldwide",
+          "email": "contact@fxnholdings.com",
+          "taxID": "53 274 423 748",
+          "sameAs": [
+            "https://abr.business.gov.au/ABN/View?abn=53274423748"
+          ],
+          "foundingDate": "2024",
+          "address": {
+            "@type": "PostalAddress",
+            "postOfficeBoxNumber": "500",
+            "addressLocality": "West Perth",
+            "addressRegion": "WA",
+            "postalCode": "6872",
+            "addressCountry": "AU"
+          }
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "name": "FXN Holdings",
+          "url": "https://fxnholdings.com/",
+          "inLanguage": "en-AU",
+          "publisher": {
+            "@type": "Organization",
+            "name": "FXN Holdings"
+          }
+        }
+      ],
+      "images": [
+        {
+          "class": [
+            "post-thumb"
+          ],
+          "src": "/img/insights/what-we-mean-by-a-market-gap.webp",
+          "srcset": "/img/insights/what-we-mean-by-a-market-gap-800.webp 800w, /img/insights/what-we-mean-by-a-market-gap.webp 1600w",
+          "sizes": "(max-width: 640px) 100vw, (max-width: 960px) 50vw, 440px",
+          "alt": "",
+          "width": "1600",
+          "height": "900",
+          "loading": "lazy",
+          "decoding": "async"
+        },
+        {
+          "class": [
+            "post-thumb"
+          ],
+          "src": "/img/insights/uk-vat-for-online-sellers-when-to-register.webp",
+          "srcset": "/img/insights/uk-vat-for-online-sellers-when-to-register-800.webp 800w, /img/insights/uk-vat-for-online-sellers-when-to-register.webp 1600w",
+          "sizes": "(max-width: 640px) 100vw, (max-width: 960px) 50vw, 440px",
+          "alt": "",
+          "width": "1600",
+          "height": "900",
+          "loading": "lazy",
+          "decoding": "async"
+        },
+        {
+          "class": [
+            "post-thumb"
+          ],
+          "src": "/img/insights/starting-a-us-business-from-overseas.webp",
+          "srcset": "/img/insights/starting-a-us-business-from-overseas-800.webp 800w, /img/insights/starting-a-us-business-from-overseas.webp 1600w",
+          "sizes": "(max-width: 640px) 100vw, (max-width: 960px) 50vw, 440px",
+          "alt": "",
+          "width": "1600",
+          "height": "900",
+          "loading": "lazy",
+          "decoding": "async"
+        }
+      ],
+      "og": {
+        "og:type": "website",
+        "og:site_name": "FXN Holdings",
+        "og:locale": "en_AU",
+        "og:title": "FXN Holdings | Explore, Build & Launch Digital Platforms",
+        "og:description": "FXN Holdings finds market gaps, then builds and launches e-commerce, travel, comparison, publishing and free-tool platforms on open-source technology.",
+        "og:url": "https://fxnholdings.com/",
+        "og:image": "https://fxnholdings.com/img/og-image.png",
+        "og:image:width": "1200",
+        "og:image:height": "630",
+        "og:image:alt": "FXN Holdings: we find the gap, build the platform, and launch it."
+      },
+      "links": [
+        "https://fxnholdings.com/",
+        "https://fxnholdings.com/about/",
+        "https://fxnholdings.com/accessibility/",
+        "https://fxnholdings.com/contact/",
+        "https://fxnholdings.com/cookies/",
+        "https://fxnholdings.com/insights/",
+        "https://fxnholdings.com/insights/company-news/",
+        "https://fxnholdings.com/insights/market-gaps/",
+        "https://fxnholdings.com/insights/start-a-business/",
+        "https://fxnholdings.com/insights/starting-a-us-business-from-overseas/",
+        "https://fxnholdings.com/insights/technology-ai/",
+        "https://fxnholdings.com/insights/uk-vat-for-online-sellers-when-to-register/",
+        "https://fxnholdings.com/insights/what-we-mean-by-a-market-gap/",
+        "https://fxnholdings.com/legal-notice/",
+        "https://fxnholdings.com/portfolio/",
+        "https://fxnholdings.com/privacy/",
+        "https://fxnholdings.com/services/",
+        "https://fxnholdings.com/sitemap/",
+        "https://fxnholdings.com/technology/",
+        "https://fxnholdings.com/terms/"
+      ]
+    },
+    {
+      "url": "https://fxnholdings.com/legal-notice/",
+      "status": 200,
+      "final": "https://fxnholdings.com/legal-notice/",
+      "canonical": "https://fxnholdings.com/legal-notice/",
+      "robots": "",
+      "schema": [
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://fxnholdings.com/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Legal Notice",
+              "item": "https://fxnholdings.com/legal-notice/"
+            }
+          ]
+        }
+      ],
+      "images": [],
+      "og": {
+        "og:type": "website",
+        "og:site_name": "FXN Holdings",
+        "og:locale": "en_AU",
+        "og:title": "Legal Notice | FXN Holdings",
+        "og:description": "Legal notice for fxnholdings.com: the business behind the website, its Australian registration details, postal address and contact for legal matters.",
+        "og:url": "https://fxnholdings.com/legal-notice/",
+        "og:image": "https://fxnholdings.com/img/og-image.png",
+        "og:image:width": "1200",
+        "og:image:height": "630",
+        "og:image:alt": "FXN Holdings: we find the gap, build the platform, and launch it."
+      },
+      "links": [
+        "https://fxnholdings.com",
+        "https://fxnholdings.com/",
+        "https://fxnholdings.com/about/",
+        "https://fxnholdings.com/accessibility/",
+        "https://fxnholdings.com/contact/",
+        "https://fxnholdings.com/cookies/",
+        "https://fxnholdings.com/insights/",
+        "https://fxnholdings.com/insights/company-news/",
+        "https://fxnholdings.com/insights/market-gaps/",
+        "https://fxnholdings.com/insights/start-a-business/",
+        "https://fxnholdings.com/insights/technology-ai/",
+        "https://fxnholdings.com/legal-notice/",
+        "https://fxnholdings.com/portfolio/",
+        "https://fxnholdings.com/privacy/",
+        "https://fxnholdings.com/services/",
+        "https://fxnholdings.com/sitemap/",
+        "https://fxnholdings.com/technology/",
+        "https://fxnholdings.com/terms/"
+      ]
+    },
+    {
+      "url": "https://fxnholdings.com/portfolio/",
+      "status": 200,
+      "final": "https://fxnholdings.com/portfolio/",
+      "canonical": "https://fxnholdings.com/portfolio/",
+      "robots": "",
+      "schema": [
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://fxnholdings.com/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Portfolio",
+              "item": "https://fxnholdings.com/portfolio/"
+            }
+          ]
+        }
+      ],
+      "images": [],
+      "og": {
+        "og:type": "website",
+        "og:site_name": "FXN Holdings",
+        "og:locale": "en_AU",
+        "og:title": "Portfolio: Our Websites & Platforms | FXN Holdings",
+        "og:description": "The 14 websites FXN Holdings owns and operates, from online stores and deal sites to travel guides and free SEO tools, and the platform each runs on.",
+        "og:url": "https://fxnholdings.com/portfolio/",
+        "og:image": "https://fxnholdings.com/img/og-image.png",
+        "og:image:width": "1200",
+        "og:image:height": "630",
+        "og:image:alt": "FXN Holdings: we find the gap, build the platform, and launch it."
+      },
+      "links": [
+        "https://fxnholdings.com/",
+        "https://fxnholdings.com/about/",
+        "https://fxnholdings.com/accessibility/",
+        "https://fxnholdings.com/contact/",
+        "https://fxnholdings.com/cookies/",
+        "https://fxnholdings.com/insights/",
+        "https://fxnholdings.com/insights/company-news/",
+        "https://fxnholdings.com/insights/market-gaps/",
+        "https://fxnholdings.com/insights/start-a-business/",
+        "https://fxnholdings.com/insights/technology-ai/",
+        "https://fxnholdings.com/legal-notice/",
+        "https://fxnholdings.com/portfolio/",
+        "https://fxnholdings.com/privacy/",
+        "https://fxnholdings.com/services/",
+        "https://fxnholdings.com/sitemap/",
+        "https://fxnholdings.com/technology/",
+        "https://fxnholdings.com/terms/"
+      ]
+    },
+    {
+      "url": "https://fxnholdings.com/privacy/",
+      "status": 200,
+      "final": "https://fxnholdings.com/privacy/",
+      "canonical": "https://fxnholdings.com/privacy/",
+      "robots": "",
+      "schema": [
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://fxnholdings.com/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Privacy Policy",
+              "item": "https://fxnholdings.com/privacy/"
+            }
+          ]
+        }
+      ],
+      "images": [],
+      "og": {
+        "og:type": "website",
+        "og:site_name": "FXN Holdings",
+        "og:locale": "en_AU",
+        "og:title": "Privacy Policy | FXN Holdings",
+        "og:description": "How FXN Holdings collects, uses and protects your personal information, in line with the Privacy Act 1988 (Cth) and the Australian Privacy Principles.",
+        "og:url": "https://fxnholdings.com/privacy/",
+        "og:image": "https://fxnholdings.com/img/og-image.png",
+        "og:image:width": "1200",
+        "og:image:height": "630",
+        "og:image:alt": "FXN Holdings: we find the gap, build the platform, and launch it."
+      },
+      "links": [
+        "https://fxnholdings.com",
+        "https://fxnholdings.com/",
+        "https://fxnholdings.com/about/",
+        "https://fxnholdings.com/accessibility/",
+        "https://fxnholdings.com/contact/",
+        "https://fxnholdings.com/cookies/",
+        "https://fxnholdings.com/insights/",
+        "https://fxnholdings.com/insights/company-news/",
+        "https://fxnholdings.com/insights/market-gaps/",
+        "https://fxnholdings.com/insights/start-a-business/",
+        "https://fxnholdings.com/insights/technology-ai/",
+        "https://fxnholdings.com/legal-notice/",
+        "https://fxnholdings.com/portfolio/",
+        "https://fxnholdings.com/privacy/",
+        "https://fxnholdings.com/services/",
+        "https://fxnholdings.com/sitemap/",
+        "https://fxnholdings.com/technology/",
+        "https://fxnholdings.com/terms/"
+      ]
+    },
+    {
+      "url": "https://fxnholdings.com/services/",
+      "status": 200,
+      "final": "https://fxnholdings.com/services/",
+      "canonical": "https://fxnholdings.com/services/",
+      "robots": "",
+      "schema": [
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://fxnholdings.com/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Capabilities",
+              "item": "https://fxnholdings.com/services/"
+            }
+          ]
+        }
+      ],
+      "images": [],
+      "og": {
+        "og:type": "website",
+        "og:site_name": "FXN Holdings",
+        "og:locale": "en_AU",
+        "og:title": "Capabilities: Research, Build & Launch | FXN Holdings",
+        "og:description": "From research to launch: FXN Holdings builds e-commerce, travel, deal, publishing and free-tool platforms on open-source technology for each market.",
+        "og:url": "https://fxnholdings.com/services/",
+        "og:image": "https://fxnholdings.com/img/og-image.png",
+        "og:image:width": "1200",
+        "og:image:height": "630",
+        "og:image:alt": "FXN Holdings: we find the gap, build the platform, and launch it."
+      },
+      "links": [
+        "https://fxnholdings.com/",
+        "https://fxnholdings.com/about/",
+        "https://fxnholdings.com/accessibility/",
+        "https://fxnholdings.com/contact/",
+        "https://fxnholdings.com/cookies/",
+        "https://fxnholdings.com/insights/",
+        "https://fxnholdings.com/insights/company-news/",
+        "https://fxnholdings.com/insights/market-gaps/",
+        "https://fxnholdings.com/insights/start-a-business/",
+        "https://fxnholdings.com/insights/technology-ai/",
+        "https://fxnholdings.com/legal-notice/",
+        "https://fxnholdings.com/portfolio/",
+        "https://fxnholdings.com/privacy/",
+        "https://fxnholdings.com/services/",
+        "https://fxnholdings.com/sitemap/",
+        "https://fxnholdings.com/technology/",
+        "https://fxnholdings.com/terms/"
+      ]
+    },
+    {
+      "url": "https://fxnholdings.com/sitemap/",
+      "status": 200,
+      "final": "https://fxnholdings.com/sitemap/",
+      "canonical": "https://fxnholdings.com/sitemap/",
+      "robots": "",
+      "schema": [
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://fxnholdings.com/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Sitemap",
+              "item": "https://fxnholdings.com/sitemap/"
+            }
+          ]
+        }
+      ],
+      "images": [],
+      "og": {
+        "og:type": "website",
+        "og:site_name": "FXN Holdings",
+        "og:locale": "en_AU",
+        "og:title": "Sitemap | FXN Holdings",
+        "og:description": "Every page on the FXN Holdings website in one place: company pages, platform verticals, legal policies and the XML sitemap.",
+        "og:url": "https://fxnholdings.com/sitemap/",
+        "og:image": "https://fxnholdings.com/img/og-image.png",
+        "og:image:width": "1200",
+        "og:image:height": "630",
+        "og:image:alt": "FXN Holdings: we find the gap, build the platform, and launch it."
+      },
+      "links": [
+        "https://fxnholdings.com/",
+        "https://fxnholdings.com/about/",
+        "https://fxnholdings.com/accessibility/",
+        "https://fxnholdings.com/contact/",
+        "https://fxnholdings.com/cookies/",
+        "https://fxnholdings.com/insights/",
+        "https://fxnholdings.com/insights/company-news/",
+        "https://fxnholdings.com/insights/market-gaps/",
+        "https://fxnholdings.com/insights/start-a-business/",
+        "https://fxnholdings.com/insights/technology-ai/",
+        "https://fxnholdings.com/legal-notice/",
+        "https://fxnholdings.com/portfolio/",
+        "https://fxnholdings.com/privacy/",
+        "https://fxnholdings.com/robots.txt",
+        "https://fxnholdings.com/services/",
+        "https://fxnholdings.com/sitemap.xml",
+        "https://fxnholdings.com/sitemap/",
+        "https://fxnholdings.com/technology/",
+        "https://fxnholdings.com/terms/"
+      ]
+    },
+    {
+      "url": "https://fxnholdings.com/technology/",
+      "status": 200,
+      "final": "https://fxnholdings.com/technology/",
+      "canonical": "https://fxnholdings.com/technology/",
+      "robots": "",
+      "schema": [
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://fxnholdings.com/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Technology & AI",
+              "item": "https://fxnholdings.com/technology/"
+            }
+          ]
+        }
+      ],
+      "images": [],
+      "og": {
+        "og:type": "website",
+        "og:site_name": "FXN Holdings",
+        "og:locale": "en_AU",
+        "og:title": "Technology & AI | Open-Source Platform | FXN Holdings",
+        "og:description": "How FXN Holdings builds: a shared open-source platform, the technology behind each website, and our position on AI built with regulation and human review.",
+        "og:url": "https://fxnholdings.com/technology/",
+        "og:image": "https://fxnholdings.com/img/og-image.png",
+        "og:image:width": "1200",
+        "og:image:height": "630",
+        "og:image:alt": "FXN Holdings: we find the gap, build the platform, and launch it."
+      },
+      "links": [
+        "https://fxnholdings.com/",
+        "https://fxnholdings.com/about/",
+        "https://fxnholdings.com/accessibility/",
+        "https://fxnholdings.com/contact/",
+        "https://fxnholdings.com/cookies/",
+        "https://fxnholdings.com/insights/",
+        "https://fxnholdings.com/insights/company-news/",
+        "https://fxnholdings.com/insights/market-gaps/",
+        "https://fxnholdings.com/insights/start-a-business/",
+        "https://fxnholdings.com/insights/technology-ai/",
+        "https://fxnholdings.com/legal-notice/",
+        "https://fxnholdings.com/portfolio/",
+        "https://fxnholdings.com/privacy/",
+        "https://fxnholdings.com/services/",
+        "https://fxnholdings.com/sitemap/",
+        "https://fxnholdings.com/technology/",
+        "https://fxnholdings.com/terms/"
+      ]
+    },
+    {
+      "url": "https://fxnholdings.com/terms/",
+      "status": 200,
+      "final": "https://fxnholdings.com/terms/",
+      "canonical": "https://fxnholdings.com/terms/",
+      "robots": "",
+      "schema": [
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://fxnholdings.com/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Terms of Service",
+              "item": "https://fxnholdings.com/terms/"
+            }
+          ]
+        }
+      ],
+      "images": [],
+      "og": {
+        "og:type": "website",
+        "og:site_name": "FXN Holdings",
+        "og:locale": "en_AU",
+        "og:title": "Terms of Service | FXN Holdings",
+        "og:description": "The terms for using the FXN Holdings website, covering acceptable use, intellectual property, liability and Western Australian governing law.",
+        "og:url": "https://fxnholdings.com/terms/",
+        "og:image": "https://fxnholdings.com/img/og-image.png",
+        "og:image:width": "1200",
+        "og:image:height": "630",
+        "og:image:alt": "FXN Holdings: we find the gap, build the platform, and launch it."
+      },
+      "links": [
+        "https://fxnholdings.com",
+        "https://fxnholdings.com/",
+        "https://fxnholdings.com/about/",
+        "https://fxnholdings.com/accessibility/",
+        "https://fxnholdings.com/contact/",
+        "https://fxnholdings.com/cookies/",
+        "https://fxnholdings.com/insights/",
+        "https://fxnholdings.com/insights/company-news/",
+        "https://fxnholdings.com/insights/market-gaps/",
+        "https://fxnholdings.com/insights/start-a-business/",
+        "https://fxnholdings.com/insights/technology-ai/",
+        "https://fxnholdings.com/legal-notice/",
+        "https://fxnholdings.com/portfolio/",
+        "https://fxnholdings.com/privacy/",
+        "https://fxnholdings.com/services/",
+        "https://fxnholdings.com/sitemap/",
+        "https://fxnholdings.com/technology/",
+        "https://fxnholdings.com/terms/"
+      ]
+    },
+    {
+      "url": "https://fxnholdings.com/insights/",
+      "status": 200,
+      "final": "https://fxnholdings.com/insights/",
+      "canonical": "https://fxnholdings.com/insights/",
+      "robots": "",
+      "schema": [
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://fxnholdings.com/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Blog",
+              "item": "https://fxnholdings.com/insights/"
+            }
+          ]
+        }
+      ],
+      "images": [
+        {
+          "class": [
+            "post-thumb"
+          ],
+          "src": "/img/insights/what-we-mean-by-a-market-gap.webp",
+          "srcset": "/img/insights/what-we-mean-by-a-market-gap-800.webp 800w, /img/insights/what-we-mean-by-a-market-gap.webp 1600w",
+          "sizes": "(max-width: 640px) 100vw, (max-width: 960px) 50vw, 440px",
+          "alt": "",
+          "width": "1600",
+          "height": "900",
+          "loading": "lazy",
+          "decoding": "async"
+        },
+        {
+          "class": [
+            "post-thumb"
+          ],
+          "src": "/img/insights/uk-vat-for-online-sellers-when-to-register.webp",
+          "srcset": "/img/insights/uk-vat-for-online-sellers-when-to-register-800.webp 800w, /img/insights/uk-vat-for-online-sellers-when-to-register.webp 1600w",
+          "sizes": "(max-width: 640px) 100vw, (max-width: 960px) 50vw, 440px",
+          "alt": "",
+          "width": "1600",
+          "height": "900",
+          "loading": "lazy",
+          "decoding": "async"
+        },
+        {
+          "class": [
+            "post-thumb"
+          ],
+          "src": "/img/insights/starting-a-us-business-from-overseas.webp",
+          "srcset": "/img/insights/starting-a-us-business-from-overseas-800.webp 800w, /img/insights/starting-a-us-business-from-overseas.webp 1600w",
+          "sizes": "(max-width: 640px) 100vw, (max-width: 960px) 50vw, 440px",
+          "alt": "",
+          "width": "1600",
+          "height": "900",
+          "loading": "lazy",
+          "decoding": "async"
+        },
+        {
+          "class": [
+            "post-thumb"
+          ],
+          "src": "/img/insights/introducing-the-new-fxnholdings-com.webp",
+          "srcset": "/img/insights/introducing-the-new-fxnholdings-com-800.webp 800w, /img/insights/introducing-the-new-fxnholdings-com.webp 1600w",
+          "sizes": "(max-width: 640px) 100vw, (max-width: 960px) 50vw, 440px",
+          "alt": "",
+          "width": "1600",
+          "height": "900",
+          "loading": "lazy",
+          "decoding": "async"
+        },
+        {
+          "class": [
+            "post-thumb"
+          ],
+          "src": "/img/insights/how-we-use-ai.webp",
+          "srcset": "/img/insights/how-we-use-ai-800.webp 800w, /img/insights/how-we-use-ai.webp 1600w",
+          "sizes": "(max-width: 640px) 100vw, (max-width: 960px) 50vw, 440px",
+          "alt": "",
+          "width": "1600",
+          "height": "900",
+          "loading": "lazy",
+          "decoding": "async"
+        }
+      ],
+      "og": {
+        "og:type": "website",
+        "og:site_name": "FXN Holdings",
+        "og:locale": "en_AU",
+        "og:title": "Blog | FXN Holdings",
+        "og:description": "The FXN Holdings blog: technology and AI, company news, and the market gaps we look for when we build and launch new platforms.",
+        "og:url": "https://fxnholdings.com/insights/",
+        "og:image": "https://fxnholdings.com/img/og-image.png",
+        "og:image:width": "1200",
+        "og:image:height": "630",
+        "og:image:alt": "FXN Holdings: we find the gap, build the platform, and launch it."
+      },
+      "links": [
+        "https://fxnholdings.com/",
+        "https://fxnholdings.com/about/",
+        "https://fxnholdings.com/accessibility/",
+        "https://fxnholdings.com/contact/",
+        "https://fxnholdings.com/cookies/",
+        "https://fxnholdings.com/insights/",
+        "https://fxnholdings.com/insights/company-news/",
+        "https://fxnholdings.com/insights/how-we-use-ai/",
+        "https://fxnholdings.com/insights/introducing-the-new-fxnholdings-com/",
+        "https://fxnholdings.com/insights/market-gaps/",
+        "https://fxnholdings.com/insights/start-a-business/",
+        "https://fxnholdings.com/insights/starting-a-us-business-from-overseas/",
+        "https://fxnholdings.com/insights/technology-ai/",
+        "https://fxnholdings.com/insights/uk-vat-for-online-sellers-when-to-register/",
+        "https://fxnholdings.com/insights/what-we-mean-by-a-market-gap/",
+        "https://fxnholdings.com/legal-notice/",
+        "https://fxnholdings.com/portfolio/",
+        "https://fxnholdings.com/privacy/",
+        "https://fxnholdings.com/services/",
+        "https://fxnholdings.com/sitemap/",
+        "https://fxnholdings.com/technology/",
+        "https://fxnholdings.com/terms/"
+      ]
+    },
+    {
+      "url": "https://fxnholdings.com/insights/start-a-business/",
+      "status": 200,
+      "final": "https://fxnholdings.com/insights/start-a-business/",
+      "canonical": "https://fxnholdings.com/insights/start-a-business/",
+      "robots": "",
+      "schema": [
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://fxnholdings.com/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Blog",
+              "item": "https://fxnholdings.com/insights/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Starting a Business",
+              "item": "https://fxnholdings.com/insights/start-a-business/"
+            }
+          ]
+        }
+      ],
+      "images": [
+        {
+          "class": [
+            "post-thumb"
+          ],
+          "src": "/img/insights/uk-vat-for-online-sellers-when-to-register.webp",
+          "srcset": "/img/insights/uk-vat-for-online-sellers-when-to-register-800.webp 800w, /img/insights/uk-vat-for-online-sellers-when-to-register.webp 1600w",
+          "sizes": "(max-width: 640px) 100vw, (max-width: 960px) 50vw, 440px",
+          "alt": "",
+          "width": "1600",
+          "height": "900",
+          "loading": "lazy",
+          "decoding": "async"
+        },
+        {
+          "class": [
+            "post-thumb"
+          ],
+          "src": "/img/insights/starting-a-us-business-from-overseas.webp",
+          "srcset": "/img/insights/starting-a-us-business-from-overseas-800.webp 800w, /img/insights/starting-a-us-business-from-overseas.webp 1600w",
+          "sizes": "(max-width: 640px) 100vw, (max-width: 960px) 50vw, 440px",
+          "alt": "",
+          "width": "1600",
+          "height": "900",
+          "loading": "lazy",
+          "decoding": "async"
+        }
+      ],
+      "og": {
+        "og:type": "website",
+        "og:site_name": "FXN Holdings",
+        "og:locale": "en_AU",
+        "og:title": "Starting a Business | Blog | FXN Holdings",
+        "og:description": "Setting up a company or online store in a new market: registration, requirements and VAT, country by country.",
+        "og:url": "https://fxnholdings.com/insights/start-a-business/",
+        "og:image": "https://fxnholdings.com/img/og-image.png",
+        "og:image:width": "1200",
+        "og:image:height": "630",
+        "og:image:alt": "FXN Holdings: we find the gap, build the platform, and launch it."
+      },
+      "links": [
+        "https://fxnholdings.com/",
+        "https://fxnholdings.com/about/",
+        "https://fxnholdings.com/accessibility/",
+        "https://fxnholdings.com/contact/",
+        "https://fxnholdings.com/cookies/",
+        "https://fxnholdings.com/insights/",
+        "https://fxnholdings.com/insights/company-news/",
+        "https://fxnholdings.com/insights/market-gaps/",
+        "https://fxnholdings.com/insights/start-a-business/",
+        "https://fxnholdings.com/insights/starting-a-us-business-from-overseas/",
+        "https://fxnholdings.com/insights/technology-ai/",
+        "https://fxnholdings.com/insights/uk-vat-for-online-sellers-when-to-register/",
+        "https://fxnholdings.com/legal-notice/",
+        "https://fxnholdings.com/portfolio/",
+        "https://fxnholdings.com/privacy/",
+        "https://fxnholdings.com/services/",
+        "https://fxnholdings.com/sitemap/",
+        "https://fxnholdings.com/technology/",
+        "https://fxnholdings.com/terms/"
+      ]
+    },
+    {
+      "url": "https://fxnholdings.com/insights/what-we-mean-by-a-market-gap/",
+      "status": 200,
+      "final": "https://fxnholdings.com/insights/what-we-mean-by-a-market-gap/",
+      "canonical": "https://fxnholdings.com/insights/what-we-mean-by-a-market-gap/",
+      "robots": "",
+      "schema": [
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://fxnholdings.com/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Blog",
+              "item": "https://fxnholdings.com/insights/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Market Gaps",
+              "item": "https://fxnholdings.com/insights/market-gaps/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 4,
+              "name": "What we mean by a market gap",
+              "item": "https://fxnholdings.com/insights/what-we-mean-by-a-market-gap/"
+            }
+          ]
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "BlogPosting",
+          "headline": "What we mean by a market gap",
+          "description": "Every platform we launch starts with a gap: a market where people can't easily find what they need. Here's how we look for one and decide whether it's worth filling.",
+          "datePublished": "2026-10-09",
+          "dateModified": "2026-10-09",
+          "articleSection": "Market Gaps",
+          "inLanguage": "en-AU",
+          "mainEntityOfPage": "https://fxnholdings.com/insights/what-we-mean-by-a-market-gap/",
+          "url": "https://fxnholdings.com/insights/what-we-mean-by-a-market-gap/",
+          "image": [
+            "https://fxnholdings.com/img/insights/what-we-mean-by-a-market-gap.webp",
+            "https://fxnholdings.com/img/insights/what-we-mean-by-a-market-gap-og.jpg"
+          ],
+          "author": {
+            "@type": "Organization",
+            "name": "FXN Holdings",
+            "url": "https://fxnholdings.com/"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "FXN Holdings",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://fxnholdings.com/img/fxn-holdings-logo.svg"
+            }
+          }
+        }
+      ],
+      "images": [
+        {
+          "src": "/img/insights/what-we-mean-by-a-market-gap.webp",
+          "srcset": "/img/insights/what-we-mean-by-a-market-gap-800.webp 800w, /img/insights/what-we-mean-by-a-market-gap.webp 1600w",
+          "sizes": "(max-width: 1366px) 100vw, 1366px",
+          "alt": "Illustration of a person with a magnifying glass studying an empty gap in a row of tall blocks",
+          "width": "1600",
+          "height": "900",
+          "fetchpriority": "high",
+          "decoding": "async"
+        },
+        {
+          "src": "/img/insights/uk-vat-for-online-sellers-when-to-register-800.webp",
+          "alt": "",
+          "width": "800",
+          "height": "450",
+          "loading": "lazy",
+          "decoding": "async"
+        },
+        {
+          "src": "/img/insights/starting-a-us-business-from-overseas-800.webp",
+          "alt": "",
+          "width": "800",
+          "height": "450",
+          "loading": "lazy",
+          "decoding": "async"
+        },
+        {
+          "src": "/img/insights/introducing-the-new-fxnholdings-com-800.webp",
+          "alt": "",
+          "width": "800",
+          "height": "450",
+          "loading": "lazy",
+          "decoding": "async"
+        },
+        {
+          "src": "/img/insights/how-we-use-ai-800.webp",
+          "alt": "",
+          "width": "800",
+          "height": "450",
+          "loading": "lazy",
+          "decoding": "async"
+        },
+        {
+          "class": [
+            "post-thumb"
+          ],
+          "src": "/img/insights/uk-vat-for-online-sellers-when-to-register.webp",
+          "srcset": "/img/insights/uk-vat-for-online-sellers-when-to-register-800.webp 800w, /img/insights/uk-vat-for-online-sellers-when-to-register.webp 1600w",
+          "sizes": "(max-width: 640px) 100vw, (max-width: 960px) 50vw, 440px",
+          "alt": "",
+          "width": "1600",
+          "height": "900",
+          "loading": "lazy",
+          "decoding": "async"
+        },
+        {
+          "class": [
+            "post-thumb"
+          ],
+          "src": "/img/insights/starting-a-us-business-from-overseas.webp",
+          "srcset": "/img/insights/starting-a-us-business-from-overseas-800.webp 800w, /img/insights/starting-a-us-business-from-overseas.webp 1600w",
+          "sizes": "(max-width: 640px) 100vw, (max-width: 960px) 50vw, 440px",
+          "alt": "",
+          "width": "1600",
+          "height": "900",
+          "loading": "lazy",
+          "decoding": "async"
+        },
+        {
+          "class": [
+            "post-thumb"
+          ],
+          "src": "/img/insights/introducing-the-new-fxnholdings-com.webp",
+          "srcset": "/img/insights/introducing-the-new-fxnholdings-com-800.webp 800w, /img/insights/introducing-the-new-fxnholdings-com.webp 1600w",
+          "sizes": "(max-width: 640px) 100vw, (max-width: 960px) 50vw, 440px",
+          "alt": "",
+          "width": "1600",
+          "height": "900",
+          "loading": "lazy",
+          "decoding": "async"
+        }
+      ],
+      "og": {
+        "og:type": "article",
+        "og:site_name": "FXN Holdings",
+        "og:locale": "en_AU",
+        "og:title": "What we mean by a market gap | FXN Holdings",
+        "og:description": "Every platform we launch starts with a market gap: people can't easily find what they need. Here's how we spot one and decide if it's worth filling.",
+        "og:url": "https://fxnholdings.com/insights/what-we-mean-by-a-market-gap/",
+        "og:image": "https://fxnholdings.com/img/insights/what-we-mean-by-a-market-gap-og.jpg",
+        "og:image:width": "1200",
+        "og:image:height": "630",
+        "og:image:alt": "Illustration of a person with a magnifying glass studying an empty gap in a row of tall blocks"
+      },
+      "links": [
+        "https://fxnholdings.com/",
+        "https://fxnholdings.com/about/",
+        "https://fxnholdings.com/accessibility/",
+        "https://fxnholdings.com/contact/",
+        "https://fxnholdings.com/cookies/",
+        "https://fxnholdings.com/insights/",
+        "https://fxnholdings.com/insights/company-news/",
+        "https://fxnholdings.com/insights/how-we-use-ai/",
+        "https://fxnholdings.com/insights/introducing-the-new-fxnholdings-com/",
+        "https://fxnholdings.com/insights/market-gaps/",
+        "https://fxnholdings.com/insights/start-a-business/",
+        "https://fxnholdings.com/insights/starting-a-us-business-from-overseas/",
+        "https://fxnholdings.com/insights/technology-ai/",
+        "https://fxnholdings.com/insights/uk-vat-for-online-sellers-when-to-register/",
+        "https://fxnholdings.com/insights/what-we-mean-by-a-market-gap/",
+        "https://fxnholdings.com/legal-notice/",
+        "https://fxnholdings.com/portfolio/",
+        "https://fxnholdings.com/privacy/",
+        "https://fxnholdings.com/services/",
+        "https://fxnholdings.com/sitemap/",
+        "https://fxnholdings.com/technology/",
+        "https://fxnholdings.com/terms/"
+      ]
+    },
+    {
+      "url": "https://fxnholdings.com/insights/uk-vat-for-online-sellers-when-to-register/",
+      "status": 200,
+      "final": "https://fxnholdings.com/insights/uk-vat-for-online-sellers-when-to-register/",
+      "canonical": "https://fxnholdings.com/insights/uk-vat-for-online-sellers-when-to-register/",
+      "robots": "",
+      "schema": [
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://fxnholdings.com/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Blog",
+              "item": "https://fxnholdings.com/insights/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Starting a Business",
+              "item": "https://fxnholdings.com/insights/start-a-business/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 4,
+              "name": "UK VAT for online sellers: when to register",
+              "item": "https://fxnholdings.com/insights/uk-vat-for-online-sellers-when-to-register/"
+            }
+          ]
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "BlogPosting",
+          "headline": "UK VAT for online sellers: when to register",
+          "description": "Selling online to UK buyers involves strict tax thresholds and rules. Here is when domestic brands and overseas merchants must register for UK VAT and how to prepare.",
+          "datePublished": "2026-10-09",
+          "dateModified": "2026-10-09",
+          "articleSection": "Starting a Business",
+          "inLanguage": "en-AU",
+          "mainEntityOfPage": "https://fxnholdings.com/insights/uk-vat-for-online-sellers-when-to-register/",
+          "url": "https://fxnholdings.com/insights/uk-vat-for-online-sellers-when-to-register/",
+          "image": [
+            "https://fxnholdings.com/img/insights/uk-vat-for-online-sellers-when-to-register.webp",
+            "https://fxnholdings.com/img/insights/uk-vat-for-online-sellers-when-to-register-og.jpg"
+          ],
+          "author": {
+            "@type": "Organization",
+            "name": "FXN Holdings",
+            "url": "https://fxnholdings.com/"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "FXN Holdings",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://fxnholdings.com/img/fxn-holdings-logo.svg"
+            }
+          }
+        }
+      ],
+      "images": [
+        {
+          "src": "/img/insights/uk-vat-for-online-sellers-when-to-register.webp",
+          "srcset": "/img/insights/uk-vat-for-online-sellers-when-to-register-800.webp 800w, /img/insights/uk-vat-for-online-sellers-when-to-register.webp 1600w",
+          "sizes": "(max-width: 1366px) 100vw, 1366px",
+          "alt": "Illustration of an office workspace with shipping parcels, a digital ledger on a laptop screen, and accounting tools.",
+          "width": "1600",
+          "height": "900",
+          "fetchpriority": "high",
+          "decoding": "async"
+        },
+        {
+          "src": "/img/insights/uk-vat-for-online-sellers-when-to-register-2.webp",
+          "srcset": "/img/insights/uk-vat-for-online-sellers-when-to-register-2-800.webp 800w, /img/insights/uk-vat-for-online-sellers-when-to-register-2.webp 1600w",
+          "sizes": "(max-width: 760px) 100vw, 760px",
+          "alt": "Illustration of cargo containers and postal boxes at a distribution terminal.",
+          "width": "1600",
+          "height": "900",
+          "loading": "lazy",
+          "decoding": "async"
+        },
+        {
+          "src": "/img/insights/uk-vat-for-online-sellers-when-to-register-3.webp",
+          "srcset": "/img/insights/uk-vat-for-online-sellers-when-to-register-3-800.webp 800w, /img/insights/uk-vat-for-online-sellers-when-to-register-3.webp 1600w",
+          "sizes": "(max-width: 760px) 100vw, 760px",
+          "alt": "Illustration of an e-commerce fulfilment warehouse with rows of boxed goods.",
+          "width": "1600",
+          "height": "900",
+          "loading": "lazy",
+          "decoding": "async"
+        },
+        {
+          "src": "/img/insights/what-we-mean-by-a-market-gap-800.webp",
+          "alt": "",
+          "width": "800",
+          "height": "450",
+          "loading": "lazy",
+          "decoding": "async"
+        },
+        {
+          "src": "/img/insights/starting-a-us-business-from-overseas-800.webp",
+          "alt": "",
+          "width": "800",
+          "height": "450",
+          "loading": "lazy",
+          "decoding": "async"
+        },
+        {
+          "src": "/img/insights/introducing-the-new-fxnholdings-com-800.webp",
+          "alt": "",
+          "width": "800",
+          "height": "450",
+          "loading": "lazy",
+          "decoding": "async"
+        },
+        {
+          "src": "/img/insights/how-we-use-ai-800.webp",
+          "alt": "",
+          "width": "800",
+          "height": "450",
+          "loading": "lazy",
+          "decoding": "async"
+        },
+        {
+          "class": [
+            "post-thumb"
+          ],
+          "src": "/img/insights/starting-a-us-business-from-overseas.webp",
+          "srcset": "/img/insights/starting-a-us-business-from-overseas-800.webp 800w, /img/insights/starting-a-us-business-from-overseas.webp 1600w",
+          "sizes": "(max-width: 640px) 100vw, (max-width: 960px) 50vw, 440px",
+          "alt": "",
+          "width": "1600",
+          "height": "900",
+          "loading": "lazy",
+          "decoding": "async"
+        }
+      ],
+      "og": {
+        "og:type": "article",
+        "og:site_name": "FXN Holdings",
+        "og:locale": "en_AU",
+        "og:title": "UK VAT for online sellers: when to register | FXN Holdings",
+        "og:description": "Understand UK VAT registration for online sellers. Learn domestic thresholds, overseas nil rules, and marketplace obligations to keep your store compliant.",
+        "og:url": "https://fxnholdings.com/insights/uk-vat-for-online-sellers-when-to-register/",
+        "og:image": "https://fxnholdings.com/img/insights/uk-vat-for-online-sellers-when-to-register-og.jpg",
+        "og:image:width": "1200",
+        "og:image:height": "630",
+        "og:image:alt": "Illustration of an office workspace with shipping parcels, a digital ledger on a laptop screen, and accounting tools."
+      },
+      "links": [
+        "https://fxnholdings.com/",
+        "https://fxnholdings.com/about/",
+        "https://fxnholdings.com/accessibility/",
+        "https://fxnholdings.com/contact/",
+        "https://fxnholdings.com/cookies/",
+        "https://fxnholdings.com/insights/",
+        "https://fxnholdings.com/insights/company-news/",
+        "https://fxnholdings.com/insights/how-we-use-ai/",
+        "https://fxnholdings.com/insights/introducing-the-new-fxnholdings-com/",
+        "https://fxnholdings.com/insights/market-gaps/",
+        "https://fxnholdings.com/insights/start-a-business/",
+        "https://fxnholdings.com/insights/starting-a-us-business-from-overseas/",
+        "https://fxnholdings.com/insights/technology-ai/",
+        "https://fxnholdings.com/insights/uk-vat-for-online-sellers-when-to-register/",
+        "https://fxnholdings.com/insights/what-we-mean-by-a-market-gap/",
+        "https://fxnholdings.com/legal-notice/",
+        "https://fxnholdings.com/portfolio/",
+        "https://fxnholdings.com/privacy/",
+        "https://fxnholdings.com/services/",
+        "https://fxnholdings.com/sitemap/",
+        "https://fxnholdings.com/technology/",
+        "https://fxnholdings.com/terms/"
+      ]
+    },
+    {
+      "url": "https://fxnholdings.com/insights/starting-a-us-business-from-overseas/",
+      "status": 200,
+      "final": "https://fxnholdings.com/insights/starting-a-us-business-from-overseas/",
+      "canonical": "https://fxnholdings.com/insights/starting-a-us-business-from-overseas/",
+      "robots": "",
+      "schema": [
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://fxnholdings.com/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Blog",
+              "item": "https://fxnholdings.com/insights/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Starting a Business",
+              "item": "https://fxnholdings.com/insights/start-a-business/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 4,
+              "name": "Starting a US business from overseas",
+              "item": "https://fxnholdings.com/insights/starting-a-us-business-from-overseas/"
+            }
+          ]
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "BlogPosting",
+          "headline": "Starting a US business from overseas",
+          "description": "Starting a US company from abroad is entirely legal without citizenship or residency. Here is how foreign founders navigate state filings, IRS rules, and sales tax.",
+          "datePublished": "2026-10-09",
+          "dateModified": "2026-10-09",
+          "articleSection": "Starting a Business",
+          "inLanguage": "en-AU",
+          "mainEntityOfPage": "https://fxnholdings.com/insights/starting-a-us-business-from-overseas/",
+          "url": "https://fxnholdings.com/insights/starting-a-us-business-from-overseas/",
+          "image": [
+            "https://fxnholdings.com/img/insights/starting-a-us-business-from-overseas.webp",
+            "https://fxnholdings.com/img/insights/starting-a-us-business-from-overseas-og.jpg"
+          ],
+          "author": {
+            "@type": "Organization",
+            "name": "FXN Holdings",
+            "url": "https://fxnholdings.com/"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "FXN Holdings",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://fxnholdings.com/img/fxn-holdings-logo.svg"
+            }
+          }
+        }
+      ],
+      "images": [
+        {
+          "src": "/img/insights/starting-a-us-business-from-overseas.webp",
+          "srcset": "/img/insights/starting-a-us-business-from-overseas-800.webp 800w, /img/insights/starting-a-us-business-from-overseas.webp 1600w",
+          "sizes": "(max-width: 1366px) 100vw, 1366px",
+          "alt": "Illustration of a remote workspace setup showing documents and digital tools used to run a company from overseas.",
+          "width": "1600",
+          "height": "900",
+          "fetchpriority": "high",
+          "decoding": "async"
+        },
+        {
+          "src": "/img/insights/starting-a-us-business-from-overseas-2.webp",
+          "srcset": "/img/insights/starting-a-us-business-from-overseas-2-800.webp 800w, /img/insights/starting-a-us-business-from-overseas-2.webp 1600w",
+          "sizes": "(max-width: 760px) 100vw, 760px",
+          "alt": "Illustration of paper forms, international post envelopes, and a desk telephone used for an employer identification application.",
+          "width": "1600",
+          "height": "900",
+          "loading": "lazy",
+          "decoding": "async"
+        },
+        {
+          "src": "/img/insights/starting-a-us-business-from-overseas-3.webp",
+          "srcset": "/img/insights/starting-a-us-business-from-overseas-3-800.webp 800w, /img/insights/starting-a-us-business-from-overseas-3.webp 1600w",
+          "sizes": "(max-width: 760px) 100vw, 760px",
+          "alt": "Illustration of regional boundaries and digital transaction records representing interstate sales tax and economic nexus benchmarks.",
+          "width": "1600",
+          "height": "900",
+          "loading": "lazy",
+          "decoding": "async"
+        },
+        {
+          "src": "/img/insights/what-we-mean-by-a-market-gap-800.webp",
+          "alt": "",
+          "width": "800",
+          "height": "450",
+          "loading": "lazy",
+          "decoding": "async"
+        },
+        {
+          "src": "/img/insights/uk-vat-for-online-sellers-when-to-register-800.webp",
+          "alt": "",
+          "width": "800",
+          "height": "450",
+          "loading": "lazy",
+          "decoding": "async"
+        },
+        {
+          "src": "/img/insights/introducing-the-new-fxnholdings-com-800.webp",
+          "alt": "",
+          "width": "800",
+          "height": "450",
+          "loading": "lazy",
+          "decoding": "async"
+        },
+        {
+          "src": "/img/insights/how-we-use-ai-800.webp",
+          "alt": "",
+          "width": "800",
+          "height": "450",
+          "loading": "lazy",
+          "decoding": "async"
+        },
+        {
+          "class": [
+            "post-thumb"
+          ],
+          "src": "/img/insights/uk-vat-for-online-sellers-when-to-register.webp",
+          "srcset": "/img/insights/uk-vat-for-online-sellers-when-to-register-800.webp 800w, /img/insights/uk-vat-for-online-sellers-when-to-register.webp 1600w",
+          "sizes": "(max-width: 640px) 100vw, (max-width: 960px) 50vw, 440px",
+          "alt": "",
+          "width": "1600",
+          "height": "900",
+          "loading": "lazy",
+          "decoding": "async"
+        }
+      ],
+      "og": {
+        "og:type": "article",
+        "og:site_name": "FXN Holdings",
+        "og:locale": "en_AU",
+        "og:title": "Starting a US business from overseas | FXN Holdings",
+        "og:description": "Learn how to start a US business from overseas, covering entity formation, EIN applications, IRS reporting, and sales tax to ensure legal compliance.",
+        "og:url": "https://fxnholdings.com/insights/starting-a-us-business-from-overseas/",
+        "og:image": "https://fxnholdings.com/img/insights/starting-a-us-business-from-overseas-og.jpg",
+        "og:image:width": "1200",
+        "og:image:height": "630",
+        "og:image:alt": "Illustration of a remote workspace setup showing documents and digital tools used to run a company from overseas."
+      },
+      "links": [
+        "https://fxnholdings.com/",
+        "https://fxnholdings.com/about/",
+        "https://fxnholdings.com/accessibility/",
+        "https://fxnholdings.com/contact/",
+        "https://fxnholdings.com/cookies/",
+        "https://fxnholdings.com/insights/",
+        "https://fxnholdings.com/insights/company-news/",
+        "https://fxnholdings.com/insights/how-we-use-ai/",
+        "https://fxnholdings.com/insights/introducing-the-new-fxnholdings-com/",
+        "https://fxnholdings.com/insights/market-gaps/",
+        "https://fxnholdings.com/insights/start-a-business/",
+        "https://fxnholdings.com/insights/starting-a-us-business-from-overseas/",
+        "https://fxnholdings.com/insights/technology-ai/",
+        "https://fxnholdings.com/insights/uk-vat-for-online-sellers-when-to-register/",
+        "https://fxnholdings.com/insights/what-we-mean-by-a-market-gap/",
+        "https://fxnholdings.com/legal-notice/",
+        "https://fxnholdings.com/portfolio/",
+        "https://fxnholdings.com/privacy/",
+        "https://fxnholdings.com/services/",
+        "https://fxnholdings.com/sitemap/",
+        "https://fxnholdings.com/technology/",
+        "https://fxnholdings.com/terms/"
+      ]
+    },
+    {
+      "url": "https://fxnholdings.com/insights/introducing-the-new-fxnholdings-com/",
+      "status": 200,
+      "final": "https://fxnholdings.com/insights/introducing-the-new-fxnholdings-com/",
+      "canonical": "https://fxnholdings.com/insights/introducing-the-new-fxnholdings-com/",
+      "robots": "",
+      "schema": [
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://fxnholdings.com/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Blog",
+              "item": "https://fxnholdings.com/insights/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Company News",
+              "item": "https://fxnholdings.com/insights/company-news/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 4,
+              "name": "Introducing the new fxnholdings.com",
+              "item": "https://fxnholdings.com/insights/introducing-the-new-fxnholdings-com/"
+            }
+          ]
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "BlogPosting",
+          "headline": "Introducing the new fxnholdings.com",
+          "description": "Our website has a new look and a clearer purpose: a full list of the platforms we run, how we build them, and an assistant that answers questions any time.",
+          "datePublished": "2026-10-09",
+          "dateModified": "2026-10-09",
+          "articleSection": "Company News",
+          "inLanguage": "en-AU",
+          "mainEntityOfPage": "https://fxnholdings.com/insights/introducing-the-new-fxnholdings-com/",
+          "url": "https://fxnholdings.com/insights/introducing-the-new-fxnholdings-com/",
+          "image": [
+            "https://fxnholdings.com/img/insights/introducing-the-new-fxnholdings-com.webp",
+            "https://fxnholdings.com/img/insights/introducing-the-new-fxnholdings-com-og.jpg"
+          ],
+          "author": {
+            "@type": "Organization",
+            "name": "FXN Holdings",
+            "url": "https://fxnholdings.com/"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "FXN Holdings",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://fxnholdings.com/img/fxn-holdings-logo.svg"
+            }
+          }
+        }
+      ],
+      "images": [
+        {
+          "src": "/img/insights/introducing-the-new-fxnholdings-com.webp",
+          "srcset": "/img/insights/introducing-the-new-fxnholdings-com-800.webp 800w, /img/insights/introducing-the-new-fxnholdings-com.webp 1600w",
+          "sizes": "(max-width: 1366px) 100vw, 1366px",
+          "alt": "Illustration of a new website surrounded by cards representing shopping, travel, publishing, price comparison and online tool platforms",
+          "width": "1600",
+          "height": "900",
+          "fetchpriority": "high",
+          "decoding": "async"
+        },
+        {
+          "src": "/img/insights/what-we-mean-by-a-market-gap-800.webp",
+          "alt": "",
+          "width": "800",
+          "height": "450",
+          "loading": "lazy",
+          "decoding": "async"
+        },
+        {
+          "src": "/img/insights/uk-vat-for-online-sellers-when-to-register-800.webp",
+          "alt": "",
+          "width": "800",
+          "height": "450",
+          "loading": "lazy",
+          "decoding": "async"
+        },
+        {
+          "src": "/img/insights/starting-a-us-business-from-overseas-800.webp",
+          "alt": "",
+          "width": "800",
+          "height": "450",
+          "loading": "lazy",
+          "decoding": "async"
+        },
+        {
+          "src": "/img/insights/how-we-use-ai-800.webp",
+          "alt": "",
+          "width": "800",
+          "height": "450",
+          "loading": "lazy",
+          "decoding": "async"
+        },
+        {
+          "class": [
+            "post-thumb"
+          ],
+          "src": "/img/insights/what-we-mean-by-a-market-gap.webp",
+          "srcset": "/img/insights/what-we-mean-by-a-market-gap-800.webp 800w, /img/insights/what-we-mean-by-a-market-gap.webp 1600w",
+          "sizes": "(max-width: 640px) 100vw, (max-width: 960px) 50vw, 440px",
+          "alt": "",
+          "width": "1600",
+          "height": "900",
+          "loading": "lazy",
+          "decoding": "async"
+        },
+        {
+          "class": [
+            "post-thumb"
+          ],
+          "src": "/img/insights/uk-vat-for-online-sellers-when-to-register.webp",
+          "srcset": "/img/insights/uk-vat-for-online-sellers-when-to-register-800.webp 800w, /img/insights/uk-vat-for-online-sellers-when-to-register.webp 1600w",
+          "sizes": "(max-width: 640px) 100vw, (max-width: 960px) 50vw, 440px",
+          "alt": "",
+          "width": "1600",
+          "height": "900",
+          "loading": "lazy",
+          "decoding": "async"
+        },
+        {
+          "class": [
+            "post-thumb"
+          ],
+          "src": "/img/insights/starting-a-us-business-from-overseas.webp",
+          "srcset": "/img/insights/starting-a-us-business-from-overseas-800.webp 800w, /img/insights/starting-a-us-business-from-overseas.webp 1600w",
+          "sizes": "(max-width: 640px) 100vw, (max-width: 960px) 50vw, 440px",
+          "alt": "",
+          "width": "1600",
+          "height": "900",
+          "loading": "lazy",
+          "decoding": "async"
+        }
+      ],
+      "og": {
+        "og:type": "article",
+        "og:site_name": "FXN Holdings",
+        "og:locale": "en_AU",
+        "og:title": "Introducing the new fxnholdings.com | FXN Holdings",
+        "og:description": "Our website has a new look and a clearer purpose: a full list of the platforms we run, how we build them, and an assistant that answers questions any time.",
+        "og:url": "https://fxnholdings.com/insights/introducing-the-new-fxnholdings-com/",
+        "og:image": "https://fxnholdings.com/img/insights/introducing-the-new-fxnholdings-com-og.jpg",
+        "og:image:width": "1200",
+        "og:image:height": "630",
+        "og:image:alt": "Illustration of a new website surrounded by cards representing shopping, travel, publishing, price comparison and online tool platforms"
+      },
+      "links": [
+        "https://fxnholdings.com/",
+        "https://fxnholdings.com/about/",
+        "https://fxnholdings.com/accessibility/",
+        "https://fxnholdings.com/contact/",
+        "https://fxnholdings.com/cookies/",
+        "https://fxnholdings.com/insights/",
+        "https://fxnholdings.com/insights/company-news/",
+        "https://fxnholdings.com/insights/how-we-use-ai/",
+        "https://fxnholdings.com/insights/introducing-the-new-fxnholdings-com/",
+        "https://fxnholdings.com/insights/market-gaps/",
+        "https://fxnholdings.com/insights/start-a-business/",
+        "https://fxnholdings.com/insights/starting-a-us-business-from-overseas/",
+        "https://fxnholdings.com/insights/technology-ai/",
+        "https://fxnholdings.com/insights/uk-vat-for-online-sellers-when-to-register/",
+        "https://fxnholdings.com/insights/what-we-mean-by-a-market-gap/",
+        "https://fxnholdings.com/legal-notice/",
+        "https://fxnholdings.com/portfolio/",
+        "https://fxnholdings.com/privacy/",
+        "https://fxnholdings.com/services/",
+        "https://fxnholdings.com/sitemap/",
+        "https://fxnholdings.com/technology/",
+        "https://fxnholdings.com/terms/"
+      ]
+    },
+    {
+      "url": "https://fxnholdings.com/insights/how-we-use-ai/",
+      "status": 200,
+      "final": "https://fxnholdings.com/insights/how-we-use-ai/",
+      "canonical": "https://fxnholdings.com/insights/how-we-use-ai/",
+      "robots": "",
+      "schema": [
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://fxnholdings.com/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Blog",
+              "item": "https://fxnholdings.com/insights/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Technology & AI",
+              "item": "https://fxnholdings.com/insights/technology-ai/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 4,
+              "name": "How we use AI: machines draft, people decide",
+              "item": "https://fxnholdings.com/insights/how-we-use-ai/"
+            }
+          ]
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "BlogPosting",
+          "headline": "How we use AI: machines draft, people decide",
+          "description": "AI helps us draft and enrich content across our platforms, but a person reviews everything before it is published. Here's how that works, and why we welcome regulation.",
+          "datePublished": "2026-10-09",
+          "dateModified": "2026-10-09",
+          "articleSection": "Technology & AI",
+          "inLanguage": "en-AU",
+          "mainEntityOfPage": "https://fxnholdings.com/insights/how-we-use-ai/",
+          "url": "https://fxnholdings.com/insights/how-we-use-ai/",
+          "image": [
+            "https://fxnholdings.com/img/insights/how-we-use-ai.webp",
+            "https://fxnholdings.com/img/insights/how-we-use-ai-og.jpg"
+          ],
+          "author": {
+            "@type": "Organization",
+            "name": "FXN Holdings",
+            "url": "https://fxnholdings.com/"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "FXN Holdings",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://fxnholdings.com/img/fxn-holdings-logo.svg"
+            }
+          }
+        }
+      ],
+      "images": [
+        {
+          "src": "/img/insights/how-we-use-ai.webp",
+          "srcset": "/img/insights/how-we-use-ai-800.webp 800w, /img/insights/how-we-use-ai.webp 1600w",
+          "sizes": "(max-width: 1366px) 100vw, 1366px",
+          "alt": "Illustration of a person at a desk ticking off a page printed by a friendly robot-like machine",
+          "width": "1600",
+          "height": "900",
+          "fetchpriority": "high",
+          "decoding": "async"
+        },
+        {
+          "src": "/img/insights/what-we-mean-by-a-market-gap-800.webp",
+          "alt": "",
+          "width": "800",
+          "height": "450",
+          "loading": "lazy",
+          "decoding": "async"
+        },
+        {
+          "src": "/img/insights/uk-vat-for-online-sellers-when-to-register-800.webp",
+          "alt": "",
+          "width": "800",
+          "height": "450",
+          "loading": "lazy",
+          "decoding": "async"
+        },
+        {
+          "src": "/img/insights/starting-a-us-business-from-overseas-800.webp",
+          "alt": "",
+          "width": "800",
+          "height": "450",
+          "loading": "lazy",
+          "decoding": "async"
+        },
+        {
+          "src": "/img/insights/introducing-the-new-fxnholdings-com-800.webp",
+          "alt": "",
+          "width": "800",
+          "height": "450",
+          "loading": "lazy",
+          "decoding": "async"
+        },
+        {
+          "class": [
+            "post-thumb"
+          ],
+          "src": "/img/insights/what-we-mean-by-a-market-gap.webp",
+          "srcset": "/img/insights/what-we-mean-by-a-market-gap-800.webp 800w, /img/insights/what-we-mean-by-a-market-gap.webp 1600w",
+          "sizes": "(max-width: 640px) 100vw, (max-width: 960px) 50vw, 440px",
+          "alt": "",
+          "width": "1600",
+          "height": "900",
+          "loading": "lazy",
+          "decoding": "async"
+        },
+        {
+          "class": [
+            "post-thumb"
+          ],
+          "src": "/img/insights/uk-vat-for-online-sellers-when-to-register.webp",
+          "srcset": "/img/insights/uk-vat-for-online-sellers-when-to-register-800.webp 800w, /img/insights/uk-vat-for-online-sellers-when-to-register.webp 1600w",
+          "sizes": "(max-width: 640px) 100vw, (max-width: 960px) 50vw, 440px",
+          "alt": "",
+          "width": "1600",
+          "height": "900",
+          "loading": "lazy",
+          "decoding": "async"
+        },
+        {
+          "class": [
+            "post-thumb"
+          ],
+          "src": "/img/insights/starting-a-us-business-from-overseas.webp",
+          "srcset": "/img/insights/starting-a-us-business-from-overseas-800.webp 800w, /img/insights/starting-a-us-business-from-overseas.webp 1600w",
+          "sizes": "(max-width: 640px) 100vw, (max-width: 960px) 50vw, 440px",
+          "alt": "",
+          "width": "1600",
+          "height": "900",
+          "loading": "lazy",
+          "decoding": "async"
+        }
+      ],
+      "og": {
+        "og:type": "article",
+        "og:site_name": "FXN Holdings",
+        "og:locale": "en_AU",
+        "og:title": "How we use AI: machines draft, people decide | FXN Holdings",
+        "og:description": "AI helps us draft content for our platforms, but a person reviews everything before it is published. Here's how that works, and why we welcome regulation.",
+        "og:url": "https://fxnholdings.com/insights/how-we-use-ai/",
+        "og:image": "https://fxnholdings.com/img/insights/how-we-use-ai-og.jpg",
+        "og:image:width": "1200",
+        "og:image:height": "630",
+        "og:image:alt": "Illustration of a person at a desk ticking off a page printed by a friendly robot-like machine"
+      },
+      "links": [
+        "https://fxnholdings.com/",
+        "https://fxnholdings.com/about/",
+        "https://fxnholdings.com/accessibility/",
+        "https://fxnholdings.com/contact/",
+        "https://fxnholdings.com/cookies/",
+        "https://fxnholdings.com/insights/",
+        "https://fxnholdings.com/insights/company-news/",
+        "https://fxnholdings.com/insights/how-we-use-ai/",
+        "https://fxnholdings.com/insights/introducing-the-new-fxnholdings-com/",
+        "https://fxnholdings.com/insights/market-gaps/",
+        "https://fxnholdings.com/insights/start-a-business/",
+        "https://fxnholdings.com/insights/starting-a-us-business-from-overseas/",
+        "https://fxnholdings.com/insights/technology-ai/",
+        "https://fxnholdings.com/insights/uk-vat-for-online-sellers-when-to-register/",
+        "https://fxnholdings.com/insights/what-we-mean-by-a-market-gap/",
+        "https://fxnholdings.com/legal-notice/",
+        "https://fxnholdings.com/portfolio/",
+        "https://fxnholdings.com/privacy/",
+        "https://fxnholdings.com/services/",
+        "https://fxnholdings.com/sitemap/",
+        "https://fxnholdings.com/technology/",
+        "https://fxnholdings.com/terms/"
+      ]
+    }
+  ],
+  "extras": [
+    {
+      "url": "https://fxnholdings.com",
+      "status": 200,
+      "final": "https://fxnholdings.com/",
+      "canonical": "https://fxnholdings.com/",
+      "robots": "",
+      "schema": [
+        {
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "FXN Holdings",
+          "url": "https://fxnholdings.com/",
+          "logo": "https://fxnholdings.com/img/fxn-holdings-logo.svg",
+          "description": "A digital venture group based in Perth, Western Australia, that finds market gaps, then builds and launches e-commerce, travel, content and publishing, price comparison and free online tool platforms on open-source technology.",
+          "slogan": "Find the gap. Build. Launch.",
+          "areaServed": "Worldwide",
+          "email": "contact@fxnholdings.com",
+          "taxID": "53 274 423 748",
+          "sameAs": [
+            "https://abr.business.gov.au/ABN/View?abn=53274423748"
+          ],
+          "foundingDate": "2024",
+          "address": {
+            "@type": "PostalAddress",
+            "postOfficeBoxNumber": "500",
+            "addressLocality": "West Perth",
+            "addressRegion": "WA",
+            "postalCode": "6872",
+            "addressCountry": "AU"
+          }
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "name": "FXN Holdings",
+          "url": "https://fxnholdings.com/",
+          "inLanguage": "en-AU",
+          "publisher": {
+            "@type": "Organization",
+            "name": "FXN Holdings"
+          }
+        }
+      ],
+      "images": [
+        {
+          "class": [
+            "post-thumb"
+          ],
+          "src": "/img/insights/what-we-mean-by-a-market-gap.webp",
+          "srcset": "/img/insights/what-we-mean-by-a-market-gap-800.webp 800w, /img/insights/what-we-mean-by-a-market-gap.webp 1600w",
+          "sizes": "(max-width: 640px) 100vw, (max-width: 960px) 50vw, 440px",
+          "alt": "",
+          "width": "1600",
+          "height": "900",
+          "loading": "lazy",
+          "decoding": "async"
+        },
+        {
+          "class": [
+            "post-thumb"
+          ],
+          "src": "/img/insights/uk-vat-for-online-sellers-when-to-register.webp",
+          "srcset": "/img/insights/uk-vat-for-online-sellers-when-to-register-800.webp 800w, /img/insights/uk-vat-for-online-sellers-when-to-register.webp 1600w",
+          "sizes": "(max-width: 640px) 100vw, (max-width: 960px) 50vw, 440px",
+          "alt": "",
+          "width": "1600",
+          "height": "900",
+          "loading": "lazy",
+          "decoding": "async"
+        },
+        {
+          "class": [
+            "post-thumb"
+          ],
+          "src": "/img/insights/starting-a-us-business-from-overseas.webp",
+          "srcset": "/img/insights/starting-a-us-business-from-overseas-800.webp 800w, /img/insights/starting-a-us-business-from-overseas.webp 1600w",
+          "sizes": "(max-width: 640px) 100vw, (max-width: 960px) 50vw, 440px",
+          "alt": "",
+          "width": "1600",
+          "height": "900",
+          "loading": "lazy",
+          "decoding": "async"
+        }
+      ],
+      "og": {
+        "og:type": "website",
+        "og:site_name": "FXN Holdings",
+        "og:locale": "en_AU",
+        "og:title": "FXN Holdings | Explore, Build & Launch Digital Platforms",
+        "og:description": "FXN Holdings finds market gaps, then builds and launches e-commerce, travel, comparison, publishing and free-tool platforms on open-source technology.",
+        "og:url": "https://fxnholdings.com/",
+        "og:image": "https://fxnholdings.com/img/og-image.png",
+        "og:image:width": "1200",
+        "og:image:height": "630",
+        "og:image:alt": "FXN Holdings: we find the gap, build the platform, and launch it."
+      },
+      "links": [
+        "https://fxnholdings.com",
+        "https://fxnholdings.com/",
+        "https://fxnholdings.com/about/",
+        "https://fxnholdings.com/accessibility/",
+        "https://fxnholdings.com/contact/",
+        "https://fxnholdings.com/cookies/",
+        "https://fxnholdings.com/insights/",
+        "https://fxnholdings.com/insights/company-news/",
+        "https://fxnholdings.com/insights/market-gaps/",
+        "https://fxnholdings.com/insights/start-a-business/",
+        "https://fxnholdings.com/insights/starting-a-us-business-from-overseas/",
+        "https://fxnholdings.com/insights/technology-ai/",
+        "https://fxnholdings.com/insights/uk-vat-for-online-sellers-when-to-register/",
+        "https://fxnholdings.com/insights/what-we-mean-by-a-market-gap/",
+        "https://fxnholdings.com/legal-notice/",
+        "https://fxnholdings.com/portfolio/",
+        "https://fxnholdings.com/privacy/",
+        "https://fxnholdings.com/services/",
+        "https://fxnholdings.com/sitemap/",
+        "https://fxnholdings.com/technology/",
+        "https://fxnholdings.com/terms/"
+      ]
+    },
+    {
+      "url": "https://fxnholdings.com/insights/company-news/",
+      "status": 200,
+      "final": "https://fxnholdings.com/insights/company-news/",
+      "canonical": "https://fxnholdings.com/insights/company-news/",
+      "robots": "noindex",
+      "schema": [],
+      "images": [
+        {
+          "class": [
+            "post-thumb"
+          ],
+          "src": "/img/insights/introducing-the-new-fxnholdings-com.webp",
+          "srcset": "/img/insights/introducing-the-new-fxnholdings-com-800.webp 800w, /img/insights/introducing-the-new-fxnholdings-com.webp 1600w",
+          "sizes": "(max-width: 640px) 100vw, (max-width: 960px) 50vw, 440px",
+          "alt": "",
+          "width": "1600",
+          "height": "900",
+          "loading": "lazy",
+          "decoding": "async"
+        }
+      ],
+      "og": {
+        "og:type": "website",
+        "og:site_name": "FXN Holdings",
+        "og:locale": "en_AU",
+        "og:title": "Company News | Blog | FXN Holdings",
+        "og:description": "Announcements and updates from FXN Holdings and the platforms we run.",
+        "og:url": "https://fxnholdings.com/insights/company-news/",
+        "og:image": "https://fxnholdings.com/img/og-image.png",
+        "og:image:width": "1200",
+        "og:image:height": "630",
+        "og:image:alt": "FXN Holdings: we find the gap, build the platform, and launch it."
+      },
+      "links": [
+        "https://fxnholdings.com/",
+        "https://fxnholdings.com/about/",
+        "https://fxnholdings.com/accessibility/",
+        "https://fxnholdings.com/contact/",
+        "https://fxnholdings.com/cookies/",
+        "https://fxnholdings.com/insights/",
+        "https://fxnholdings.com/insights/company-news/",
+        "https://fxnholdings.com/insights/introducing-the-new-fxnholdings-com/",
+        "https://fxnholdings.com/insights/market-gaps/",
+        "https://fxnholdings.com/insights/start-a-business/",
+        "https://fxnholdings.com/insights/technology-ai/",
+        "https://fxnholdings.com/legal-notice/",
+        "https://fxnholdings.com/portfolio/",
+        "https://fxnholdings.com/privacy/",
+        "https://fxnholdings.com/services/",
+        "https://fxnholdings.com/sitemap/",
+        "https://fxnholdings.com/technology/",
+        "https://fxnholdings.com/terms/"
+      ]
+    },
+    {
+      "url": "https://fxnholdings.com/insights/market-gaps/",
+      "status": 200,
+      "final": "https://fxnholdings.com/insights/market-gaps/",
+      "canonical": "https://fxnholdings.com/insights/market-gaps/",
+      "robots": "noindex",
+      "schema": [],
+      "images": [
+        {
+          "class": [
+            "post-thumb"
+          ],
+          "src": "/img/insights/what-we-mean-by-a-market-gap.webp",
+          "srcset": "/img/insights/what-we-mean-by-a-market-gap-800.webp 800w, /img/insights/what-we-mean-by-a-market-gap.webp 1600w",
+          "sizes": "(max-width: 640px) 100vw, (max-width: 960px) 50vw, 440px",
+          "alt": "",
+          "width": "1600",
+          "height": "900",
+          "loading": "lazy",
+          "decoding": "async"
+        }
+      ],
+      "og": {
+        "og:type": "website",
+        "og:site_name": "FXN Holdings",
+        "og:locale": "en_AU",
+        "og:title": "Market Gaps | Blog | FXN Holdings",
+        "og:description": "The gaps we look for in markets, and how we decide which ones are worth filling.",
+        "og:url": "https://fxnholdings.com/insights/market-gaps/",
+        "og:image": "https://fxnholdings.com/img/og-image.png",
+        "og:image:width": "1200",
+        "og:image:height": "630",
+        "og:image:alt": "FXN Holdings: we find the gap, build the platform, and launch it."
+      },
+      "links": [
+        "https://fxnholdings.com/",
+        "https://fxnholdings.com/about/",
+        "https://fxnholdings.com/accessibility/",
+        "https://fxnholdings.com/contact/",
+        "https://fxnholdings.com/cookies/",
+        "https://fxnholdings.com/insights/",
+        "https://fxnholdings.com/insights/company-news/",
+        "https://fxnholdings.com/insights/market-gaps/",
+        "https://fxnholdings.com/insights/start-a-business/",
+        "https://fxnholdings.com/insights/technology-ai/",
+        "https://fxnholdings.com/insights/what-we-mean-by-a-market-gap/",
+        "https://fxnholdings.com/legal-notice/",
+        "https://fxnholdings.com/portfolio/",
+        "https://fxnholdings.com/privacy/",
+        "https://fxnholdings.com/services/",
+        "https://fxnholdings.com/sitemap/",
+        "https://fxnholdings.com/technology/",
+        "https://fxnholdings.com/terms/"
+      ]
+    },
+    {
+      "url": "https://fxnholdings.com/insights/technology-ai/",
+      "status": 200,
+      "final": "https://fxnholdings.com/insights/technology-ai/",
+      "canonical": "https://fxnholdings.com/insights/technology-ai/",
+      "robots": "noindex",
+      "schema": [],
+      "images": [
+        {
+          "class": [
+            "post-thumb"
+          ],
+          "src": "/img/insights/how-we-use-ai.webp",
+          "srcset": "/img/insights/how-we-use-ai-800.webp 800w, /img/insights/how-we-use-ai.webp 1600w",
+          "sizes": "(max-width: 640px) 100vw, (max-width: 960px) 50vw, 440px",
+          "alt": "",
+          "width": "1600",
+          "height": "900",
+          "loading": "lazy",
+          "decoding": "async"
+        }
+      ],
+      "og": {
+        "og:type": "website",
+        "og:site_name": "FXN Holdings",
+        "og:locale": "en_AU",
+        "og:title": "Technology & AI | Blog | FXN Holdings",
+        "og:description": "How we build our platforms: open-source tools, shared infrastructure, and AI used responsibly.",
+        "og:url": "https://fxnholdings.com/insights/technology-ai/",
+        "og:image": "https://fxnholdings.com/img/og-image.png",
+        "og:image:width": "1200",
+        "og:image:height": "630",
+        "og:image:alt": "FXN Holdings: we find the gap, build the platform, and launch it."
+      },
+      "links": [
+        "https://fxnholdings.com/",
+        "https://fxnholdings.com/about/",
+        "https://fxnholdings.com/accessibility/",
+        "https://fxnholdings.com/contact/",
+        "https://fxnholdings.com/cookies/",
+        "https://fxnholdings.com/insights/",
+        "https://fxnholdings.com/insights/company-news/",
+        "https://fxnholdings.com/insights/how-we-use-ai/",
+        "https://fxnholdings.com/insights/market-gaps/",
+        "https://fxnholdings.com/insights/start-a-business/",
+        "https://fxnholdings.com/insights/technology-ai/",
+        "https://fxnholdings.com/legal-notice/",
+        "https://fxnholdings.com/portfolio/",
+        "https://fxnholdings.com/privacy/",
+        "https://fxnholdings.com/services/",
+        "https://fxnholdings.com/sitemap/",
+        "https://fxnholdings.com/technology/",
+        "https://fxnholdings.com/terms/"
+      ]
+    },
+    {
+      "url": "https://fxnholdings.com/robots.txt",
+      "status": 200,
+      "final": "https://fxnholdings.com/robots.txt",
+      "canonical": null,
+      "robots": "",
+      "schema": [],
+      "images": [],
+      "og": {},
+      "links": []
+    }
+  ]
+}

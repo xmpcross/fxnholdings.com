@@ -1,0 +1,82 @@
+{
+  "cache_type": "generator-seo-audit",
+  "analyzed_at": "2026-10-09T12:12:55.356446+00:00",
+  "source": "/opt/strapi-cms-git/backend/ai-writer-cli/generate-fxnholdings-post.js",
+  "source_sha256": "a9ba63f77907f49b8e9abc69fdb759dbf597a209603e89eefbeb3768ea0cbacc",
+  "verdict": "Useful draft generator; SEO/content-quality safeguards incomplete. Not a reliable publish-ready gate.",
+  "generator_modified": false,
+  "findings": [
+    {
+      "severity": "high",
+      "line": 346,
+      "issue": "Research retains every model-written fact after filtering source URLs. There is no fact-to-source mapping or fetched supporting excerpt; checked date only records run date.",
+      "recommendation": "Require per-claim approved source URLs, jurisdiction, applicability/exemptions and retrieved evidence; reject unsupported facts."
+    },
+    {
+      "severity": "high",
+      "line": 372,
+      "issue": "Missing unsupported field defaults to an empty list. Valid JSON with the wrong shape is interpreted as a successful check.",
+      "recommendation": "Validate checker response schema; malformed verification must fail closed."
+    },
+    {
+      "severity": "high",
+      "line": 511,
+      "issue": "Unsupported claims only produce sidecar notes; removal of draft:true can publish them. Research is optional for legal/tax topics.",
+      "recommendation": "Require research and explicit review for sensitive topics; enforce unresolved-review status in the publishing/build workflow. Never invent reviewer identities."
+    },
+    {
+      "severity": "medium",
+      "line": 533,
+      "issue": "Draft is written before image generation; image process failure exits before verification notes are saved. A partial draft can be left without its review warnings and can break draft preview builds.",
+      "recommendation": "Persist review record before image calls; stage and validate assets and Markdown before promoting draft."
+    },
+    {
+      "severity": "medium",
+      "line": 390,
+      "issue": "Whitespace-only description, summary and image fields pass required-field checks because validation occurs before normalization. Reproduced with the actual audit function.",
+      "recommendation": "Validate normalized nonempty strings and structured arrays before accepting output."
+    },
+    {
+      "severity": "medium",
+      "line": 435,
+      "issue": "Fixed default 1200-word minimum, 3\u20136 sections and paragraph word windows are treated as SEO pass/fail requirements. They can force padding in short announcements.",
+      "recommendation": "Use intent-appropriate editorial guidance; keep hard checks for genuine rendering and data-integrity requirements."
+    },
+    {
+      "severity": "low",
+      "line": 408,
+      "issue": "Normalized internal targets are validated but original noncanonical URLs are emitted; /about passes and is retained instead of /about/. Link targets also include utility noindex pages.",
+      "recommendation": "Emit validated canonical paths while preserving valid anchors; avoid irrelevant utility pages as suggested editorial links."
+    },
+    {
+      "severity": "medium",
+      "line": 519,
+      "issue": "Slug uniqueness prevents overwrites but explicit topics are not checked for duplicate titles or substantive overlap; repeats become -2 URLs.",
+      "recommendation": "Compare new topics and titles against existing drafts/published posts and route revisions to existing articles when appropriate."
+    }
+  ],
+  "strengths": [
+    "Draft by default",
+    "Known site categories and live-post link targets",
+    "Separate metadata fields and image alt prompts",
+    "Staging build validation with temporary BUILD_OUT",
+    "Site renderer supplies canonical, BlogPosting, breadcrumbs and sitemap integration"
+  ],
+  "verification": [
+    "node --check passed",
+    "Four mocked function probes passed: source fact leakage, missing checker field accepted, blank metadata accepted, noncanonical URL retained"
+  ],
+  "limitations": [
+    "No paid generation or image APIs called",
+    "No new posts generated or published",
+    "No provider model availability verification",
+    "No guarantees about search rankings",
+    "No arbitrary SEO or E-E-A-T score assigned"
+  ],
+  "references": [
+    "https://developers.google.com/search/docs/fundamentals/creating-helpful-content",
+    "https://developers.google.com/search/docs/appearance/ai-features",
+    "https://developers.google.com/search/docs/appearance/title-link",
+    "https://developers.google.com/search/docs/appearance/snippet"
+  ]
+}

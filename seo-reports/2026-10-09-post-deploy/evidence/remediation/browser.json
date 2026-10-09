@@ -1,0 +1,52 @@
+[
+  {
+    "width": 390,
+    "sizes": [
+      {
+        "width": 44,
+        "height": 44
+      },
+      {
+        "width": 44,
+        "height": 44
+      },
+      {
+        "width": 44,
+        "height": 44
+      },
+      {
+        "width": 44,
+        "height": 44
+      }
+    ],
+    "click": true,
+    "keyboard": true,
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "width": 1440,
+    "sizes": [
+      {
+        "width": 44,
+        "height": 44
+      },
+      {
+        "width": 44,
+        "height": 44
+      },
+      {
+        "width": 44,
+        "height": 44
+      },
+      {
+        "width": 44,
+        "height": 44
+      }
+    ],
+    "click": true,
+    "keyboard": true,
+    "overflow": false,
+    "errors": []
+  }
+]

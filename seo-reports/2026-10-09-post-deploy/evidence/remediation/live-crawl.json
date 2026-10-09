@@ -1,0 +1,143 @@
+{
+  "checked_at": "2026-10-09T12:10:21.351786+00:00",
+  "asset_version": "20261010g",
+  "health": {
+    "ok": true
+  },
+  "lastmod_count": 0,
+  "pages": [
+    {
+      "url": "https://fxnholdings.com/about/",
+      "status": 200,
+      "canonical": "https://fxnholdings.com/about/",
+      "h1": 1,
+      "jsonld_blocks": 1
+    },
+    {
+      "url": "https://fxnholdings.com/accessibility/",
+      "status": 200,
+      "canonical": "https://fxnholdings.com/accessibility/",
+      "h1": 1,
+      "jsonld_blocks": 1
+    },
+    {
+      "url": "https://fxnholdings.com/contact/",
+      "status": 200,
+      "canonical": "https://fxnholdings.com/contact/",
+      "h1": 1,
+      "jsonld_blocks": 1
+    },
+    {
+      "url": "https://fxnholdings.com/cookies/",
+      "status": 200,
+      "canonical": "https://fxnholdings.com/cookies/",
+      "h1": 1,
+      "jsonld_blocks": 1
+    },
+    {
+      "url": "https://fxnholdings.com/",
+      "status": 200,
+      "canonical": "https://fxnholdings.com/",
+      "h1": 1,
+      "jsonld_blocks": 2
+    },
+    {
+      "url": "https://fxnholdings.com/legal-notice/",
+      "status": 200,
+      "canonical": "https://fxnholdings.com/legal-notice/",
+      "h1": 1,
+      "jsonld_blocks": 1
+    },
+    {
+      "url": "https://fxnholdings.com/portfolio/",
+      "status": 200,
+      "canonical": "https://fxnholdings.com/portfolio/",
+      "h1": 1,
+      "jsonld_blocks": 1
+    },
+    {
+      "url": "https://fxnholdings.com/privacy/",
+      "status": 200,
+      "canonical": "https://fxnholdings.com/privacy/",
+      "h1": 1,
+      "jsonld_blocks": 1
+    },
+    {
+      "url": "https://fxnholdings.com/services/",
+      "status": 200,
+      "canonical": "https://fxnholdings.com/services/",
+      "h1": 1,
+      "jsonld_blocks": 1
+    },
+    {
+      "url": "https://fxnholdings.com/sitemap/",
+      "status": 200,
+      "canonical": "https://fxnholdings.com/sitemap/",
+      "h1": 1,
+      "jsonld_blocks": 1
+    },
+    {
+      "url": "https://fxnholdings.com/technology/",
+      "status": 200,
+      "canonical": "https://fxnholdings.com/technology/",
+      "h1": 1,
+      "jsonld_blocks": 1
+    },
+    {
+      "url": "https://fxnholdings.com/terms/",
+      "status": 200,
+      "canonical": "https://fxnholdings.com/terms/",
+      "h1": 1,
+      "jsonld_blocks": 1
+    },
+    {
+      "url": "https://fxnholdings.com/insights/",
+      "status": 200,
+      "canonical": "https://fxnholdings.com/insights/",
+      "h1": 1,
+      "jsonld_blocks": 1
+    },
+    {
+      "url": "https://fxnholdings.com/insights/start-a-business/",
+      "status": 200,
+      "canonical": "https://fxnholdings.com/insights/start-a-business/",
+      "h1": 1,
+      "jsonld_blocks": 1
+    },
+    {
+      "url": "https://fxnholdings.com/insights/what-we-mean-by-a-market-gap/",
+      "status": 200,
+      "canonical": "https://fxnholdings.com/insights/what-we-mean-by-a-market-gap/",
+      "h1": 1,
+      "jsonld_blocks": 2
+    },
+    {
+      "url": "https://fxnholdings.com/insights/uk-vat-for-online-sellers-when-to-register/",
+      "status": 200,
+      "canonical": "https://fxnholdings.com/insights/uk-vat-for-online-sellers-when-to-register/",
+      "h1": 1,
+      "jsonld_blocks": 2
+    },
+    {
+      "url": "https://fxnholdings.com/insights/starting-a-us-business-from-overseas/",
+      "status": 200,
+      "canonical": "https://fxnholdings.com/insights/starting-a-us-business-from-overseas/",
+      "h1": 1,
+      "jsonld_blocks": 2
+    },
+    {
+      "url": "https://fxnholdings.com/insights/introducing-the-new-fxnholdings-com/",
+      "status": 200,
+      "canonical": "https://fxnholdings.com/insights/introducing-the-new-fxnholdings-com/",
+      "h1": 1,
+      "jsonld_blocks": 2
+    },
+    {
+      "url": "https://fxnholdings.com/insights/how-we-use-ai/",
+      "status": 200,
+      "canonical": "https://fxnholdings.com/insights/how-we-use-ai/",
+      "h1": 1,
+      "jsonld_blocks": 2
+    }
+  ]
+}

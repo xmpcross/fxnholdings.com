@@ -1,0 +1,223 @@
+[
+  {
+    "url": "https://fxnholdings.com/",
+    "title": "FXN Holdings | Explore, Build & Launch Digital Platforms",
+    "overflow": false,
+    "h1": [
+      {
+        "text": "We find the gap, build the platform, and launch it.",
+        "rect": {
+          "x": 16,
+          "y": 152.796875,
+          "width": 358,
+          "height": 127.3125,
+          "top": 152.796875,
+          "right": 374,
+          "bottom": 280.109375,
+          "left": 16
+        }
+      }
+    ],
+    "smallTargets": [
+      {
+        "text": "Cookie Policy",
+        "height": 17,
+        "width": 81
+      }
+    ],
+    "aboveFoldLinks": [
+      "Find the gap.Build. Launch.",
+      "Home",
+      "About",
+      "Capabilities",
+      "Portfolio",
+      "Blog",
+      "Get in Touch",
+      "See our platforms",
+      "Talk to us",
+      "Cookie Policy"
+    ],
+    "menu": {
+      "rect": {
+        "x": 0,
+        "y": 60,
+        "width": 390,
+        "height": 784,
+        "top": 60,
+        "right": 390,
+        "bottom": 844,
+        "left": 0
+      },
+      "expanded": "true",
+      "mainInert": true
+    },
+    "menuClosed": true,
+    "errors": [],
+    "viewport": {
+      "width": 390,
+      "height": 844
+    }
+  },
+  {
+    "url": "https://fxnholdings.com/insights/uk-vat-for-online-sellers-when-to-register/",
+    "title": "UK VAT for online sellers: when to register | FXN Holdings",
+    "overflow": false,
+    "h1": [
+      {
+        "text": "UK VAT for online sellers: when to register",
+        "rect": {
+          "x": 16,
+          "y": 148.796875,
+          "width": 358,
+          "height": 66.28125,
+          "top": 148.796875,
+          "right": 374,
+          "bottom": 215.078125,
+          "left": 16
+        }
+      }
+    ],
+    "smallTargets": [
+      {
+        "text": "Blog",
+        "height": 16.796875,
+        "width": 32.890625
+      },
+      {
+        "text": "Starting a Business",
+        "height": 22.390625,
+        "width": 139
+      },
+      {
+        "text": "Cookie Policy",
+        "height": 17,
+        "width": 81
+      }
+    ],
+    "aboveFoldLinks": [
+      "Find the gap.Build. Launch.",
+      "Home",
+      "About",
+      "Capabilities",
+      "Portfolio",
+      "Blog",
+      "Get in Touch",
+      "Blog",
+      "Starting a Business",
+      "01When does a UK business need to register for VAT?",
+      "Cookie Policy"
+    ],
+    "menu": {
+      "rect": {
+        "x": 0,
+        "y": 60,
+        "width": 390,
+        "height": 784,
+        "top": 60,
+        "right": 390,
+        "bottom": 844,
+        "left": 0
+      },
+      "expanded": "true",
+      "mainInert": true
+    },
+    "menuClosed": true,
+    "errors": [],
+    "viewport": {
+      "width": 390,
+      "height": 844
+    }
+  },
+  {
+    "url": "https://fxnholdings.com/",
+    "title": "FXN Holdings | Explore, Build & Launch Digital Platforms",
+    "overflow": false,
+    "h1": [
+      {
+        "text": "We find the gap, build the platform, and launch it.",
+        "rect": {
+          "x": 61,
+          "y": 176.796875,
+          "width": 611.703125,
+          "height": 201.5625,
+          "top": 176.796875,
+          "right": 672.703125,
+          "bottom": 378.359375,
+          "left": 61
+        }
+      }
+    ],
+    "smallTargets": [],
+    "aboveFoldLinks": [
+      "Find the gap.Build. Launch.",
+      "Home",
+      "About",
+      "Capabilities",
+      "Portfolio",
+      "Blog",
+      "Get in Touch",
+      "See our platforms",
+      "Talk to us",
+      "Cookie Policy"
+    ],
+    "errors": [],
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    }
+  },
+  {
+    "url": "https://fxnholdings.com/insights/uk-vat-for-online-sellers-when-to-register/",
+    "title": "UK VAT for online sellers: when to register | FXN Holdings",
+    "overflow": false,
+    "h1": [
+      {
+        "text": "UK VAT for online sellers: when to register",
+        "rect": {
+          "x": 61,
+          "y": 176.796875,
+          "width": 754.890625,
+          "height": 46.1875,
+          "top": 176.796875,
+          "right": 815.890625,
+          "bottom": 222.984375,
+          "left": 61
+        }
+      }
+    ],
+    "smallTargets": [
+      {
+        "text": "Blog",
+        "height": 16.796875,
+        "width": 32.890625
+      },
+      {
+        "text": "Starting a Business",
+        "height": 22.390625,
+        "width": 139
+      }
+    ],
+    "aboveFoldLinks": [
+      "Find the gap.Build. Launch.",
+      "Home",
+      "About",
+      "Capabilities",
+      "Portfolio",
+      "Blog",
+      "Get in Touch",
+      "Blog",
+      "Starting a Business",
+      "All posts5",
+      "Technology & AI1",
+      "Company News1",
+      "Starting a Business2",
+      "Market Gaps1",
+      "Cookie Policy"
+    ],
+    "errors": [],
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    }
+  }
+]

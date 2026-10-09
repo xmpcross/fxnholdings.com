@@ -1,0 +1,12 @@
+{
+  "source": "/opt/strapi-cms-git/backend/ai-writer-cli/generate-fxnholdings-post.js",
+  "findings": {
+    "unmapped_research_fact_survives_source_filter": true,
+    "missing_checker_result_silently_passes": true,
+    "whitespace_required_metadata_passes": true,
+    "noncanonical_internal_url_preserved": true,
+    "current_utc_date": "2026-10-09",
+    "generator_perth_date": "2026-10-09"
+  },
+  "method": "Extracted original pure functions evaluated with mocked providers. No network, API credits, post writes or generator execution."
+}

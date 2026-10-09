@@ -1,0 +1,27 @@
+{
+  "verified_at": "2026-10-09T12:11:11.709057+00:00",
+  "asset_version": "20261010g",
+  "source_sha256": {
+    "_src/build.py": "be5f52983d71d0fd0dc5afa0644f8cb64b6c023900dc30fb6a0dfc9515be9b52",
+    "_src/insights.py": "4013f58b1a112a14a5450d910c591bc6acd6294d5889b7b43962f6417faec72b",
+    "static/assets/site.css": "d708a61fa22e48e6d868501f234e2b13452f769de8926714b5ffe9b4f0898c2c",
+    "_src/posts/uk-vat-for-online-sellers-when-to-register.md": "17b86a306408b6a88862400c294673563be1c506ab762b341397f9acb0cc8ae3",
+    "_src/posts/starting-a-us-business-from-overseas.md": "9fc2150776c7a8bb924858c0a886ca1b6459e3ea90494b9485a84b0a44d39393"
+  },
+  "lighthouse": {
+    "home": {
+      "performance": 100,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100,
+      "agentic-browsing": 100
+    },
+    "article": {
+      "performance": 99,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100,
+      "agentic-browsing": 100
+    }
+  }
+}

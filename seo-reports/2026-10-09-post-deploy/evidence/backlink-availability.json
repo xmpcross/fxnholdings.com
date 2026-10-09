@@ -1,0 +1,5 @@
+{
+  "status": "incomplete",
+  "reason": "Common Crawl bulk graph lookup exceeded the bounded audit window; no backlink or authority metrics inferred.",
+  "credentials": "No Moz/Bing credentials configured."
+}

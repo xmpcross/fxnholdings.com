@@ -178,10 +178,16 @@ def load_posts(src, include_drafts):
             if not (src.parent / "static" / img.lstrip("/")).is_file():
                 raise SystemExit(f"{path.name}: image {img} not found in static/ (run _src/featured_images.py {path.stem})")
         words = len(re.findall(r"\w+", re.sub(r"!\[[^\]]*\]\([^)]*\)", "", body)))
+        published = dt.date.fromisoformat(meta["date"])
+        updated = dt.date.fromisoformat(meta.get("updated", meta["date"]))
+        if updated < published or updated > dt.date.today():
+            raise SystemExit(f"{path.name}: updated must be between publication and today")
         posts.append({
             "slug": path.stem,
             "title": meta["title"],
-            "date": dt.date.fromisoformat(meta["date"]),
+            "date": published,
+            "updated": updated,
+            "has_update": "updated" in meta,
             "category": CAT[meta["category"]],
             "summary": meta["summary"],
             "description": meta.get("description") or meta["summary"],
@@ -386,6 +392,8 @@ def pages(posts, site):
         toc = _toc(p, url)
         meta_line = (f'<p class="post-byline reveal d3"><a href="/insights/{c["slug"]}/"><i class="fa-solid fa-{c["icon"]}" aria-hidden="true"></i>{html.escape(c["name"])}</a>'
                      f' · <time datetime="{p["date"].isoformat()}">{_date(p["date"])}</time> · {p["minutes"]} min read · FXN Holdings</p>')
+        if p["has_update"]:
+            meta_line += f'<p class="post-byline">Updated <time datetime="{p["updated"].isoformat()}">{_date(p["updated"])}</time></p>'
         body = (_hero('<a href="/insights/">Blog</a>', html.escape(p["title"]), html.escape(p["summary"]), meta_line)
                 + f'\n<div class="container post-wrap post-layout">\n  <div class="post-main">\n  {draft_note}\n{figure}  <div class="post-content{" has-toc" if toc else ""}">\n{toc}  <article class="post-body">\n{p["html"]}\n  </article>\n  </div>\n  </div>\n{_post_side(p, posts)}</div>\n')
         if related:
@@ -396,7 +404,7 @@ def pages(posts, site):
         article = {
             "@context": "https://schema.org", "@type": "BlogPosting",
             "headline": p["title"], "description": p["summary"],
-            "datePublished": p["date"].isoformat(), "dateModified": p["date"].isoformat(),
+            "datePublished": p["date"].isoformat(), "dateModified": p["updated"].isoformat(),
             "articleSection": c["name"], "inLanguage": "en-AU",
             "mainEntityOfPage": url, "url": url,
             "image": [site + i for i in (p["image"], p["og_image"]) if i] or site + "/img/og-image.png",

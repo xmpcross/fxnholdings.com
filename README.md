@@ -1,6 +1,6 @@
 # fxnholdings.com
 
-Website for FXN Holdings (Perth, WA · ABN 53 274 423 748), served by a **Cloudflare Worker with static assets** (`fxnholdings-com`), deployed by Cloudflare Workers Builds when a branch is pushed to GitHub. Canonical address: `https://fxnholdings.com` (no `www`).
+Website for FXN Holdings (Perth, WA · ABN 53 274 423 748), served on this host by **nginx from `dist/`**, with a Node API (`fxnholdings-api.service`) on `127.0.0.1:4330`. A Cloudflare Worker configuration is also maintained for alternative hosting. Canonical address: `https://fxnholdings.com` (no `www`).
 
 ## Layout
 
@@ -8,7 +8,9 @@ Website for FXN Holdings (Perth, WA · ABN 53 274 423 748), served by a **Cloudf
 | --- | --- |
 | `_src/pages/*.html` | Page content, each with a `<!--meta {...} -->` block (title, description, path, nav) |
 | `_src/partials/` | Shared header, footer (incl. cookie notice and chat widget) and logo |
-| `_src/build.py` | Builds the site into `dist/` |
+| `_src/build.py` | Builds the site into `dist/`, or `BUILD_OUT` when set |
+| `server/api.mjs` | Node API behind nginx; `GET /api/health` checks process readiness |
+| `deploy.sh` | Host deployment, API health check and static-site rollback |
 | `static/` | Copied into `dist/` as is: `assets/` (CSS, JS, self-hosted Font Awesome), `fonts/`, `img/`, icons, `robots.txt`, `_headers` (`sitemap.xml` is generated) |
 | `worker/index.js` | Worker entry: `/api/*` goes to the handlers, everything else to the static assets in `dist/` |
 | `worker/contact.js`, `worker/chat.js` | `POST /api/contact` and `POST /api/chat` |
@@ -25,36 +27,49 @@ Posts are Markdown files in `_src/posts/`; the file name is the URL (`_src/posts
 ---
 title: Post title
 date: 2026-10-09
-category: technology-ai        # technology-ai | company-news | market-gaps
-summary: One or two sentences for listings and search results (aim for 120–160 characters).
-draft: true                    # remove or set to false to publish
+category: technology-ai
+summary: One or two sentences for listings and search results.
+draft: true
 ---
 ```
 
-The body supports `##`/`###` headings, paragraphs, `-` and `1.` lists, `>` quotes, `---` rules, `**bold**`, `*italic*`, `` `code` `` and `[links](/path/)`. Categories are defined in `_src/insights.py`.
+The body supports `##`/`###` headings, paragraphs, `-` and `1.` lists, `>` quotes, `---` rules, `**bold**`, `*italic*`, `` `code` `` and `[links](/path/)`. Categories are defined in `_src/insights.py`: `technology-ai`, `company-news`, `start-a-business`, `market-gaps`. Front matter uses plain, unquoted values; put comments on separate lines.
 
 The build creates `/insights/`, a page per category, a page per post, `/insights/feed.xml` (RSS) and adds published posts to `sitemap.xml`. Drafts are left out of the live build; `python3 _src/build.py --drafts` includes them, marked "Draft", for previews.
+
+For a substantive article correction, add optional `updated: YYYY-MM-DD` front matter with the actual update date. It controls the visible updated date and `dateModified`; `date` and RSS publication dates stay unchanged. Update dates cannot precede publication or be in the future. Sitemap `lastmod` uses trusted Git dates including shared rendering dependencies; dates are omitted when local changes or untracked sources make that history uncertain, rather than substituting each build's date.
 
 ## Build and preview
 
 ```bash
-python3 _src/build.py            # writes dist/ (live build, no drafts)
-python3 _src/build.py --drafts   # includes draft posts for previews
+BUILD_OUT=/tmp/fxnholdings-preview PYTHONDONTWRITEBYTECODE=1 python3 _src/build.py
+python3 _src/build.py --drafts   # writes .dist-preview/, includes draft posts
 ```
+
+`dist/` is the live nginx document root on this host. Use a separate `BUILD_OUT` for checks; use `./deploy.sh` to publish. The default build replaces `dist/`.
 
 Bump `VERSION` in `_src/build.py` whenever CSS or JS changes, so browsers fetch the new files.
 
 ## Deploying
 
-Workers Builds runs `npx wrangler deploy` on push; `wrangler.jsonc` runs the site build (`python3 _src/build.py`) and uploads `dist/` with the Worker. Check a build locally without credentials:
+For the current nginx/Node host:
 
 ```bash
-npm install
-npx wrangler deploy --dry-run     # builds, bundles and validates
-npx wrangler dev                  # local server at http://localhost:8787
+./deploy.sh          # deploy the working tree
+./deploy.sh --pull   # first pull with --ff-only
 ```
 
-Variables and secrets (Cloudflare dashboard → Workers & Pages → fxnholdings-com → Settings → Variables and Secrets). `keep_vars` in `wrangler.jsonc` keeps dashboard variables across deploys:
+Deployment builds into `.dist-build/`, swaps it into `dist/`, restarts the API service, and requires `GET /api/health` to return 200. A failed restart or health check exits nonzero and restores the previous static site. `.dist-old/` remains as the previous static build after success. This does not roll back API source or installed dependencies; inspect the service logs if API startup fails. Deployments are serialised with `flock`.
+
+The systemd unit loads `.env.local`. Keep it private and out of git. For isolated API development, use a free `API_PORT` and explicitly supply the required environment. `npm test` uses isolated processes and no live email/AI credentials.
+
+The alternative Cloudflare path is `npx wrangler deploy` (also `npm run deploy`). `wrangler.jsonc` builds and uploads static assets with the Worker. On this live host, set `BUILD_OUT` and `--assets` together for an isolated dry-run:
+
+```bash
+BUILD_OUT=/tmp/fxnholdings-worker-check npx wrangler deploy --dry-run --assets /tmp/fxnholdings-worker-check
+```
+
+For Worker hosting, configure variables and secrets in its Cloudflare settings. `keep_vars` preserves dashboard variables. For Node hosting, configure them through the service environment.
 
 | Name | Type | Purpose |
 | --- | --- | --- |
@@ -69,7 +84,7 @@ Variables and secrets (Cloudflare dashboard → Workers & Pages → fxnholdings-
 
 ## Email (contact form and assistant enquiries)
 
-Both endpoints email the team through Google Workspace SMTP from the Worker over TLS (Cloudflare blocks port 25, and its outbound IPs aren't fixed, so the IP-based Workspace relay can't be used). Messages go to `CONTACT_TO` with Reply-To set to the visitor.
+Both endpoints use Google Workspace SMTP over TLS. Node uses nodemailer and supports the IP-authenticated Workspace relay via `SMTP_HOST=smtp-relay.gmail.com` without login credentials. The Worker uses TLS sockets and requires `SMTP_USER`/`SMTP_PASS` because its outbound IPs are not fixed. Messages go to `CONTACT_TO` with Reply-To set to the visitor.
 
 Set up the sending mailbox once:
 
@@ -82,10 +97,11 @@ Set up the sending mailbox once:
 `worker/chat.js` answers visitors with Claude through the Anthropic SDK (`@anthropic-ai/sdk`, pinned in `package.json`). It answers only from the facts in `KNOWLEDGE` in that file (keep them in step with the site copy) and can email an enquiry, with the chat transcript, to the team.
 
 - Create a dedicated API key with a monthly spend limit in the Anthropic Console.
+- Origin checks accept the production, www and preview site origins, plus same-origin localhost/Workers/Pages previews. API request bodies are capped at 64 KiB.
 - For a hard per-visitor limit, add a Cloudflare WAF rate-limiting rule on `/api/*`; the function's own limit is best effort.
 - To show a WhatsApp link in the chat panel, put the number (with country code) in `data-whatsapp` on the `.chat` element in `_src/partials/footer.html`.
 - The Privacy Policy (`#ai-assistant`), Cookie Policy and Terms (section 8) describe the assistant; update them if its behaviour changes.
 
 ## DNS
 
-`www.fxnholdings.com` has no DNS record. Add a proxied `www` record in Cloudflare and a redirect rule from `www` to `https://fxnholdings.com`.
+The canonical host is `fxnholdings.com`. Keep DNS and redirects for `www` aligned with the current hosting configuration.

@@ -6,13 +6,18 @@ export const json = (status, body) =>
     headers: { "content-type": "application/json; charset=utf-8", "cache-control": "no-store" },
   });
 
-// Requests must come from the site itself (or a workers.dev preview).
+// Allow our public sites and same-origin previews, not other tenants' previews.
 export function allowedOrigin(request) {
   const origin = request.headers.get("origin");
   if (!origin) return true; // same-origin form posts from some browsers omit it
   try {
-    const host = new URL(origin).hostname;
-    return host === "fxnholdings.com" || host === "www.fxnholdings.com" || host.endsWith(".workers.dev") || host.endsWith(".pages.dev") || host === "localhost" || host === "127.0.0.1";
+    const source = new URL(origin);
+    if (["https://fxnholdings.com", "https://www.fxnholdings.com", "https://preview.fxnholdings.com"].includes(source.origin)) return true;
+    const target = new URL(request.url);
+    return source.origin === target.origin && (
+      (source.protocol === "https:" && (source.hostname.endsWith(".workers.dev") || source.hostname.endsWith(".pages.dev"))) ||
+      (["http:", "https:"].includes(source.protocol) && ["localhost", "127.0.0.1", "[::1]"].includes(source.hostname))
+    );
   } catch {
     return false;
   }
@@ -33,4 +38,31 @@ export function rateLimited(key, max, windowMs) {
   return recent.length > max;
 }
 
-export const isEmail = (s) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(s || "").trim());
+export const isEmail = (s) => /^[^\s@<>]+@[^\s@<>]+\.[^\s@<>]+$/.test(String(s || "").trim());
+
+export const MAX_BODY = 64 * 1024;
+
+export async function readLimitedBody(request) {
+  const reader = request.body?.getReader();
+  if (!reader) return "";
+  const chunks = [];
+  let size = 0;
+  try {
+    for (;;) {
+      const { value, done } = await reader.read();
+      if (done) break;
+      size += value.byteLength;
+      if (size > MAX_BODY) {
+        await reader.cancel();
+        throw new RangeError("Request too large");
+      }
+      chunks.push(value);
+    }
+  } finally {
+    reader.releaseLock();
+  }
+  const bytes = new Uint8Array(size);
+  let offset = 0;
+  for (const chunk of chunks) { bytes.set(chunk, offset); offset += chunk.byteLength; }
+  return new TextDecoder().decode(bytes);
+}

@@ -1,6 +1,7 @@
 ---
 title: UK VAT for online sellers: when to register
 date: 2026-10-09
+updated: 2026-10-09
 category: start-a-business
 summary: Selling online to UK buyers involves strict tax thresholds and rules. Here is when domestic brands and overseas merchants must register for UK VAT and how to prepare.
 image: /img/insights/uk-vat-for-online-sellers-when-to-register.webp
@@ -26,7 +27,7 @@ If trading conditions change and your sales drop, businesses can apply for dereg
 
 ## When do overseas online sellers have to register for UK VAT?
 
-Overseas sellers face a nil registration threshold. If your business has no physical establishment or central administration in the UK, HM Revenue and Customs classifies you as a Non-Established Taxable Person. You must register for UK VAT before making, or expecting to make, your very first taxable supply to UK customers, regardless of turnover value.
+Overseas sellers face a nil registration threshold. If your business has no physical establishment or central administration in the UK, HM Revenue and Customs classifies you as a Non-Established Taxable Person. Registration can therefore be required from the first taxable UK supply, regardless of turnover. Sellers making only zero-rated deemed supplies through an online marketplace may apply for exemption from registration, as explained below.
 
 ![Illustration of cargo containers and postal boxes at a distribution terminal.](/img/insights/uk-vat-for-online-sellers-when-to-register-2.webp)
 
@@ -48,18 +49,18 @@ For orders shipped from overseas in consignments exceeding £135 in value, point
 
 ## What are the VAT rules when selling through online marketplaces?
 
-When overseas businesses sell via an online marketplace, the marketplace operator collects and remits consumer VAT for imports up to £135 and for stock stored locally in Great Britain. Even so, overseas sellers holding stock in UK warehouses must maintain their own UK VAT registration to account for imports and zero-rated deemed supplies.
+When overseas businesses sell via an online marketplace, the marketplace operator collects and remits consumer VAT for imports up to £135 and for stock stored locally in Great Britain. Sellers making only zero-rated deemed supplies may register or apply to HMRC for exemption from registration; this exemption is not automatic.
 
 ![Illustration of an e-commerce fulfilment warehouse with rows of boxed goods.](/img/insights/uk-vat-for-online-sellers-when-to-register-3.webp)
 
 To ensure tax compliance across digital platforms, the UK introduced marketplace facilitation rules. Under [HMRC marketplace guidelines](https://www.gov.uk/guidance/vat-and-overseas-goods-sold-to-customers-in-the-uk-using-online-marketplaces), an online marketplace becomes liable for VAT in two distinct overseas trading scenarios:
 
 - **Consignments of £135 or less sent from abroad**: If an overseas merchant sells goods shipped from outside the UK to a consumer in Great Britain through a marketplace platform, the marketplace operator accounts for the VAT at the point of sale.
-- **Goods located in the UK at sale**: If an overseas business stores inventory inside a UK facility and sells goods of any value to private consumers via a marketplace, the marketplace operator is responsible for charging and remiting consumer VAT at checkout.
+- **Goods located in the UK at sale**: If an overseas business stores inventory inside a UK facility and sells goods of any value to private consumers via a marketplace, the marketplace operator is responsible for charging and remitting consumer VAT at checkout.
 
 When a marketplace accounts for VAT on goods already stored in the UK, HMRC splits the transaction into two legs. The transaction between the overseas merchant and the online marketplace is classified as a zero-rated deemed supply. The marketplace then makes a deemed retail supply to the final consumer and collects the appropriate output tax.
 
-Critically, this facilitation rule does not eliminate the need for an overseas merchant to register for UK VAT if they hold stock locally. Storing products in a UK third-party warehouse or fulfilment service means you are importing commercial stock and transferring inventory inside the country. Non-established merchants must register for UK VAT to clear customs, reclaim import VAT, and properly declare zero-rated deemed supplies on their regular tax filings.
+HMRC allows overseas sellers making only zero-rated deemed supplies to register or apply for exemption from registration. Import VAT and Customs Duty remain the seller’s responsibility. VAT-registered sellers can reclaim eligible import VAT under the normal recovery rules. Direct sales and sales to VAT-registered business customers can create separate registration obligations, so check the full mix of transactions before applying for exemption.
 
 ## What rules apply to VAT rates and Northern Ireland?
 
@@ -94,3 +95,6 @@ If you are planning an e-commerce venture or establishing cross-border storefron
 - [gov.uk: Vat and overseas goods sold to customers in the uk using online marketplaces](https://www.gov.uk/guidance/vat-and-overseas-goods-sold-to-customers-in-the-uk-using-online-marketplaces)
 
 *This guide is general information, not legal or tax advice. Rules change and can differ by state or country, so confirm with the official source or a qualified adviser before you act.*
+
+
+Found an error? [Send a correction to FXN Holdings](/contact/).

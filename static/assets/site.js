@@ -21,7 +21,7 @@
       var offset = (header ? header.offsetHeight : 0) + 16;
       var y = target.getBoundingClientRect().top + window.scrollY - offset;
       lenis.scrollTo(Math.max(0, y), { duration: 1.1 });
-      history.pushState(null, "", url.hash);
+      window.history.pushState(null, "", url.hash);
     });
   }
 
@@ -46,14 +46,28 @@
   // Mobile menu
   var menuBtn = document.querySelector(".menu-btn");
   if (menuBtn) {
+    var menu = document.getElementById("mobile-nav");
+    var menuMedia = window.matchMedia("(max-width: 960px)");
+    var background = document.querySelectorAll("main, .site-footer, .chat, .cookie-banner");
     var setMenu = function (open) {
+      open = open && menuMedia.matches;
       document.body.classList.toggle("menu-open", open);
+      background.forEach(function (el) { el.inert = open; });
       if (lenis) { if (open) lenis.stop(); else lenis.start(); }
       menuBtn.setAttribute("aria-expanded", String(open));
       menuBtn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
     };
     menuBtn.addEventListener("click", function () { setMenu(!document.body.classList.contains("menu-open")); });
-    document.addEventListener("keydown", function (e) { if (e.key === "Escape") setMenu(false); });
+    document.addEventListener("keydown", function (e) {
+      if (!document.body.classList.contains("menu-open")) return;
+      if (e.key === "Escape") { setMenu(false); menuBtn.focus(); }
+      if (e.key === "Tab") {
+        var last = menu.querySelector("a:last-child");
+        if (e.shiftKey && document.activeElement === menuBtn) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); menuBtn.focus(); }
+      }
+    });
+    menuMedia.addEventListener("change", function () { if (!menuMedia.matches) setMenu(false); });
     document.querySelectorAll(".mobile-nav a").forEach(function (a) { a.addEventListener("click", function () { setMenu(false); }); });
   }
 
@@ -117,7 +131,7 @@
     });
   }
 
-  // Website assistant: chat panel that talks to /api/chat (Cloudflare Pages Function)
+  // Website assistant: chat panel that talks to /api/chat (shared API handler)
   var chat = document.querySelector("[data-chat]");
   if (chat) {
     var fab = chat.querySelector(".chat-fab");
@@ -130,11 +144,28 @@
     var wa = chat.getAttribute("data-whatsapp");
     var STORE = "fxn-chat-v1";
     var WELCOME = "Hi! I'm the FXN Holdings assistant. Ask me about our websites, how we build them, or working with us. If you'd like the team to follow up, I can pass your details on.";
-    var history = [];
+    var chatHistory = [];
     var busy = false;
-    try { history = JSON.parse(sessionStorage.getItem(STORE) || "[]"); } catch (e) { history = []; }
-    if (!Array.isArray(history)) history = [];
-    var save = function () { try { sessionStorage.setItem(STORE, JSON.stringify(history.slice(-30))); } catch (e) {} };
+    try { chatHistory = JSON.parse(sessionStorage.getItem(STORE) || "[]"); } catch (e) { chatHistory = []; }
+    if (!Array.isArray(chatHistory)) chatHistory = [];
+    chatHistory = chatHistory.filter(function (m) {
+      return m && (m.role === "user" || m.role === "assistant") && typeof m.content === "string";
+    }).slice(-30);
+    var requestBody = function () {
+      var messages = chatHistory.slice(-20).map(function (m) {
+        return { role: m.role, content: m.content.slice(0, 1500) };
+      });
+      var body;
+      // Leave room below the 64 KiB proxy/API cap, including JSON escaping and UTF-8.
+      while (messages.length) {
+        while (messages.length > 1 && messages[0].role !== "user") messages.shift();
+        body = JSON.stringify({ messages: messages });
+        if (new TextEncoder().encode(body).length <= 60 * 1024) return body;
+        messages.shift();
+      }
+      return JSON.stringify({ messages: [] });
+    };
+    var save = function () { chatHistory = chatHistory.slice(-30); try { sessionStorage.setItem(STORE, JSON.stringify(chatHistory)); } catch (e) {} };
 
     if (wa) {
       var waLink = chat.querySelector(".chat-wa");
@@ -170,8 +201,8 @@
     var render = function () {
       log.textContent = "";
       bubble("assistant", WELCOME);
-      history.forEach(function (m) { bubble(m.role, m.content); });
-      suggest.hidden = history.length > 0;
+      chatHistory.forEach(function (m) { bubble(m.role, m.content); });
+      suggest.hidden = chatHistory.length > 0;
     };
     var setOpen = function (open) {
       panel.hidden = !open;
@@ -185,7 +216,7 @@
       busy = true;
       sendBtn.disabled = true;
       suggest.hidden = true;
-      history.push({ role: "user", content: text.slice(0, 1500) });
+      chatHistory.push({ role: "user", content: text.slice(0, 1500) });
       save();
       bubble("user", text);
       var typing = document.createElement("div");
@@ -197,29 +228,29 @@
       fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ messages: history })
+        body: requestBody()
       }).then(function (res) {
         return res.json().catch(function () { return {}; }).then(function (data) { return { ok: res.ok, data: data }; });
       }).then(function (r) {
         typing.remove();
         if (r.ok && r.data.reply) {
-          history.push({ role: "assistant", content: r.data.reply });
+          chatHistory.push({ role: "assistant", content: r.data.reply });
           save();
           bubble("assistant", r.data.reply);
         } else {
-          history.pop();
+          chatHistory.pop();
           save();
           bubble("error", (r.data && r.data.reply) || "The assistant is unavailable right now. Please use the contact form at /contact/ or email contact@fxnholdings.com.");
         }
       }).catch(function () {
         typing.remove();
-        history.pop();
+        chatHistory.pop();
         save();
         bubble("error", "I couldn't reach the server. Check your connection, or use the contact form at /contact/.");
       }).then(function () {
         busy = false;
         sendBtn.disabled = false;
-        input.focus();
+        if (!panel.hidden) input.focus();
       });
     };
 
@@ -298,13 +329,15 @@
     });
   });
 
-  // Contact form → /api/contact (Cloudflare Pages Function, emails the team)
+  // Contact form → /api/contact (shared API handler, emails the team)
   var form = document.getElementById("contact-form");
   if (form) {
+    form.noValidate = true; // Custom validation with JS; native validation without it.
     var status = form.querySelector(".form-status");
     var button = form.querySelector("button[type=submit]");
     form.addEventListener("submit", function (e) {
       e.preventDefault();
+      if (button.disabled) return;
       var required = ["name", "email", "message"];
       var firstBad = null, missing = false;
       required.forEach(function (n) {
@@ -319,6 +352,16 @@
         status.className = "form-status err";
         status.textContent = missing ? "Please add your name, email and message." : "Please enter a valid email address.";
         firstBad.focus();
+        return;
+      }
+      var fields = ["name", "email", "company", "message"];
+      var tooLong = fields.find(function (n) { var el = form.elements[n]; return el.maxLength > 0 && el.value.length > el.maxLength; });
+      if (tooLong) {
+        var field = form.elements[tooLong];
+        field.setAttribute("aria-invalid", "true");
+        status.className = "form-status err";
+        status.textContent = "Please keep " + tooLong + " to " + field.maxLength + " characters or fewer.";
+        field.focus();
         return;
       }
       button.disabled = true;

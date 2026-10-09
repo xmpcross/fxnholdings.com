@@ -2,7 +2,11 @@ node_modules/
 dist/
 .dist-build/
 .dist-old/
+.deploy.lock
+__pycache__/
 .wrangler/
 .env.local
 .dist-preview/
 seo-reports/*/lighthouse/
+
+.seo-cache/

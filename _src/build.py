@@ -29,7 +29,7 @@ SRC = Path(__file__).resolve().parent
 ROOT = SRC.parent
 OUT = Path(os.environ["BUILD_OUT"]).resolve() if os.environ.get("BUILD_OUT") else ROOT / "dist"
 SITE = "https://fxnholdings.com"
-VERSION = "20261010d"
+VERSION = "20261010g"
 
 logo = (SRC / "partials" / "logo.svg").read_text().strip()
 header = (SRC / "partials" / "header.html").read_text()
@@ -68,7 +68,7 @@ ORG_JSONLD = {
     "email": "contact@fxnholdings.com",
     "taxID": "53 274 423 748",
     "sameAs": ["https://abr.business.gov.au/ABN/View?abn=53274423748"],
-    "foundingDate": "2023",
+    "foundingDate": "2024",
     "address": {
         "@type": "PostalAddress",
         "postOfficeBoxNumber": "500",
@@ -222,19 +222,22 @@ FA_CSS = "fa.min.css?v=6.7.2"
 
 
 def last_changed(*paths):
-    """Date of the last commit touching any of these files, for sitemap <lastmod>.
-    Uncommitted edits count as today, so a preview or deploy of local changes stays honest."""
+    """Use a trusted commit date; omit uncertain dates for local/untracked edits."""
     import subprocess
     rel = [str(Path(x).resolve().relative_to(ROOT)) for x in paths]
-    if subprocess.run(["git", "status", "--porcelain", "--", *rel], cwd=ROOT, capture_output=True, text=True).stdout.strip():
-        return dt.date.today().isoformat()
+    status = subprocess.run(["git", "status", "--porcelain", "--", *rel], cwd=ROOT, capture_output=True, text=True)
+    if status.returncode or status.stdout.strip():
+        return None
+    for path in rel:
+        if subprocess.run(["git", "ls-files", "--error-unmatch", "--", path], cwd=ROOT, capture_output=True).returncode:
+            return None
     out = subprocess.run(["git", "log", "-1", "--format=%cs", "--", *rel], cwd=ROOT, capture_output=True, text=True).stdout.strip()
-    return out or dt.date.today().isoformat()
+    return out if re.fullmatch(r"\d{4}-\d{2}-\d{2}", out) else None
 
 
 def sitemap(entries):
     rows = "".join(
-        f"  <url><loc>{SITE}{path}</loc><lastmod>{lastmod}</lastmod></url>\n" for path, lastmod in entries
+        f"  <url><loc>{SITE}{path}</loc>" + (f"<lastmod>{lastmod}</lastmod>" if lastmod else "") + "</url>\n" for path, lastmod in entries
     )
     return f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{rows}</urlset>\n'
 
@@ -251,11 +254,14 @@ if __name__ == "__main__":
     FA_CSS = pick_icon_css()
     posts = insights.load_posts(SRC, include_drafts=drafts)
     set_category_links(posts)
+    # Shared markup, category navigation and related-post cards affect every page.
+    shared = [SRC / "build.py", SRC / "insights.py", *sorted((SRC / "partials").glob("*")),
+              *[SRC / "posts" / f"{p['slug']}.md" for p in posts]]
     for p in sorted((SRC / "pages").glob("*.html")):
         meta, body = read_page(p)
         print("built", render(meta, body))
         if not meta.get("noindex"):
-            entries.append((meta["path"], last_changed(p)))
+            entries.append((meta["path"], last_changed(p, *shared)))
     post_files = {q["slug"]: SRC / "posts" / f"{q['slug']}.md" for q in posts}
     for meta, body in insights.pages(posts, SITE):
         print("built", render(meta, body))
@@ -263,7 +269,7 @@ if __name__ == "__main__":
             slug = meta["path"].strip("/").split("/")[-1]
             # A post changes when its file does; listings change when any post does
             files = [post_files[slug]] if slug in post_files else list(post_files.values()) or [SRC / "insights.py"]
-            entries.append((meta["path"], last_changed(*files)))
+            entries.append((meta["path"], last_changed(*files, *shared)))
     (OUT / "insights" / "feed.xml").write_text(insights.feed(posts, SITE))
     (OUT / "sitemap.xml").write_text(sitemap(entries))
     print(f"insights: {len(posts)} post(s){' incl. drafts' if drafts else ''}; sitemap: {len(entries)} URLs")

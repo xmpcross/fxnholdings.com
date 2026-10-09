@@ -13,6 +13,7 @@ const routes = { "/api/contact": contact, "/api/chat": chat };
 export default {
   async fetch(request, env) {
     const { pathname } = new URL(request.url);
+    if (pathname.replace(/\/$/, "") === "/api/health") return request.method === "GET" ? json(200, { ok: true }) : json(405, { error: "Method not allowed" });
     const handler = routes[pathname.replace(/\/$/, "")];
     if (handler) {
       if (request.method !== "POST") return json(405, { error: "Method not allowed" });

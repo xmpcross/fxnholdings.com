@@ -38,22 +38,22 @@
     </div>
 
     <div class="form-card reveal d1">
-      <form id="contact-form" name="contact" method="POST" action="/api/contact" novalidate>
+      <form id="contact-form" name="contact" method="POST" action="/api/contact">
         <h2 class="h4">Send us a message</h2>
         <p class="muted form-note">Fields marked <span class="req">*</span> are required.</p>
         <p class="hp" aria-hidden="true"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
         <div class="form-grid">
           <div class="field">
             <label for="f-name">Full name <span class="req">*</span></label>
-            <input id="f-name" name="name" type="text" autocomplete="name" placeholder="Jane Smith" required>
+            <input id="f-name" name="name" maxlength="200" type="text" autocomplete="name" placeholder="Jane Smith" required>
           </div>
           <div class="field">
             <label for="f-email">Email address <span class="req">*</span></label>
-            <input id="f-email" name="email" type="email" autocomplete="email" placeholder="jane@company.com" required>
+            <input id="f-email" name="email" maxlength="200" type="email" autocomplete="email" placeholder="jane@company.com" required>
           </div>
           <div class="field">
             <label for="f-company">Company</label>
-            <input id="f-company" name="company" type="text" autocomplete="organization" placeholder="Your company (optional)">
+            <input id="f-company" name="company" maxlength="200" type="text" autocomplete="organization" placeholder="Your company (optional)">
           </div>
           <div class="field">
             <label for="f-reason">Enquiry type</label>
@@ -68,7 +68,8 @@
           </div>
           <div class="field full">
             <label for="f-message">Message <span class="req">*</span></label>
-            <textarea id="f-message" name="message" placeholder="Tell us about your idea, product, program or proposal." required></textarea>
+            <textarea id="f-message" name="message" maxlength="5000" placeholder="Tell us about your idea, product, program or proposal." aria-describedby="message-limit" required></textarea>
+            <small id="message-limit">Up to 5,000 characters.</small>
           </div>
         </div>
         <div class="form-foot">

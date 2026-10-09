@@ -1,6 +1,7 @@
 ---
 title: Starting a US business from overseas
 date: 2026-10-09
+updated: 2026-10-09
 category: start-a-business
 summary: Starting a US company from abroad is entirely legal without citizenship or residency. Here is how foreign founders navigate state filings, IRS rules, and sales tax.
 image: /img/insights/starting-a-us-business-from-overseas.webp
@@ -34,7 +35,7 @@ A federal Employer Identification Number (EIN) is a unique nine-digit tax identi
 
 Domestic founders with a Social Security Number (SSN) or Individual Taxpayer Identification Number (ITIN) can use an automated portal on the IRS website. However, foreign founders without an SSN or ITIN cannot use this web portal. As specified in the [IRS Form SS-4 instructions](https://www.irs.gov/instructions/iss4), overseas applicants must complete paper Form SS-4.
 
-On line 7b of Form SS-4, where the form requests the responsible party's SSN or ITIN, an overseas applicant without domestic tax credentials must enter "Foreign" or "N/A".
+On line 7b of Form SS-4, where the form requests the responsible party's SSN or ITIN, enter "Foreign" or "N/A" only if the responsible party does not have, and is ineligible to obtain, an SSN or ITIN. Lacking a number alone does not establish eligibility for this treatment.
 
 Once completed and signed, you can submit Form SS-4 using three approved international methods:
 
@@ -46,7 +47,7 @@ Securing your EIN establishes your corporate identity with federal authorities a
 
 ## What federal tax filings and FinCEN rules apply to foreign owners?
 
-Foreign-owned companies face specific federal filing rules: corporations pay a flat twenty-one percent federal tax rate on Form 1120, while foreign-owned single-member LLCs must file Form 5472 with a pro-forma Form 1120. Meanwhile, foreign entities registering directly in a state must file FinCEN beneficial ownership reports within thirty days.
+Foreign-owned companies face specific federal filing rules: corporations pay a flat twenty-one percent federal tax rate on Form 1120, while foreign-owned single-member LLCs must file Form 5472 with a pro-forma Form 1120. Foreign entities registering directly in a US state or tribal jurisdiction may also have FinCEN reporting duties if they meet the reporting-company definition and do not qualify for an exemption; US-created entities are exempt.
 
 Tax compliance depends entirely on how your legal structure is classified by the federal government. Standard American C-Corporations pay a flat federal corporate income tax rate of 21% on net taxable profits, reported annually on IRS Form 1120.
 
@@ -56,7 +57,7 @@ Under these rules, the foreign-owned single-member LLC must file an informationa
 
 Overlooking Form 5472 carries severe financial consequences. Under the [IRS Form 5472 instructions](https://www.irs.gov/instructions/i5472), failing to file Form 5472 on time or neglecting to maintain required accounting records triggers a statutory penalty of $25,000 per form for each tax year. If the failure continues beyond 90 days after the IRS issues an official notice of failure, an additional $25,000 continuation penalty is charged for every subsequent 30-day period, with no upper statutory limit.
 
-Beyond the IRS, non-US business groups must understand FinCEN rules under the Corporate Transparency Act. Under the [FinCEN BOI Small Compliance Guide](https://www.fincen.gov/system/files/shared/BOI_Small_Compliance_Guide.v1.1-FINAL.pdf), entities created under the law of an American state (domestic entities) and beneficial owners who are US persons are exempt from FinCEN Beneficial Ownership Information (BOI) reporting. However, non-US legal entities established under the laws of a foreign nation that register to do business directly in any US state or tribal jurisdiction must file an initial BOI report with FinCEN within 30 calendar days of receiving notice that their state registration has become effective.
+Beyond the IRS, non-US business groups should check the current [FinCEN beneficial ownership reporting guidance](https://www.fincen.gov/boi). Entities created in the United States are exempt from BOI reporting. Entities formed under foreign law and registered to do business in a US state or tribal jurisdiction must assess whether they meet the reporting-company definition and qualify for an exemption. For non-exempt foreign reporting companies registered on or after 26 March 2025, the initial report is due within 30 calendar days of effective-registration notice. These companies do not report beneficial ownership information for US persons.
 
 ## How do state franchise taxes and economic nexus sales taxes work?
 
@@ -115,7 +116,10 @@ At FXN Holdings, we build and maintain platforms designed to satisfy local laws 
 - [sba.gov: Grow your business](https://www.sba.gov/counseling/grow-your-business/)
 - [irs.gov: Get an employer identification number](https://www.irs.gov/businesses/small-businesses-self-employed/get-an-employer-identification-number)
 - [irs.gov: Iss4](https://www.irs.gov/instructions/iss4)
-- [fincen.gov: BOI Small Compliance Guide.v1.1 FINAL](https://www.fincen.gov/system/files/shared/BOI_Small_Compliance_Guide.v1.1-FINAL.pdf)
+- [FinCEN: current beneficial ownership reporting guidance](https://www.fincen.gov/boi)
 - [irs.gov: I5472](https://www.irs.gov/instructions/i5472)
 
 *This guide is general information, not legal or tax advice. Rules change and can differ by state or country, so confirm with the official source or a qualified adviser before you act.*
+
+
+Found an error? [Send a correction to FXN Holdings](/contact/).

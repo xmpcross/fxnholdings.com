@@ -3,15 +3,16 @@
 // Accepts JSON (from site.js) or a regular form post (no-JS fallback) with
 // name, email, company, reason, message and the honeypot field bot-field.
 // Emails the enquiry to the team through Google Workspace SMTP; see lib/email.js.
-import { json, allowedOrigin, clientIp, rateLimited, isEmail } from "./lib/http.js";
+import { json, allowedOrigin, clientIp, rateLimited, isEmail, readLimitedBody } from "./lib/http.js";
 import { sendEmail } from "./lib/email.js";
 
 const LIMITS = { name: 200, email: 200, company: 200, reason: 100, message: 5000 };
 
 async function readBody(request) {
   const type = request.headers.get("content-type") || "";
-  if (type.includes("application/json")) return { data: await request.json(), html: false };
-  const form = await request.formData();
+  const raw = await readLimitedBody(request);
+  if (type.includes("application/json")) return { data: JSON.parse(raw), html: false };
+  const form = await new Response(raw, { headers: { "content-type": type } }).formData();
   return { data: Object.fromEntries(form), html: true };
 }
 
@@ -24,17 +25,23 @@ export async function onRequestPost({ request, env }) {
   let body;
   try {
     body = await readBody(request);
-  } catch {
+  } catch (error) {
+    if (error instanceof RangeError) return json(413, { error: "Request too large." });
     return json(400, { error: "Invalid request." });
   }
   const d = body.data || {};
   const done = () =>
-    body.html ? Response.redirect(new URL("/contact/?sent=1#contact-form", request.url).toString(), 303) : json(200, { ok: true });
+    body.html ? Response.redirect(new URL("/contact/thanks/", request.url).toString(), 303) : json(200, { ok: true });
 
   // Bots fill the hidden field; pretend success so they don't retry.
   if (d["bot-field"]) return done();
 
-  const f = Object.fromEntries(Object.entries(LIMITS).map(([k, max]) => [k, String(d[k] || "").trim().slice(0, max)]));
+  const f = {};
+  for (const [key, max] of Object.entries(LIMITS)) {
+    if (d[key] != null && typeof d[key] !== "string") return json(400, { error: `Invalid ${key}.` });
+    f[key] = (d[key] || "").trim();
+    if (f[key].length > max) return json(400, { error: `Please keep ${key} to ${max} characters or fewer.` });
+  }
   if (!f.name || !f.email || !f.message) return json(400, { error: "Please add your name, email and message." });
   if (!isEmail(f.email)) return json(400, { error: "Please enter a valid email address." });
 

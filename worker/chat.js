@@ -13,7 +13,7 @@
 //   CHAT_MODEL         optional, defaults to claude-haiku-5-5
 //   plus the email settings in lib/email.js
 import Anthropic from "@anthropic-ai/sdk";
-import { json, allowedOrigin, clientIp, rateLimited, isEmail } from "./lib/http.js";
+import { json, allowedOrigin, clientIp, rateLimited, isEmail, readLimitedBody } from "./lib/http.js";
 import { sendEmail } from "./lib/email.js";
 
 const MAX_TURNS = 20; // messages kept from the transcript
@@ -158,8 +158,9 @@ export async function onRequestPost({ request, env }) {
 
   let payload;
   try {
-    payload = await request.json();
-  } catch {
+    payload = JSON.parse(await readLimitedBody(request));
+  } catch (error) {
+    if (error instanceof RangeError) return json(413, { error: "Request too large", reply: "This conversation is too large. Please reload the page and try again." });
     return json(400, { error: "Invalid JSON" });
   }
   const transcript = cleanTranscript(payload?.messages);

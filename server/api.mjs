@@ -15,9 +15,9 @@ import http from "node:http";
 import { Readable } from "node:stream";
 import { onRequestPost as contact } from "../worker/contact.js";
 import { onRequestPost as chat } from "../worker/chat.js";
+import { MAX_BODY } from "../worker/lib/http.js";
 
 const PORT = Number(process.env.API_PORT || 4330);
-const MAX_BODY = 64 * 1024;
 const routes = { "/api/contact": contact, "/api/chat": chat };
 
 const send = (res, status, body) => {
@@ -27,6 +27,7 @@ const send = (res, status, body) => {
 
 const server = http.createServer(async (req, res) => {
   const path = (req.url || "/").split("?")[0].replace(/\/$/, "");
+  if (path === "/api/health") return send(res, req.method === "GET" ? 200 : 405, req.method === "GET" ? { ok: true } : { error: "Method not allowed" });
   const handler = routes[path];
   if (!handler) return send(res, 404, { error: "Not found" });
   if (req.method !== "POST") return send(res, 405, { error: "Method not allowed" });
@@ -44,11 +45,17 @@ const server = http.createServer(async (req, res) => {
     return send(res, 400, { error: "Invalid request" });
   }
 
-  const proto = req.headers["x-forwarded-proto"] || "https";
-  const host = req.headers["x-forwarded-host"] || req.headers.host || "fxnholdings.com";
-  const headers = new Headers();
-  for (const [k, v] of Object.entries(req.headers)) if (v !== undefined) headers.set(k, Array.isArray(v) ? v.join(", ") : v);
-  const request = new Request(`${proto}://${host}${req.url}`, { method: "POST", headers, body: Buffer.concat(chunks) });
+  let request;
+  try {
+    const proto = req.headers["x-forwarded-proto"] || "https";
+    const host = req.headers["x-forwarded-host"] || req.headers.host || "fxnholdings.com";
+    if (!["http", "https"].includes(proto)) throw new TypeError("Invalid protocol");
+    const headers = new Headers();
+    for (const [k, v] of Object.entries(req.headers)) if (v !== undefined) headers.set(k, Array.isArray(v) ? v.join(", ") : v);
+    request = new Request(`${proto}://${host}${req.url}`, { method: "POST", headers, body: Buffer.concat(chunks) });
+  } catch {
+    return send(res, 400, { error: "Invalid request" });
+  }
 
   try {
     const response = await handler({ request, env: process.env });
@@ -61,5 +68,5 @@ const server = http.createServer(async (req, res) => {
   }
 });
 
-server.listen(PORT, "127.0.0.1", () => console.log(`fxnholdings api listening on 127.0.0.1:${PORT}`));
+server.listen(PORT, "127.0.0.1", () => console.log(`fxnholdings api listening on 127.0.0.1:${server.address().port}`));
 for (const sig of ["SIGTERM", "SIGINT"]) process.on(sig, () => server.close(() => process.exit(0)));

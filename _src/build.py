@@ -29,7 +29,7 @@ SRC = Path(__file__).resolve().parent
 ROOT = SRC.parent
 OUT = Path(os.environ["BUILD_OUT"]).resolve() if os.environ.get("BUILD_OUT") else ROOT / "dist"
 SITE = "https://fxnholdings.com"
-VERSION = "20261009x"
+VERSION = "20261009y"
 
 logo = (SRC / "partials" / "logo.svg").read_text().strip()
 header = (SRC / "partials" / "header.html").read_text()
@@ -106,7 +106,7 @@ HEAD = """<!doctype html>
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="alternate" type="application/rss+xml" title="FXN Holdings Blog" href="/insights/feed.xml">
 <link rel="preload" href="/fonts/Urbanist-Variable.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/vendor/fontawesome/fa.min.css?v=6.7.2">
+<link rel="stylesheet" href="/assets/vendor/fontawesome/{fa_css}">
 <link rel="stylesheet" href="/assets/vendor/lenis/lenis.css?v=1.3.26">
 <link rel="stylesheet" href="/assets/site.css?v={version}">
 {jsonld}</head>
@@ -167,6 +167,7 @@ def render(meta, body):
             jsonld=jsonld,
             version=VERSION,
             site=SITE,
+            fa_css=FA_CSS,
             og_type=meta.get("og_type", "website"),
             og_image=meta.get("og_image") or "/img/og-image.png",
             og_image_alt=esc(meta.get("og_image_alt") or "FXN Holdings: we find the gap, build the platform, and launch it."),
@@ -196,6 +197,30 @@ def read_page(src_path):
     return json.loads(m.group(1)), raw[m.end():]
 
 
+def pick_icon_css():
+    """Use the cut-down Font Awesome (see subset_icons.py) only if it has every icon the site uses."""
+    fa = ROOT / "static" / "assets" / "vendor" / "fontawesome"
+    sub = fa / "fa.subset.css"
+    if not sub.is_file():
+        return "fa.min.css?v=6.7.2"
+    have = set(re.findall(r"\.(fa-[a-z0-9-]+)\{--fa:", sub.read_text()))
+    glyphs = set(re.findall(r"\.(fa-[a-z0-9-]+)\{--fa:", (fa / "fa.min.css").read_text()))
+    used = set()
+    for f in [*SRC.rglob("*.html"), *SRC.glob("*.py"), ROOT / "static" / "assets" / "site.js"]:
+        text = f.read_text()
+        used |= set(re.findall(r"\bfa-[a-z0-9]+(?:-[a-z0-9]+)*\b", text))
+        used |= {"fa-" + n for n in re.findall(r'"icon":\s*"([a-z0-9-]+)"', text)}
+    missing = sorted((used & glyphs) - have)
+    if missing:
+        print(f"warning: icons missing from fa.subset.css ({', '.join(missing)}); using the full fa.min.css. "
+              "Re-run: /opt/scripts/fxnholdings/.venv/bin/python _src/subset_icons.py")
+        return "fa.min.css?v=6.7.2"
+    return f"fa.subset.css?v={VERSION}"
+
+
+FA_CSS = "fa.min.css?v=6.7.2"
+
+
 def last_changed(*paths):
     """Date of the last commit touching any of these files, for sitemap <lastmod>.
     Uncommitted edits count as today, so a preview or deploy of local changes stays honest."""
@@ -223,6 +248,7 @@ if __name__ == "__main__":
         shutil.rmtree(OUT)
     shutil.copytree(ROOT / "static", OUT)
     entries = []
+    FA_CSS = pick_icon_css()
     posts = insights.load_posts(SRC, include_drafts=drafts)
     set_category_links(posts)
     for p in sorted((SRC / "pages").glob("*.html")):

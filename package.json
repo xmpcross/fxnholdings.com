@@ -1,0 +1,12 @@
+{
+  "name": "fxnholdings-com",
+  "private": true,
+  "type": "module",
+  "description": "Static site for FXN Holdings plus the website assistant Netlify Function.",
+  "scripts": {
+    "build": "python3 _src/build.py"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "0.128.0"
+  }
+}

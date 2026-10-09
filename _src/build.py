@@ -16,8 +16,8 @@ from pathlib import Path
 
 SRC = Path(__file__).resolve().parent
 ROOT = SRC.parent
-SITE = "https://www.fxnholdings.com"
-VERSION = "20261009m"
+SITE = "https://fxnholdings.com"
+VERSION = "20261009o"
 
 logo = (SRC / "partials" / "logo.svg").read_text().strip()
 header = (SRC / "partials" / "header.html").read_text()

@@ -2,6 +2,11 @@
   publish = "."
   command = "echo Netlify Forms registration"
 
+# Website assistant (netlify/functions/chat.mjs, served at /api/chat)
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
 # Page sources and build script are not part of the public site
 [[redirects]]
   from = "/_src/*"
@@ -40,3 +45,8 @@
   for = "/img/*"
   [headers.values]
     Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/api/*"
+  [headers.values]
+    Cache-Control = "no-store"

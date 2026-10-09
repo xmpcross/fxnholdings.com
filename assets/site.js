@@ -81,6 +81,140 @@
     document.addEventListener("visibilitychange", function () { if (document.hidden) { clearTimeout(timer); } else if (!paused) { schedule(); } });
   }
 
+  // Cookie notice: informational (the site sets no non-essential cookies); dismissal is remembered
+  var banner = document.querySelector(".cookie-banner");
+  if (banner) {
+    var KEY = "fxn-cookie-notice";
+    var seen = false;
+    try { seen = localStorage.getItem(KEY) === "1"; } catch (e) {}
+    if (!seen) banner.hidden = false;
+    banner.querySelector(".cookie-ok").addEventListener("click", function () {
+      banner.hidden = true;
+      try { localStorage.setItem(KEY, "1"); } catch (e) {}
+    });
+  }
+
+  // Website assistant: chat panel that talks to /api/chat (Netlify Function)
+  var chat = document.querySelector("[data-chat]");
+  if (chat) {
+    var fab = chat.querySelector(".chat-fab");
+    var panel = chat.querySelector(".chat-panel");
+    var log = chat.querySelector(".chat-log");
+    var chatForm = chat.querySelector(".chat-form");
+    var input = chat.querySelector("#chat-input");
+    var sendBtn = chatForm.querySelector("button[type=submit]");
+    var suggest = chat.querySelector(".chat-suggest");
+    var wa = chat.getAttribute("data-whatsapp");
+    var STORE = "fxn-chat-v1";
+    var WELCOME = "Hi! I'm the FXN Holdings assistant. Ask me about our websites, how we build them, or working with us. If you'd like the team to follow up, I can pass your details on.";
+    var history = [];
+    var busy = false;
+    try { history = JSON.parse(sessionStorage.getItem(STORE) || "[]"); } catch (e) { history = []; }
+    if (!Array.isArray(history)) history = [];
+    var save = function () { try { sessionStorage.setItem(STORE, JSON.stringify(history.slice(-30))); } catch (e) {} };
+
+    if (wa) {
+      var waLink = chat.querySelector(".chat-wa");
+      waLink.href = "https://wa.me/" + wa.replace(/\D/g, "");
+      waLink.hidden = false;
+    }
+
+    // Render text safely: plain text, with site paths, URLs and emails turned into links
+    var addText = function (el, text) {
+      var re = /(https?:\/\/[^\s)]+|[\w.+-]+@[\w-]+\.[\w.-]+|(?:^|(?<=\s))\/[a-z0-9-]+\/(?:#[a-z0-9-]+)?)/gi;
+      var last = 0, m;
+      while ((m = re.exec(text))) {
+        el.appendChild(document.createTextNode(text.slice(last, m.index)));
+        var a = document.createElement("a");
+        var v = m[0].replace(/[.,]$/, "");
+        a.textContent = v;
+        a.href = v.indexOf("@") > 0 && v.indexOf("/") < 0 ? "mailto:" + v : v;
+        if (/^https?:/.test(v)) { a.target = "_blank"; a.rel = "noopener"; }
+        el.appendChild(a);
+        last = m.index + v.length;
+        re.lastIndex = last;
+      }
+      el.appendChild(document.createTextNode(text.slice(last)));
+    };
+    var bubble = function (role, text) {
+      var div = document.createElement("div");
+      div.className = "msg " + (role === "user" ? "msg-user" : role === "error" ? "msg-error" : "msg-bot");
+      addText(div, text);
+      log.appendChild(div);
+      log.scrollTop = log.scrollHeight;
+      return div;
+    };
+    var render = function () {
+      log.textContent = "";
+      bubble("assistant", WELCOME);
+      history.forEach(function (m) { bubble(m.role, m.content); });
+      suggest.hidden = history.length > 0;
+    };
+    var setOpen = function (open) {
+      panel.hidden = !open;
+      chat.classList.toggle("open", open);
+      fab.setAttribute("aria-expanded", String(open));
+      if (open) { render(); input.focus(); } else { fab.focus(); }
+    };
+    var send = function (text) {
+      text = text.trim();
+      if (!text || busy) return;
+      busy = true;
+      sendBtn.disabled = true;
+      suggest.hidden = true;
+      history.push({ role: "user", content: text.slice(0, 1500) });
+      save();
+      bubble("user", text);
+      var typing = document.createElement("div");
+      typing.className = "msg msg-bot msg-typing";
+      typing.setAttribute("aria-label", "The assistant is typing");
+      typing.innerHTML = "<i></i><i></i><i></i>";
+      log.appendChild(typing);
+      log.scrollTop = log.scrollHeight;
+      fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ messages: history })
+      }).then(function (res) {
+        return res.json().catch(function () { return {}; }).then(function (data) { return { ok: res.ok, data: data }; });
+      }).then(function (r) {
+        typing.remove();
+        if (r.ok && r.data.reply) {
+          history.push({ role: "assistant", content: r.data.reply });
+          save();
+          bubble("assistant", r.data.reply);
+        } else {
+          history.pop();
+          save();
+          bubble("error", (r.data && r.data.reply) || "The assistant is unavailable right now. Please use the contact form at /contact/ or email contact@fxnholdings.com.");
+        }
+      }).catch(function () {
+        typing.remove();
+        history.pop();
+        save();
+        bubble("error", "I couldn't reach the server. Check your connection, or use the contact form at /contact/.");
+      }).then(function () {
+        busy = false;
+        sendBtn.disabled = false;
+        input.focus();
+      });
+    };
+
+    fab.addEventListener("click", function () { setOpen(true); });
+    chat.querySelector(".chat-close").addEventListener("click", function () { setOpen(false); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !panel.hidden) setOpen(false); });
+    chatForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      if (busy || !input.value.trim()) return; // keep the text until the assistant can take it
+      var v = input.value; input.value = ""; input.style.height = ""; send(v);
+    });
+    input.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); chatForm.requestSubmit ? chatForm.requestSubmit() : chatForm.dispatchEvent(new Event("submit")); }
+    });
+    input.addEventListener("input", function () { input.style.height = "auto"; input.style.height = Math.min(input.scrollHeight, 120) + "px"; });
+    suggest.querySelectorAll("button").forEach(function (b) { b.addEventListener("click", function () { send(b.textContent); }); });
+  }
+
   // Legal pages: highlight the current section in the table of contents
   var tocLinks = document.querySelectorAll(".toc a");
   if (tocLinks.length && "IntersectionObserver" in window) {

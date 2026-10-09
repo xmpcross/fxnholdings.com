@@ -68,7 +68,7 @@ ORG_JSONLD = {
     "email": "contact@fxnholdings.com",
     "taxID": "53 274 423 748",
     "sameAs": ["https://abr.business.gov.au/ABN/View?abn=53274423748"],
-    "foundingDate": "2024",
+    "foundingDate": "2023",
     "address": {
         "@type": "PostalAddress",
         "postOfficeBoxNumber": "500",

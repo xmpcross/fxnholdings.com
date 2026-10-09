@@ -105,16 +105,18 @@
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       var required = ["name", "email", "message"];
-      var firstBad = null;
+      var firstBad = null, missing = false;
       required.forEach(function (n) {
         var el = form.elements[n];
-        var bad = !el.value.trim() || (n === "email" && !el.checkValidity());
+        var empty = !el.value.trim();
+        var bad = empty || (n === "email" && !el.checkValidity());
+        if (empty) missing = true;
         el.setAttribute("aria-invalid", bad ? "true" : "false");
         if (bad && !firstBad) firstBad = el;
       });
       if (firstBad) {
         status.className = "form-status err";
-        status.textContent = "Please complete your name, a valid email address and a message.";
+        status.textContent = missing ? "Please add your name, email and message." : "Please enter a valid email address.";
         firstBad.focus();
         return;
       }
@@ -129,11 +131,11 @@
         if (!res.ok) throw new Error("bad status");
         form.innerHTML =
           '<div class="sent" role="status"><div class="tick"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>' +
-          '<h2 class="h-md">Thanks, your message is on its way.</h2>' +
-          '<p class="muted">We reply within two business days, Perth time.</p></div>';
+          '<h2 class="h-md">Thanks, your message is in.</h2>' +
+          '<p class="muted">We\'ll be in touch soon.</p></div>';
       }).catch(function () {
         status.className = "form-status err";
-        status.innerHTML = 'Your message could not be sent. Please email us at <a href="mailto:kritin@fxnholdings.com">kritin@fxnholdings.com</a>.';
+        status.textContent = "Something went wrong sending your message. Please try again.";
         button.disabled = false;
       });
     });

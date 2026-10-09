@@ -1,0 +1,22 @@
+# Cloudflare Pages response headers. Rules must not overlap: when several match,
+# Pages merges their headers.
+/*
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=()
+
+# Fonts and vendored libraries change only with a new file name or version
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+/assets/vendor/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Site CSS/JS are versioned by query string on every page
+/assets/site.css
+  Cache-Control: public, max-age=604800
+/assets/site.js
+  Cache-Control: public, max-age=604800
+/img/*
+  Cache-Control: public, max-age=604800

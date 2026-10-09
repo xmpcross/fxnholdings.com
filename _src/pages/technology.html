@@ -1,0 +1,144 @@
+<!--meta {"title": "Technology & AI | Open-Source Platform | FXN Holdings", "description": "How FXN Holdings builds: a shared open-source platform, the technology behind each website, and our position on AI built with regulation and human review.", "path": "/technology/", "nav": "technology", "crumb": "Technology & AI"} -->
+
+<section class="page-hero">
+  <svg class="hero-pattern" aria-hidden="true"><rect width="100%" height="100%" fill="url(#chev-light)"/></svg>
+  <div class="container page-hero-inner">
+    <p class="eyebrow reveal"><span class="live-dot" aria-hidden="true"></span>Technology &amp; AI</p>
+    <h1 class="h1 reveal d1">The platform behind our websites</h1>
+    <p class="lead reveal d2">We run and maintain our own technology. Shared services sit behind most of our websites, and AI helps us work faster, with a person checking everything before it is published.</p>
+    <nav class="anchor-nav reveal d3" aria-label="On this page">
+      <a href="#platform">Shared platform</a>
+      <a href="#by-website">Platforms by website</a>
+      <a href="#practices">How we build</a>
+      <a href="#ai">Our position on AI</a>
+    </nav>
+  </div>
+</section>
+
+<section class="section" id="platform" style="padding-top:48px">
+  <div class="container">
+    <div class="section-head center">
+      <i class="fa-solid fa-chevron-down mark reveal" aria-hidden="true"></i>
+      <h2 class="h2 reveal d1">One shared platform</h2>
+      <p class="muted reveal d2">Instead of a separate back end for every website, our content and comparison sites draw on shared services. A fix or an improvement made once reaches all of them.</p>
+    </div>
+    <ol class="pipeline pipeline-light reveal" aria-label="How content reaches our websites">
+      <li><span class="pipe-step">01 · Sources</span><p>Retailer and partner data feeds bring in offers, prices, specifications and product images</p></li>
+      <li><span class="pipe-step">02 · Content platform</span><p>One headless CMS stores content for our content and comparison sites, each in its own space</p></li>
+      <li><span class="pipe-step">03 · Websites</span><p>Each website is built and deployed on its own, so a change to one can't take down another</p></li>
+      <li><span class="pipe-step">04 · Readers</span><p>Our Next.js sites render pages on the server, so they load quickly and are easy for search engines to read</p></li>
+    </ol>
+
+    <div class="card-grid cols-3" style="margin-top:24px">
+      <article class="info-card reveal">
+        <i class="fa-solid fa-database info-ico" aria-hidden="true"></i>
+        <h3 class="h4">Headless content platform</h3>
+        <p>A single CMS holds articles, products, offers and pages for our content and comparison sites, and delivers them to each one through an API.</p>
+      </article>
+      <article class="info-card reveal d1">
+        <i class="fa-solid fa-filter info-ico" aria-hidden="true"></i>
+        <h3 class="h4">Data and enrichment</h3>
+        <p>Automated jobs collect offers, prices and product details from retailer and partner feeds, then organise them into the catalogue.</p>
+      </article>
+      <article class="info-card reveal d2">
+        <i class="fa-solid fa-magnifying-glass info-ico" aria-hidden="true"></i>
+        <h3 class="h4">Product search</h3>
+        <p>A shared search service indexes the products in our catalogue so they can be found quickly.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="by-website" style="padding-top:0">
+  <div class="container">
+    <div class="split-head">
+      <div>
+        <h2 class="h2 reveal">Platforms by website</h2>
+        <p class="muted reveal d1">Different websites need different tools. Content and comparison sites run on Next.js with a headless CMS; our online stores run on hosted store platforms or WooCommerce.</p>
+      </div>
+    </div>
+    <div class="table-wrap reveal">
+      <table class="asset-table tech-table">
+        <thead><tr><th scope="col">Website</th><th scope="col">Front end</th><th scope="col">Content &amp; data</th><th scope="col">Commerce</th></tr></thead>
+        <tbody>
+          <tr><td>originfacts.com</td><td>Next.js · React</td><td>Shared headless CMS</td><td>Partner booking</td></tr>
+          <tr><td>nxt.deals</td><td>Next.js · React</td><td>Shared headless CMS · retailer feeds</td><td>Affiliate links</td></tr>
+          <tr><td>nxtdiscount.com</td><td>Next.js · React</td><td>Shared headless CMS · retailer feeds</td><td>Affiliate links</td></tr>
+          <tr><td>nxt.bargains</td><td>Next.js · React</td><td>Shared headless CMS · retailer feeds</td><td>Affiliate links</td></tr>
+          <tr><td>nxtsmarthome.com.au</td><td>Next.js · React</td><td>Shared headless CMS · product catalogue</td><td>Affiliate links</td></tr>
+          <tr><td>nxtsmart.homes</td><td>Next.js · React</td><td>Shared headless CMS</td><td>Affiliate links</td></tr>
+          <tr><td>bestlooking.skin</td><td>Next.js · React</td><td>Shared headless CMS</td><td>Affiliate links</td></tr>
+          <tr><td>furfunshop.com</td><td>WordPress</td><td>WordPress</td><td>WooCommerce store</td></tr>
+          <tr><td>furryfriendfacts.com</td><td>FreshStore</td><td>FreshStore</td><td>Hosted store</td></tr>
+          <tr><td>mysecure.homes</td><td>FreshStore</td><td>FreshStore</td><td>Hosted store</td></tr>
+          <tr><td>nxtvitality.com</td><td>FreshStore</td><td>FreshStore</td><td>Hosted store</td></tr>
+          <tr><td>ohmnook.com</td><td>Next.js · React</td><td>Payload CMS</td><td>Retailer links</td></tr>
+          <tr><td>solostack.au</td><td>Next.js · React</td><td>Payload CMS</td><td>—</td></tr>
+          <tr><td>fxnseo.com</td><td>Browser-based tools</td><td>Shared headless CMS</td><td>Free to use</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="section dark" id="practices">
+  <div class="container">
+    <div class="split-head">
+      <div>
+        <h2 class="h2 reveal">How we build</h2>
+        <p class="muted reveal d1">Engineering habits we apply across our websites.</p>
+      </div>
+    </div>
+    <div class="card-grid cols-4 practices">
+      <article class="info-card reveal">
+        <i class="fa-solid fa-cubes info-ico" aria-hidden="true"></i>
+        <h3 class="h4">Independent deployments</h3>
+        <p>Each website builds and releases on its own, so an update to one site never interrupts another.</p>
+      </article>
+      <article class="info-card reveal d1">
+        <i class="fa-solid fa-bolt info-ico" aria-hidden="true"></i>
+        <h3 class="h4">Server-rendered pages</h3>
+        <p>Our Next.js sites send pages ready to read, which keeps them fast on phones and clear for search engines.</p>
+      </article>
+      <article class="info-card reveal d1">
+        <i class="fa-solid fa-rotate-left info-ico" aria-hidden="true"></i>
+        <h3 class="h4">Built-in fallbacks</h3>
+        <p>If the content platform is briefly unavailable, our CMS-backed sites fall back to stored content instead of showing an error.</p>
+      </article>
+      <article class="info-card reveal d2">
+        <i class="fa-solid fa-lock info-ico" aria-hidden="true"></i>
+        <h3 class="h4">Secure by default</h3>
+        <p>Every site is served over HTTPS, and secrets stay out of our code repositories.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="ai">
+  <div class="container">
+    <div class="two-col ai-grid">
+      <div class="prose">
+        <h2 class="h2 reveal">We believe in AI, built with regulation</h2>
+        <p class="reveal d1">AI is changing how information is found, written and published. We think it will make useful websites better: faster to update, more complete and easier to use.</p>
+        <p class="reveal d1">We also think that only works if AI is developed and used within clear rules. People should be able to trust what they read, know who is responsible for it, and have their privacy respected. We welcome regulation that makes that the norm, in Australia and in the markets our readers come from, and we will follow it as it develops.</p>
+        <h3 class="h4 reveal d2" style="margin-top:12px">How we use AI today</h3>
+        <p class="reveal d2">We use AI to draft and enrich content, such as product titles and descriptions, so our catalogue stays complete and consistent.</p>
+      </div>
+      <aside class="commit-panel reveal d1" aria-labelledby="commit-h">
+        <span class="commit-label">Our commitment</span>
+        <h3 id="commit-h" class="commit-title">A person reviews AI-assisted content before anything is published.</h3>
+        <div class="commit-flow"><span>AI draft</span><span class="arrow">→</span><span>Human review</span><span class="arrow">→</span><span class="on">Published</span></div>
+        <p>AI speeds up our work. It does not decide what goes live on our websites; our team does.</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <svg class="cta-pattern" aria-hidden="true"><rect width="100%" height="100%" fill="url(#chev-dark)"/></svg>
+  <div class="container cta-inner">
+    <h2 class="h2 reveal">Questions about our technology?</h2>
+    <p class="reveal d1">We're happy to talk about how we build and run our websites.</p>
+    <a class="btn btn-primary btn-lg reveal d2" href="/contact/">Get in touch <i class="fa-solid fa-arrow-right chev" aria-hidden="true"></i></a>
+  </div>
+</section>

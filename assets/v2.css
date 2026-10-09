@@ -23,7 +23,7 @@
   --font-text: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-head: "Instrument Sans", "Manrope", system-ui, sans-serif;
 
-  --container: 952px;
+  --container: 1366px; /* max width of .container, side gutters included */
   --gutter: 24px;
   --radius: 2px;
   --ease: cubic-bezier(.2, .7, .2, 1);
@@ -41,7 +41,7 @@ button { font: inherit; }
 .skip { position: absolute; left: 12px; top: -60px; z-index: 100; padding: 10px 14px; background: var(--black); color: #fff; border-radius: var(--radius); }
 .skip:focus { top: 12px; }
 
-.container { width: 100%; max-width: calc(var(--container) + var(--gutter) * 2); margin: 0 auto; padding: 0 var(--gutter); }
+.container { width: 100%; max-width: var(--container); margin: 0 auto; padding: 0 var(--gutter); }
 .center { text-align: center; }
 .muted { color: var(--grey); font-size: 16px; line-height: 1.4; }
 .lead { font-size: 18px; line-height: 1.5; color: var(--grey); }
@@ -170,9 +170,9 @@ button { font: inherit; }
 .dark .h2 { color: #fff; }
 .dark .muted { color: #c9c9c9; }
 .slider { position: relative; }
-.slider-track { display: flex; gap: 32px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; padding: 8px max(var(--gutter), calc((100vw - var(--container)) / 2)); scroll-padding: 0 max(var(--gutter), calc((100vw - var(--container)) / 2)); scrollbar-width: none; }
+.slider-track { display: flex; gap: 32px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; padding: 8px max(var(--gutter), calc((100vw - var(--container)) / 2 + var(--gutter))); scroll-padding: 0 max(var(--gutter), calc((100vw - var(--container)) / 2 + var(--gutter))); scrollbar-width: none; }
 .slider-track::-webkit-scrollbar { display: none; }
-.slide { flex: none; display: grid; grid-template-columns: 1.5fr 1fr; width: min(100%, 940px); min-height: 360px; background: #fff; color: var(--black); scroll-snap-align: start; }
+.slide { flex: none; display: grid; grid-template-columns: 1.5fr 1fr; width: min(100%, 1040px); min-height: 380px; background: #fff; color: var(--black); scroll-snap-align: start; }
 .slide-text { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; padding: 40px; }
 .slide-kind { font-size: 13px; font-weight: 600; color: var(--blue); letter-spacing: .02em; }
 .slide-domain { font-size: 30px; line-height: 1.1; letter-spacing: -0.02em; }
@@ -215,7 +215,7 @@ button { font: inherit; }
 .feature-text { padding: 8px; }
 .feature-text ul { margin-top: 16px; padding-left: 20px; display: grid; gap: 10px; font-size: 15px; line-height: 1.5; color: var(--ink); }
 .feature-art { background: var(--beige); min-height: 280px; }
-.flow { position: relative; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 24px 80px; padding: 32px; background-color: #fbf7f1; background-image: radial-gradient(#e7ddd0 1px, transparent 1.2px); background-size: 12px 12px; }
+.flow { position: relative; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 88px 120px; padding: 40px 32px; background-color: #fbf7f1; background-image: radial-gradient(#e7ddd0 1px, transparent 1.2px); background-size: 12px 12px; }
 .flow-node { align-self: center; padding: 12px 14px; background: #fff; font-size: 13px; font-weight: 600; box-shadow: 0 6px 20px rgba(10, 31, 68, .08); }
 .flow-node b { color: var(--blue); margin-right: 6px; }
 .flow-node.n2 { grid-column: 2; grid-row: 1; }

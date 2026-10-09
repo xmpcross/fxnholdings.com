@@ -2,11 +2,16 @@
   "name": "fxnholdings-com",
   "private": true,
   "type": "module",
-  "description": "Static site for FXN Holdings, built into dist/ and served by Cloudflare Pages, with Pages Functions for the contact form and website assistant.",
+  "description": "Static site for FXN Holdings, built into dist/ and served by a Cloudflare Worker (static assets) with /api/contact and /api/chat handlers.",
   "scripts": {
-    "build": "python3 _src/build.py"
+    "build": "python3 _src/build.py",
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "0.128.0"
+  },
+  "devDependencies": {
+    "wrangler": "4.139.0"
   }
 }

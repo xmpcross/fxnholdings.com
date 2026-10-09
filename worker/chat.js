@@ -8,13 +8,13 @@
 // may call submit_enquiry, which emails the visitor's details and the
 // transcript to the team (lib/email.js).
 //
-// Environment (Cloudflare Pages → Settings → Variables and Secrets):
+// Environment (Cloudflare dashboard → Workers → fxnholdings-com → Settings → Variables and Secrets):
 //   ANTHROPIC_API_KEY  secret, required
 //   CHAT_MODEL         optional, defaults to claude-haiku-5-5
 //   plus the email settings in lib/email.js
 import Anthropic from "@anthropic-ai/sdk";
-import { json, allowedOrigin, clientIp, rateLimited, isEmail } from "../../lib/http.js";
-import { sendEmail } from "../../lib/email.js";
+import { json, allowedOrigin, clientIp, rateLimited, isEmail } from "./lib/http.js";
+import { sendEmail } from "./lib/email.js";
 
 const MAX_TURNS = 20; // messages kept from the transcript
 const MAX_CHARS = 1500; // per message
@@ -225,4 +225,3 @@ export async function onRequestPost({ request, env }) {
   return json(500, { error: "unavailable" });
 }
 
-export const onRequest = () => json(405, { error: "Method not allowed" });

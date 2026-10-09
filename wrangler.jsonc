@@ -1,0 +1,20 @@
+// Cloudflare Worker config, used by Workers Builds on every push (npx wrangler deploy).
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "fxnholdings-com",
+  "main": "worker/index.js",
+  "compatibility_date": "2026-09-01",
+  "compatibility_flags": ["nodejs_compat"],
+  // Build the static site into dist/ before deploying.
+  "build": { "command": "python3 _src/build.py" },
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page",
+    "run_worker_first": ["/api/*"]
+  },
+  // Keep variables set in the dashboard (SMTP_USER etc.) when deploying. Secrets are always kept.
+  "keep_vars": true,
+  "observability": { "enabled": true }
+}

@@ -1,9 +1,9 @@
-// Sends notification emails through Google Workspace SMTP from a Cloudflare
-// Pages Function, using a TCP socket (cloudflare:sockets). Port 25 is blocked on
+// Sends notification emails through Google Workspace SMTP from the Cloudflare
+// Worker, using a TCP socket (cloudflare:sockets). Port 25 is blocked on
 // Cloudflare, so this uses implicit TLS on 465 (default) or STARTTLS on 587,
 // with SMTP AUTH as a Workspace mailbox.
 //
-// Environment (Cloudflare Pages → Settings → Variables and Secrets):
+// Environment (Cloudflare dashboard → Workers → fxnholdings-com → Settings → Variables and Secrets):
 //   SMTP_USER   required  Workspace mailbox that sends, e.g. website@fxnholdings.com
 //   SMTP_PASS   secret    App Password for that mailbox (Google Account → Security → App passwords)
 //   SMTP_HOST   optional  default smtp.gmail.com

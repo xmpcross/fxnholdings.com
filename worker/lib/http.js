@@ -1,4 +1,4 @@
-// Shared helpers for the Cloudflare Pages Functions in functions/api/.
+// Shared helpers for the Worker handlers in worker/.
 
 export const json = (status, body) =>
   new Response(JSON.stringify(body), {
@@ -6,13 +6,13 @@ export const json = (status, body) =>
     headers: { "content-type": "application/json; charset=utf-8", "cache-control": "no-store" },
   });
 
-// Requests must come from the site itself (or a Pages preview deployment).
+// Requests must come from the site itself (or a workers.dev preview).
 export function allowedOrigin(request) {
   const origin = request.headers.get("origin");
   if (!origin) return true; // same-origin form posts from some browsers omit it
   try {
     const host = new URL(origin).hostname;
-    return host === "fxnholdings.com" || host === "www.fxnholdings.com" || host.endsWith(".pages.dev") || host === "localhost" || host === "127.0.0.1";
+    return host === "fxnholdings.com" || host === "www.fxnholdings.com" || host.endsWith(".workers.dev") || host.endsWith(".pages.dev") || host === "localhost" || host === "127.0.0.1";
   } catch {
     return false;
   }

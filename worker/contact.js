@@ -3,8 +3,8 @@
 // Accepts JSON (from site.js) or a regular form post (no-JS fallback) with
 // name, email, company, reason, message and the honeypot field bot-field.
 // Emails the enquiry to the team through Google Workspace SMTP; see lib/email.js.
-import { json, allowedOrigin, clientIp, rateLimited, isEmail } from "../../lib/http.js";
-import { sendEmail } from "../../lib/email.js";
+import { json, allowedOrigin, clientIp, rateLimited, isEmail } from "./lib/http.js";
+import { sendEmail } from "./lib/email.js";
 
 const LIMITS = { name: 200, email: 200, company: 200, reason: 100, message: 5000 };
 
@@ -58,4 +58,3 @@ export async function onRequestPost({ request, env }) {
   return done();
 }
 
-export const onRequest = () => json(405, { error: "Method not allowed" });

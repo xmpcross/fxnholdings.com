@@ -9,7 +9,7 @@ Website for FXN Holdings (Perth, WA · ABN 53 274 423 748), served by a **Cloudf
 | `_src/pages/*.html` | Page content, each with a `<!--meta {...} -->` block (title, description, path, nav) |
 | `_src/partials/` | Shared header, footer (incl. cookie notice and chat widget) and logo |
 | `_src/build.py` | Builds the site into `dist/` |
-| `static/` | Copied into `dist/` as is: `assets/` (CSS, JS, self-hosted Font Awesome), `fonts/`, `img/`, icons, `robots.txt`, `sitemap.xml`, `_headers` |
+| `static/` | Copied into `dist/` as is: `assets/` (CSS, JS, self-hosted Font Awesome), `fonts/`, `img/`, icons, `robots.txt`, `_headers` (`sitemap.xml` is generated) |
 | `worker/index.js` | Worker entry: `/api/*` goes to the handlers, everything else to the static assets in `dist/` |
 | `worker/contact.js`, `worker/chat.js` | `POST /api/contact` and `POST /api/chat` |
 | `worker/lib/` | `http.js` helpers and `email.js` (Google Workspace SMTP) |
@@ -17,10 +17,29 @@ Website for FXN Holdings (Perth, WA · ABN 53 274 423 748), served by a **Cloudf
 
 `dist/` is generated and not committed.
 
+## Insights (posts)
+
+Posts are Markdown files in `_src/posts/`; the file name is the URL (`_src/posts/my-post.md` → `/insights/my-post/`). Each starts with:
+
+```markdown
+---
+title: Post title
+date: 2026-10-09
+category: technology-ai        # technology-ai | company-news | market-gaps
+summary: One or two sentences for listings and search results (aim for 120–160 characters).
+draft: true                    # remove or set to false to publish
+---
+```
+
+The body supports `##`/`###` headings, paragraphs, `-` and `1.` lists, `>` quotes, `---` rules, `**bold**`, `*italic*`, `` `code` `` and `[links](/path/)`. Categories are defined in `_src/insights.py`.
+
+The build creates `/insights/`, a page per category, a page per post, `/insights/feed.xml` (RSS) and adds published posts to `sitemap.xml`. Drafts are left out of the live build; `python3 _src/build.py --drafts` includes them, marked "Draft", for previews.
+
 ## Build and preview
 
 ```bash
-python3 _src/build.py      # writes dist/
+python3 _src/build.py            # writes dist/ (live build, no drafts)
+python3 _src/build.py --drafts   # includes draft posts for previews
 ```
 
 Bump `VERSION` in `_src/build.py` whenever CSS or JS changes, so browsers fetch the new files.

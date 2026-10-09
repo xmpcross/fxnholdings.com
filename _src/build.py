@@ -17,7 +17,7 @@ from pathlib import Path
 SRC = Path(__file__).resolve().parent
 ROOT = SRC.parent
 SITE = "https://www.fxnholdings.com"
-VERSION = "20261009j"
+VERSION = "20261009k"
 
 logo = (SRC / "partials" / "logo.svg").read_text().strip()
 header = (SRC / "partials" / "header.html").read_text()
@@ -61,6 +61,7 @@ HEAD = """<!doctype html>
 <meta name="twitter:card" content="summary">
 {robots}<link rel="icon" href="/icon.svg" type="image/svg+xml">
 <link rel="preload" href="/fonts/Urbanist-Variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/vendor/fontawesome/fa.min.css?v=6.7.2">
 <link rel="stylesheet" href="/assets/site.css?v={version}">
 {jsonld}</head>
 <body>

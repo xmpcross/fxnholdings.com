@@ -3,7 +3,6 @@ title: What we mean by a market gap
 date: 2026-10-09
 category: market-gaps
 summary: Every platform we launch starts with a gap: a market where people can't easily find what they need. Here's how we look for one and decide whether it's worth filling.
-draft: true
 ---
 
 "Find the gap" is the first step in everything we build. But what counts as a gap, and how do we decide one is worth filling?

@@ -3,7 +3,6 @@ title: How we use AI: machines draft, people decide
 date: 2026-10-09
 category: technology-ai
 summary: AI helps us draft and enrich content across our platforms, but a person reviews everything before it is published. Here's how that works, and why we welcome regulation.
-draft: true
 ---
 
 AI is changing how information is found, written and published. At FXN Holdings we use it every day, and we think it makes useful websites better: faster to update, more complete and easier to use.

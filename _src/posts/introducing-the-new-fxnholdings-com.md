@@ -3,7 +3,6 @@ title: Introducing the new fxnholdings.com
 date: 2026-10-09
 category: company-news
 summary: Our website has a new look and a clearer purpose: a full list of the platforms we run, how we build them, and an assistant that answers questions any time.
-draft: true
 ---
 
 We've rebuilt fxnholdings.com from the ground up. The new site explains what FXN Holdings does in plain terms: **we find the gap, build the platform, and launch it.**

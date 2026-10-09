@@ -40,6 +40,12 @@ CATEGORIES = [
         "description": "Announcements and updates from FXN Holdings and the platforms we run.",
     },
     {
+        "slug": "start-a-business",
+        "name": "Starting a Business",
+        "icon": "earth-asia",
+        "description": "Setting up a company or online store in a new market: registration, requirements and VAT, country by country.",
+    },
+    {
         "slug": "market-gaps",
         "name": "Market Gaps",
         "icon": "magnifying-glass-chart",
@@ -198,12 +204,18 @@ def used_categories(posts):
     return [c for c in CATEGORIES if any(p["category"]["slug"] == c["slug"] for p in posts)]
 
 
-def _filters(active, posts):
-    links = [f'<a href="/insights/"{" aria-current=\"page\"" if active is None else ""}>All</a>']
+def _layout(active, posts, listed, empty):
+    """Blog listing: category sidebar on the left, post grid on the right."""
+    counts = {c["slug"]: sum(1 for p in posts if p["category"]["slug"] == c["slug"]) for c in CATEGORIES}
+    cur = lambda on: ' aria-current="page"' if on else ""
+    links = [f'<a href="/insights/"{cur(active is None)}><i class="fa-solid fa-layer-group" aria-hidden="true"></i>All posts<span class="blog-count">{len(posts)}</span></a>']
     for c in used_categories(posts):
-        cur = ' aria-current="page"' if active == c["slug"] else ""
-        links.append(f'<a href="/insights/{c["slug"]}/"{cur}><i class="fa-solid fa-{c["icon"]}" aria-hidden="true"></i>{html.escape(c["name"])}</a>')
-    return '<nav class="anchor-nav post-filters reveal d3" aria-label="Categories">\n      ' + "\n      ".join(links) + "\n    </nav>"
+        links.append(f'<a href="/insights/{c["slug"]}/"{cur(active == c["slug"])}><i class="fa-solid fa-{c["icon"]}" aria-hidden="true"></i>'
+                     f'{html.escape(c["name"])}<span class="blog-count">{counts[c["slug"]]}</span></a>')
+    return ('<section class="section" style="padding-top:24px">\n  <div class="container blog-layout">\n'
+            '    <aside class="blog-side" aria-labelledby="blog-cats">\n      <h2 class="blog-side-title" id="blog-cats">Categories</h2>\n'
+            '      <nav class="blog-cats" aria-label="Blog categories">\n        ' + "\n        ".join(links) + "\n      </nav>\n    </aside>\n"
+            '    <div class="blog-main">\n' + _grid(listed, empty) + "\n    </div>\n  </div>\n</section>\n")
 
 
 def _grid(posts, empty):
@@ -264,9 +276,8 @@ def pages(posts, site):
         # Keep empty listings out of search results until there is something to list.
         "noindex": not posts,
     }, _hero('<span class="live-dot" aria-hidden="true"></span>Blog', "The FXN Holdings blog",
-             "Notes on how we build, what we're launching, and the market gaps we think are worth filling.", _filters(None, posts))
-       + '\n<section class="section" style="padding-top:24px">\n  <div class="container">\n'
-       + _grid(posts, "We're writing our first articles. Check back soon.") + "\n  </div>\n</section>\n" + _cta())
+             "Notes on how we build, what we're launching, and the market gaps we think are worth filling.")
+       + "\n" + _layout(None, posts, posts, "We're writing our first articles. Check back soon.") + _cta())
 
     for c in CATEGORIES:
         in_cat = [p for p in posts if p["category"]["slug"] == c["slug"]]
@@ -277,9 +288,8 @@ def pages(posts, site):
             # A category with one post only repeats the main listing; index it from two posts up
             "noindex": len(in_cat) < 2,
             "crumbs": crumbs_root + [(c["name"], f"{site}/insights/{c['slug']}/")],
-        }, _hero(f'<i class="fa-solid fa-{c["icon"]}" aria-hidden="true"></i>Blog', html.escape(c["name"]), html.escape(c["description"]), _filters(c["slug"], posts))
-           + '\n<section class="section" style="padding-top:24px">\n  <div class="container">\n'
-           + _grid(in_cat, f"There are no {html.escape(c['name'])} posts yet.") + "\n  </div>\n</section>\n" + _cta())
+        }, _hero(f'<i class="fa-solid fa-{c["icon"]}" aria-hidden="true"></i>Blog', html.escape(c["name"]), html.escape(c["description"]))
+           + "\n" + _layout(c["slug"], posts, in_cat, f"There are no {html.escape(c['name'])} posts yet.") + _cta())
 
     for p in posts:
         c = p["category"]

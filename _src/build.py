@@ -21,7 +21,7 @@ SRC = Path(__file__).resolve().parent
 ROOT = SRC.parent
 OUT = ROOT / "dist"
 SITE = "https://fxnholdings.com"
-VERSION = "20261009p"
+VERSION = "20261009q"
 
 logo = (SRC / "partials" / "logo.svg").read_text().strip()
 header = (SRC / "partials" / "header.html").read_text()
@@ -76,13 +76,15 @@ HEAD = """<!doctype html>
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preload" href="/fonts/Urbanist-Variable.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/vendor/fontawesome/fa.min.css?v=6.7.2">
+<link rel="stylesheet" href="/assets/vendor/lenis/lenis.css?v=1.3.26">
 <link rel="stylesheet" href="/assets/site.css?v={version}">
 {jsonld}</head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 """
 
-TAIL = """<script src="/assets/site.js?v={version}" defer></script>
+TAIL = """<script src="/assets/vendor/lenis/lenis.min.js?v=1.3.26" defer></script>
+<script src="/assets/site.js?v={version}" defer></script>
 </body>
 </html>
 """

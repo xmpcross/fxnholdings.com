@@ -3,6 +3,28 @@
   "use strict";
   document.documentElement.classList.remove("no-js");
 
+  // Smooth scrolling (Lenis, self-hosted). Off for reduced motion; touch keeps native scrolling.
+  var lenis = null;
+  var prefersReduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (window.Lenis && !prefersReduced) {
+    lenis = new window.Lenis({ autoRaf: true, lerp: 0.1 });
+    // In-page links: glide to an exact pixel position just below the sticky header.
+    document.addEventListener("click", function (e) {
+      var a = e.target.closest && e.target.closest('a[href*="#"]');
+      if (!a || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey) return;
+      var url = new URL(a.href, location.href);
+      if (url.pathname !== location.pathname || url.origin !== location.origin || url.hash.length < 2) return;
+      var target = document.getElementById(decodeURIComponent(url.hash.slice(1)));
+      if (!target) return;
+      e.preventDefault();
+      var header = document.querySelector(".site-header");
+      var offset = (header ? header.offsetHeight : 0) + 16;
+      var y = target.getBoundingClientRect().top + window.scrollY - offset;
+      lenis.scrollTo(Math.max(0, y), { duration: 1.1 });
+      history.pushState(null, "", url.hash);
+    });
+  }
+
   // Live Perth time (AWST, UTC+8, no daylight saving)
   var clocks = document.querySelectorAll("[data-clock]");
   if (clocks.length) {
@@ -26,6 +48,7 @@
   if (menuBtn) {
     var setMenu = function (open) {
       document.body.classList.toggle("menu-open", open);
+      if (lenis) { if (open) lenis.stop(); else lenis.start(); }
       menuBtn.setAttribute("aria-expanded", String(open));
       menuBtn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
     };

@@ -29,6 +29,7 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+html.lenis { scroll-behavior: auto; } /* Lenis does the smoothing */
 body { margin: 0; font-family: var(--font-text); font-size: 16px; line-height: 1.4; color: var(--ink); background: var(--white); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
 img, svg { display: block; max-width: 100%; }
 a { color: inherit; }

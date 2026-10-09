@@ -254,7 +254,7 @@
     document.querySelectorAll(".legal section[id]").forEach(function (s) { tocIo.observe(s); });
   }
 
-  // Blog posts: highlight the section being read in "In this guide"
+  // Blog posts: highlight the section being read in the Table of Contents
   var postToc = document.querySelectorAll(".post-toc a[href^='#']");
   if (postToc.length) {
     var heads = Array.prototype.map.call(postToc, function (a) { return document.getElementById(a.getAttribute("href").slice(1)); });

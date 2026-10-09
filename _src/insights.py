@@ -253,7 +253,7 @@ def _layout(active, posts, listed, empty):
 
 
 def _toc(p, url):
-    """'In this guide' contents from the post's ## headings, plus share links. Empty for short posts."""
+    """Table of Contents from the post's ## headings, plus share links. Empty for short posts."""
     heads = re.findall(r'<h2 id="([^"]+)">(.*?)</h2>', p["html"])
     if len(heads) < 2:
         return ""
@@ -273,7 +273,7 @@ def _toc(p, url):
              f'<a href="https://www.linkedin.com/sharing/share-offsite/?url={q(url, safe="")}" target="_blank" rel="noopener" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin" aria-hidden="true"></i></a>'
              f'<button type="button" class="share-copy" data-url="{url}" aria-label="Copy link to this post"><i class="fa-solid fa-link" aria-hidden="true"></i></button>'
              '</div>')
-    return ('  <aside class="post-toc" aria-labelledby="toc-title">\n    <h2 class="blog-side-title" id="toc-title">In this guide</h2>\n'
+    return ('  <aside class="post-toc" aria-labelledby="toc-title">\n    <h2 class="blog-side-title" id="toc-title">Table of Contents</h2>\n'
             '    <nav aria-labelledby="toc-title"><ol>' + "".join(items) + '</ol></nav>\n    ' + share + "\n  </aside>\n")
 
 

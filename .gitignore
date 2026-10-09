@@ -5,3 +5,4 @@ dist/
 .wrangler/
 .env.local
 .dist-preview/
+seo-reports/*/lighthouse/

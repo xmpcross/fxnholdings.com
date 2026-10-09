@@ -3,7 +3,8 @@ title: How we use AI: machines draft, people decide
 date: 2026-10-09
 category: technology-ai
 summary: AI helps us draft and enrich content across our platforms, but a person reviews everything before it is published. Here's how that works, and why we welcome regulation.
-image_alt: Illustration of a person at a desk checking and approving pages drafted by an abstract machine
+image: /img/insights/how-we-use-ai.webp
+image_alt: Illustration of a person at a desk ticking off a page printed by a friendly robot-like machine
 image_prompt: A person at a tidy desk reviewing printed pages that stream out of a friendly, abstract geometric machine; the person holds a pen and marks one page with a large check mark, while other pages wait in a neat stack. The human is clearly the one deciding.
 ---
 

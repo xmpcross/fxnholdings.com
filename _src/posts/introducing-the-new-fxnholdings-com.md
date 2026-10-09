@@ -3,6 +3,7 @@ title: Introducing the new fxnholdings.com
 date: 2026-10-09
 category: company-news
 summary: Our website has a new look and a clearer purpose: a full list of the platforms we run, how we build them, and an assistant that answers questions any time.
+image: /img/insights/introducing-the-new-fxnholdings-com.webp
 image_alt: Illustration of a new website surrounded by cards representing shopping, travel, publishing, price comparison and online tool platforms
 image_prompt: A large, clean browser window showing an abstract website layout, surrounded by small floating cards that represent different online platforms (a shopping bag, a plane, an open book, a price tag, a wrench) and a speech bubble for a chat assistant, all connected by thin lines to the central site.
 ---

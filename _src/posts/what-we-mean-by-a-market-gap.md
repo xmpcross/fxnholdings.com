@@ -3,6 +3,7 @@ title: What we mean by a market gap
 date: 2026-10-09
 category: market-gaps
 summary: Every platform we launch starts with a gap: a market where people can't easily find what they need. Here's how we look for one and decide whether it's worth filling.
+image: /img/insights/what-we-mean-by-a-market-gap.webp
 image_alt: Illustration of a person with a magnifying glass studying an empty gap in a row of tall blocks
 image_prompt: A row of tall rectangular blocks like a bar chart or city skyline with one clear empty gap in the middle; a small person with a magnifying glass stands at the edge looking into the gap, and a blue outline sketches the block that could fill it.
 ---
